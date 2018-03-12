@@ -182,4 +182,28 @@
             });
         });
 	</script>
+	<!--  Ajax for age invoice batch -->
+	<script type="text/javascript">
+        $(function() {
+            $('#submitBatchForm3').submit(function(e) {
+                e.preventDefault();
+                if ( $(this).parsley().isValid() ) {
+                    $('#submitBatchForm3').hide();
+                    $('<div id = "status3"><span class="red glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Batch in progress...</div>').insertAfter('#submitBatchForm3');
+                    $.ajax({
+                        url:$( '#submitBatchForm3' ).attr( 'action' ),
+                        data:$(this).serialize(),
+                        type:'POST',
+                        success:function(data){
+                            console.log(data);
+                            $('#status3').hide();
+                            $('#numberOfRows3').html("Records updated: "+data);
+                        },
+                        error:function(data){
+                        }
+                    });
+                }
+            });
+        });
+	</script>
 </div>

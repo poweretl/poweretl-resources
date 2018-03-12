@@ -25,4 +25,8 @@ SELECT nextval('seq')
 </selectKey>
 INSERT INTO kv_net_lump_sum_payment (id, account_id, net_lump_sum_amount ) VALUES (#{id} , #{account_id} , #{net_lump_sum_amount});
 </insert>
+
+    <delete id="truncateNetLumpSum">
+        delete from kv_net_lump_sum_payment
+    </delete>
 </mapper>

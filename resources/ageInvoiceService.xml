@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ageInvoiceService">
+    <resultMap type="java.util.HashMap" id="getAgeInvoiceById-map" >
+        <result property="id" column="id" javaType="java.lang.Long"/>
+        <result property="invoice_due_date" column="invoice_due_date" javaType="java.lang.String"/>
+    </resultMap>
+
+    <select id="getAgeInvoiceById" resultMap="getAgeInvoiceById-map">
+        select invoice_due_date, id where invoice_status_id in (15,17) and tenant_id = #{tenant_id}
+    </select>
+
+    <update id = "updateAgeInvoice">
+        update invoices set dpd = ((current_date - #{invoice_due_date})+1) where id = #{id} and tenant_id = #{tenant_id}
+    </update>
+</mapper>

@@ -82,7 +82,8 @@
 		<mapper resource="hostService.xml" />	
 		<mapper resource="userManagementService.xml" />	
 		<mapper resource="calcOutstandingService.xml" />
-		<mapper resource="lumpSumPayment.xml" />			
+		<mapper resource="lumpSumPayment.xml" />
+		<mapper resource="ageInvoiceService.xml" />
 	</mappers>
 
 </configuration>
