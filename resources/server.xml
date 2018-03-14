@@ -84,6 +84,7 @@
 		<mapper resource="calcOutstandingService.xml" />
 		<mapper resource="lumpSumPayment.xml" />
 		<mapper resource="ageInvoiceService.xml" />
+		<mapper resource="batchService.xml" />
 	</mappers>
 
 </configuration>

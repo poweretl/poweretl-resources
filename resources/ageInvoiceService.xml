@@ -6,7 +6,7 @@
 <mapper namespace="ageInvoiceService">
     <resultMap type="java.util.HashMap" id="getAgeInvoiceById-map" >
         <result property="id" column="id" javaType="java.lang.Long"/>
-        <result property="invoice_due_date" column="invoice_due_date" javaType="java.lang.String"/>
+        <result property="invoice_due_date" column="invoice_due_date" javaType="java.util.Date"/>
     </resultMap>
 
     <select id="getAgeInvoiceById" resultMap="getAgeInvoiceById-map">
@@ -14,6 +14,7 @@
     </select>
 
     <update id = "updateAgeInvoice">
-        update invoices set dpd = ((current_date - #{invoice_due_date})+1) where id = #{id} and tenant_id = #{tenant_id}
+        update invoices set dpd = ((current_date - #{invoice_due_date})+1)
+        where id = #{id} and tenant_id = #{tenant_id}
     </update>
 </mapper>
