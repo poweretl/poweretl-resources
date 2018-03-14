@@ -10,7 +10,7 @@
     </resultMap>
 
     <select id="getAgeInvoiceById" resultMap="getAgeInvoiceById-map">
-        select invoice_due_date, id from invoices where invoice_status_id in (15,17) and tenant_id = #{tenant_id}
+        select invoice_due_date, id from invoices where invoice_status_id in (16,17) and tenant_id = #{tenant_id}
     </select>
 
     <update id = "updateAgeInvoice">
