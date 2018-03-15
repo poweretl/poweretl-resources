@@ -11,7 +11,7 @@
  <appender name="DEBUG_LOG" class="ch.qos.logback.core.FileAppender">
   <file>../logs/Application.log</file>
   <encoder>
-   <pattern>%c %d{ISO8601} %-5p %m%n</pattern>
+   <pattern>%d{ISO8601} %-5p %m%n</pattern>
   </encoder>
  </appender>
 
