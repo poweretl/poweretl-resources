@@ -91,6 +91,12 @@
         <mapper resource="updateVendorInvoicesGroup4"/>
         <mapper resource="updateVendorInvoicesGroup5"/>
         <mapper resource="updateVendorInvoicesGroup6"/>
+		<mapper resource="updateVendorInvoicesGroup7"/>
+		<mapper resource="updateVendorInvoicesGroup8"/>
+		<mapper resource="updateVendorInvoicesGroup9"/>
+		<mapper resource="updateVendorInvoicesGroup10"/>
+		<mapper resource="updateVendorInvoicesGroup11"/>
+		<mapper resource="updateVendorInvoicesGroup12"/>
 	</mappers>
 
 </configuration>
