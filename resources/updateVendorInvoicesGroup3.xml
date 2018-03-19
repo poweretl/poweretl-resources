@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="updateVendorInvoicesGroup1">
+<mapper namespace="updateVendorInvoicesGroup3">
     <resultMap type="java.util.HashMap" id="getValues-map" >
         <result property="doc_type" column="doc_type" javaType="java.lang.String" />
         <result property="assignment" column="assignment" javaType="java.lang.String" />
@@ -15,18 +15,20 @@
     </resultMap>
     <select id = "getValues" resultMap = "getValues-map">
 
-    select
+        select
         stage.doc_type as doc_type,
         stage.assignment as assignment,
         stage.clear_doc as clear_doc,
         stage.trx_mode as trx_mode,
         inv.load_id as load_id,
 
-        case when stage.trx_mode = 'H' then 'INVOICE' ELSE 'CREDIT' end as DOC_TYPE_CODE,
-        case when stage.trx_mode = 'H' then stage.assignment ELSE stage.clear_doc end as INVOICE_NO_DERIVED
+            case when stage.trx_mode = 'H' then 'INVOICE' ELSE 'CREDIT' end as DOC_TYPE_CODE,
+            case when stage.trx_mode = 'H' then stage.assignment ELSE
+                case when (stage.clear_doc = NULL or stage.clear_doc = '')
+                end as INVOICE_NO_DERIVED
 
         from vendor_invoice_load stage
         left join kv_vendor_invoices inv on stage.id = inv.load_id
-        where stage.doc_type in ('AA', 'AB', 'GA');
+        where stage.doc_type in ('PC','GL', 'RE');
     </select>
 </mapper>
