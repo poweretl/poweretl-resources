@@ -146,13 +146,11 @@
                         success: function (data) {
                             console.log(data);
                             $('#status').hide();
-                            if (data = -1) {
+                            if (data == -1) {
                                 $('#numberOfRows').html("The batch is currently running, please wait");
                             }
                             else
                                 $('#numberOfRows').html("Records updated: " + data);
-                        },
-                        error: function (data) {
                         }
                     });
                 }
@@ -175,13 +173,11 @@
                         success: function (data) {
                             console.log(data);
                             $('#status2').hide();
-                            if (data = -1) {
+                            if (data == -1) {
                                 $('#numberOfRows2').html("The batch is currently running, please wait.");
                             }
                             else
                                 $('#numberOfRows2').html("Records updated: " + data);
-                        },
-                        error: function (data) {
                         }
                     });
                 }
@@ -203,13 +199,11 @@
                         success: function (data) {
                             console.log(data);
                             $('#status3').hide();
-                            if (data = -1) {
+                            if (data == -1) {
                                 $('#numberOfRows3').html("The batch is currently running, please wait.");
                             }
                             else
                                 $('#numberOfRows3').html("Records updated: " + data);
-                        },
-                        error: function (data) {
                         }
                     });
                 }
