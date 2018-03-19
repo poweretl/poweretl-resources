@@ -85,6 +85,12 @@
 		<mapper resource="lumpSumPayment.xml" />
 		<mapper resource="ageInvoiceService.xml" />
 		<mapper resource="batchService.xml" />
+		<mapper resource="updateVendorInvoicesGroup1"/>
+        <mapper resource="updateVendorInvoicesGroup2"/>
+        <mapper resource="updateVendorInvoicesGroup3"/>
+        <mapper resource="updateVendorInvoicesGroup4"/>
+        <mapper resource="updateVendorInvoicesGroup5"/>
+        <mapper resource="updateVendorInvoicesGroup6"/>
 	</mappers>
 
 </configuration>
