@@ -210,4 +210,316 @@
             });
         });
     </script>
+    <!--  Ajax for Update Vendor Invoices Group 1 -->
+    <script type="text/javascript">
+        $(function () {
+            $('#submitBatchForm4').submit(function (e) {
+                e.preventDefault();
+                if ($(this).parsley().isValid()) {
+                    $('#submitBatchForm4').hide();
+                    $('<div id = "status4"><span class="red glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Batch in progress...</div>').insertAfter('#submitBatchForm4');
+                    $.ajax({
+                        url: $('#submitBatchForm4').attr('action'),
+                        data: $(this).serialize(),
+                        type: 'POST',
+                        success: function (data) {
+                            console.log(data);
+                            $('#status4').hide();
+                            if (data == -1) {
+                                $('#numberOfRows4').html("The batch is currently running, please wait.");
+                            }
+                            else
+                                $('#numberOfRows4').html("Records updated: " + data);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+    <!--  Ajax for Update Vendor Invoices Group 2 -->
+    <script type="text/javascript">
+        $(function () {
+            $('#submitBatchForm5').submit(function (e) {
+                e.preventDefault();
+                if ($(this).parsley().isValid()) {
+                    $('#submitBatchForm5').hide();
+                    $('<div id = "status5"><span class="red glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Batch in progress...</div>').insertAfter('#submitBatchForm5');
+                    $.ajax({
+                        url: $('#submitBatchForm5').attr('action'),
+                        data: $(this).serialize(),
+                        type: 'POST',
+                        success: function (data) {
+                            console.log(data);
+                            $('#status5').hide();
+                            if (data == -1) {
+                                $('#numberOfRows5').html("The batch is currently running, please wait.");
+                            }
+                            else
+                                $('#numberOfRows5').html("Records updated: " + data);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+    <!--  Ajax for Update Vendor Invoices Group 3 -->
+    <script type="text/javascript">
+        $(function () {
+            $('#submitBatchForm6').submit(function (e) {
+                e.preventDefault();
+                if ($(this).parsley().isValid()) {
+                    $('#submitBatchForm6').hide();
+                    $('<div id = "status6"><span class="red glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Batch in progress...</div>').insertAfter('#submitBatchForm6');
+                    $.ajax({
+                        url: $('#submitBatchForm6').attr('action'),
+                        data: $(this).serialize(),
+                        type: 'POST',
+                        success: function (data) {
+                            console.log(data);
+                            $('#status6').hide();
+                            if (data == -1) {
+                                $('#numberOfRows6').html("The batch is currently running, please wait.");
+                            }
+                            else
+                                $('#numberOfRows6').html("Records updated: " + data);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+    <!--  Ajax for Update Vendor Invoices Group 4 -->
+    <script type="text/javascript">
+        $(function () {
+            $('#submitBatchForm7').submit(function (e) {
+                e.preventDefault();
+                if ($(this).parsley().isValid()) {
+                    $('#submitBatchForm7').hide();
+                    $('<div id = "status7"><span class="red glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Batch in progress...</div>').insertAfter('#submitBatchForm7');
+                    $.ajax({
+                        url: $('#submitBatchForm7').attr('action'),
+                        data: $(this).serialize(),
+                        type: 'POST',
+                        success: function (data) {
+                            console.log(data);
+                            $('#status7').hide();
+                            if (data == -1) {
+                                $('#numberOfRows7').html("The batch is currently running, please wait.");
+                            }
+                            else
+                                $('#numberOfRows7').html("Records updated: " + data);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+    <!--  Ajax for Update Vendor Invoices Group 5 -->
+    <script type="text/javascript">
+        $(function () {
+            $('#submitBatchForm8').submit(function (e) {
+                e.preventDefault();
+                if ($(this).parsley().isValid()) {
+                    $('#submitBatchForm8').hide();
+                    $('<div id = "status8"><span class="red glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Batch in progress...</div>').insertAfter('#submitBatchForm8');
+                    $.ajax({
+                        url: $('#submitBatchForm8').attr('action'),
+                        data: $(this).serialize(),
+                        type: 'POST',
+                        success: function (data) {
+                            console.log(data);
+                            $('#status8').hide();
+                            if (data == -1) {
+                                $('#numberOfRows8').html("The batch is currently running, please wait.");
+                            }
+                            else
+                                $('#numberOfRows8').html("Records updated: " + data);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+    <!--  Ajax for Update Vendor Invoices Group 6 -->
+    <script type="text/javascript">
+        $(function () {
+            $('#submitBatchForm9').submit(function (e) {
+                e.preventDefault();
+                if ($(this).parsley().isValid()) {
+                    $('#submitBatchForm9').hide();
+                    $('<div id = "status9"><span class="red glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Batch in progress...</div>').insertAfter('#submitBatchForm9');
+                    $.ajax({
+                        url: $('#submitBatchForm9').attr('action'),
+                        data: $(this).serialize(),
+                        type: 'POST',
+                        success: function (data) {
+                            console.log(data);
+                            $('#status9').hide();
+                            if (data == -1) {
+                                $('#numberOfRows9').html("The batch is currently running, please wait.");
+                            }
+                            else
+                                $('#numberOfRows9').html("Records updated: " + data);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+    <!--  Ajax for Update Vendor Invoices Group 7 -->
+    <script type="text/javascript">
+        $(function () {
+            $('#submitBatchForm10').submit(function (e) {
+                e.preventDefault();
+                if ($(this).parsley().isValid()) {
+                    $('#submitBatchForm10').hide();
+                    $('<div id = "status10"><span class="red glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Batch in progress...</div>').insertAfter('#submitBatchForm10');
+                    $.ajax({
+                        url: $('#submitBatchForm10').attr('action'),
+                        data: $(this).serialize(),
+                        type: 'POST',
+                        success: function (data) {
+                            console.log(data);
+                            $('#status10').hide();
+                            if (data == -1) {
+                                $('#numberOfRows10').html("The batch is currently running, please wait.");
+                            }
+                            else
+                                $('#numberOfRows10').html("Records updated: " + data);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+    <!--  Ajax for Update Vendor Invoices Group 8 -->
+    <script type="text/javascript">
+        $(function () {
+            $('#submitBatchForm11').submit(function (e) {
+                e.preventDefault();
+                if ($(this).parsley().isValid()) {
+                    $('#submitBatchForm11').hide();
+                    $('<div id = "status11"><span class="red glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Batch in progress...</div>').insertAfter('#submitBatchForm11');
+                    $.ajax({
+                        url: $('#submitBatchForm11').attr('action'),
+                        data: $(this).serialize(),
+                        type: 'POST',
+                        success: function (data) {
+                            console.log(data);
+                            $('#status11').hide();
+                            if (data == -1) {
+                                $('#numberOfRows11').html("The batch is currently running, please wait.");
+                            }
+                            else
+                                $('#numberOfRows11').html("Records updated: " + data);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+    <!--  Ajax for Update Vendor Invoices Group 9 -->
+    <script type="text/javascript">
+        $(function () {
+            $('#submitBatchForm12').submit(function (e) {
+                e.preventDefault();
+                if ($(this).parsley().isValid()) {
+                    $('#submitBatchForm12').hide();
+                    $('<div id = "status12"><span class="red glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Batch in progress...</div>').insertAfter('#submitBatchForm12');
+                    $.ajax({
+                        url: $('#submitBatchForm12').attr('action'),
+                        data: $(this).serialize(),
+                        type: 'POST',
+                        success: function (data) {
+                            console.log(data);
+                            $('#status12').hide();
+                            if (data == -1) {
+                                $('#numberOfRows12').html("The batch is currently running, please wait.");
+                            }
+                            else
+                                $('#numberOfRows12').html("Records updated: " + data);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+    <!--  Ajax for Update Vendor Invoices Group 10 -->
+    <script type="text/javascript">
+        $(function () {
+            $('#submitBatchForm13').submit(function (e) {
+                e.preventDefault();
+                if ($(this).parsley().isValid()) {
+                    $('#submitBatchForm13').hide();
+                    $('<div id = "status13"><span class="red glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Batch in progress...</div>').insertAfter('#submitBatchForm13');
+                    $.ajax({
+                        url: $('#submitBatchForm13').attr('action'),
+                        data: $(this).serialize(),
+                        type: 'POST',
+                        success: function (data) {
+                            console.log(data);
+                            $('#status13').hide();
+                            if (data == -1) {
+                                $('#numberOfRows13').html("The batch is currently running, please wait.");
+                            }
+                            else
+                                $('#numberOfRows13').html("Records updated: " + data);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+    <!--  Ajax for Update Vendor Invoices Group 11 -->
+    <script type="text/javascript">
+        $(function () {
+            $('#submitBatchForm14').submit(function (e) {
+                e.preventDefault();
+                if ($(this).parsley().isValid()) {
+                    $('#submitBatchForm14').hide();
+                    $('<div id = "status14"><span class="red glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Batch in progress...</div>').insertAfter('#submitBatchForm14');
+                    $.ajax({
+                        url: $('#submitBatchForm14').attr('action'),
+                        data: $(this).serialize(),
+                        type: 'POST',
+                        success: function (data) {
+                            console.log(data);
+                            $('#status14').hide();
+                            if (data == -1) {
+                                $('#numberOfRows14').html("The batch is currently running, please wait.");
+                            }
+                            else
+                                $('#numberOfRows14').html("Records updated: " + data);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+    <!--  Ajax for Update Vendor Invoices Group 12 -->
+    <script type="text/javascript">
+        $(function () {
+            $('#submitBatchForm15').submit(function (e) {
+                e.preventDefault();
+                if ($(this).parsley().isValid()) {
+                    $('#submitBatchForm15').hide();
+                    $('<div id = "status15"><span class="red glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Batch in progress...</div>').insertAfter('#submitBatchForm15');
+                    $.ajax({
+                        url: $('#submitBatchForm15').attr('action'),
+                        data: $(this).serialize(),
+                        type: 'POST',
+                        success: function (data) {
+                            console.log(data);
+                            $('#status15').hide();
+                            if (data == -1) {
+                                $('#numberOfRows15').html("The batch is currently running, please wait.");
+                            }
+                            else
+                                $('#numberOfRows15').html("Records updated: " + data);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 </div>
