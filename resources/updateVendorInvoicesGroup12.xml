@@ -29,44 +29,31 @@
         from vendor_invoice_load stage
         left join kv_vendor_invoices inv on stage.id = inv.load_id
         where stage.doc_type not in
-       ('AA',
-        'AB',
-        'GA',
-        'PB',
-        'PC',
-        'PD',
-        'PP',
-        'Y3',
-        'G1',
-        'G2',
-        'GC',
-        'GD',
-        'GE',
-        'GH',
-        'GL',
-        'GR',
-        'GV',
-        'NA',
-        'NI',
-        'NJ',
-        'NK',
-        'NM',
-        'PH',
-        'PS',
-        'PL',
-        'RE',
-        'RB',
-        'RC',
-        'RD',
-        'RG',
-        'RH',
-        'RM',
-        'RS',
-        'Y6',
-        'Y7',
-        'YM',
-        'ZP',
-        'ZV',
-        'ZZ');
+       ('AA','AB','GA','PB','PC','PD','PP','Y3','G1','G2','GC','GD','GE','GH','GL','GR','GV','NA','NI','NJ','NK',
+        'NM','PH','PS','PL','RE','RB','RC','RD','RG','RH','RM','RS','Y6','Y7','YM','ZP','ZV','ZZ');
     </select>
+
+    <insert id="mergeVendorInvoicesGroup1">
+        insert into kv_vendor_invoices (doc_type, assignment, clear_doc, trx_mode, load_id, doc_type_code, invoice_no)
+            select
+                stage.doc_type as doc_type,
+                stage.assignment as assignment,
+                stage.clear_doc as clear_doc,
+                stage.trx_mode as trx_mode,
+                inv.load_id as load_id,
+                'OTHERS' as DOC_TYPE_CODE,
+                case
+                when (stage.clear_doc = null or stage.clear_doc = '') then stage.assignment
+                else stage.clear_doc
+                end as INVOICE_NO_DERIVED
+            from vendor_invoice_load stage
+                left join kv_vendor_invoices inv on stage.id = inv.load_id
+            where stage.doc_type not in
+                  ('AA','AB','GA','PB','PC','PD','PP','Y3','G1','G2','GC','GD','GE','GH','GL','GR','GV','NA','NI','NJ','NK',
+                      'NM','PH','PS','PL','RE','RB','RC','RD','RG','RH','RM','RS','Y6','Y7','YM','ZP','ZV','ZZ')
+        on CONFLICT (load_id)
+        DO UPDATE
+        set invoice_no = EXCLUDED.invoice_no, load_id = EXCLUDED.load_id, doc_type = EXCLUDED.doc_type, assignment = EXCLUDED.assignment, clear_doc = EXCLUDED.clear_doc,
+        trx_mode = EXCLUDED.trx_mode, doc_type_code = EXCLUDED.doc_type_code;
+    </insert>
 </mapper>

@@ -84,6 +84,7 @@
 	</environments>
 
 	<mappers>
+        <mapper resource="sqlIncludes.xml" />
 		<mapper resource="AdhocQueryService.xml" />	
 		<mapper resource="dcSettingService.xml" />
 		<mapper resource="emailSettingService.xml" />	

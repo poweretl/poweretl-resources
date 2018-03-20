@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sqlIncludes.xml">
+
+ <sql id="sqlVendorInvoicesFragment">
+ insert into kv_vendor_invoices
+  id,
+  tenant_id,
+  import_id,
+  account_id,
+  invoice_date,
+  invoice_no,
+  invoice_description,
+  invoice_due_date,
+  invoice_amount,
+  invoice_outstanding,
+  dpd,
+  mpd,
+  status_id,
+  created_at,
+  updated_at,
+  created_by,
+  updated_by,
+  invoice_status_id,
+  invoice_outstanding_with_interest,
+  gst,
+  import_status_id,
+  import_note,
+  branch_id,
+  branch_code,
+  in_aging,
+  invoice_pic_code,
+  invoice_pic_name,
+  last_listener_run,
+  line_of_business,
+  vendor_no,
+  tax_code,
+  tax_id,
+  clearing_doc,
+  reference,
+  assignment,
+  document_id,
+  business_area_id,
+  tax_amount,
+  payment_reference,
+  document_no,
+  mode,
+  amount_dc,
+  amount_lc,
+  purchase_order_no,
+  gst_code,
+  portal_status_id,
+  cheque_no,
+  currency_code,
+  document_status_id,
+  invoice_outstanding_dc,
+  entered_date,
+  transaction_date,
+  payment_term,
+  baseline_date,
+  cleardoc_id,
+  reference_id,
+  alt_payee,
+  item_no,
+  alternate_payee2,
+  load_id
+ </sql>
+
+
+
+</mapper>
