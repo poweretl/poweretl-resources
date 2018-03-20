@@ -3,8 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="updateVendorInvoicesGroup9">
-    <resultMap type="java.util.HashMap" id="getUpdateVendorInvoicesGroup9-map" >
+<mapper namespace="updateVendorInvoicesGroup11">
+    <resultMap type="java.util.HashMap" id="getUpdateVendorInvoicesGroup11-map" >
         <result property="doc_type" column="doc_type" javaType="java.lang.String"/>
         <result property="assignment" column="assignment" javaType="java.lang.String"/>
         <result property="clear_doc" column="clear_doc" javaType="java.lang.String"/>
@@ -14,20 +14,17 @@
         <result property="INVOICE_NO_DERIVED" column="INVOICE_NO_DERIVED" javaType="java.lang.String"/>
     </resultMap>
 
-    <select id="getUpdateVendorInvoicesGroup9" resultMap="getUpdateVendorInvoicesGroup9-map">
+    <select id="getUpdateVendorInvoicesGroup11" resultMap="getUpdateVendorInvoicesGroup11-map">
         select
         stage.doc_type as doc_type,
         stage.assignment as assignment,
         stage.clear_doc as clear_doc,
         stage.trx_mode as trx_mode,
         inv.load_id as load_id,
-
-        'INVOICE' as DOC_TYPE_CODE,
-         stage.reference as INVOICE_NO_DERIVED
-
+        'PAYMENT' as DOC_TYPE_CODE,
+        stage.assignment as INVOICE_NO_DERIVED
         from vendor_invoice_load stage
         left join kv_vendor_invoices inv on stage.id = inv.load_id
-        where stage.doc_type in ('NI');
-
+        where stage.doc_type in ('RS');
     </select>
 </mapper>
