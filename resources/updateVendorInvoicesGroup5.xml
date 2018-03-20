@@ -22,24 +22,28 @@
         stage.trx_mode as trx_mode,
         inv.load_id as load_id,
 
-        'CREDIT' as DOC_TYPE_CODE,
+        'CREDIT' as line_of_business,
         case when (stage.clear_doc = NULL or stage.clear_doc = '') then stage.assignment ELSE stage.clear_doc
-        end as INVOICE_NO_DERIVED
+        end as invoice_no,
+            case when (stage.clear_doc = NULL or stage.clear_doc = '') then stage.assignment ELSE stage.clear_doc
+            end as payment_reference
 
         from vendor_invoice_load stage
-        where stage.doc_type in ('Y3', 'NJ', 'YM');
+        where stage.doc_type in ('Y3', 'NJ', 'YM')
     </select>
 
     <update id="mergeVendorInvoicesGroup5">
         <include refid="sqlIncludes.sqlVendorInvoicesInsertFragment" />
         select
         <include refid="sqlIncludes.sqlVendorInvoicesSelectFragment"/>
-        'CREDIT' as DOC_TYPE_CODE,
+        'CREDIT' as line_of_business,
         case when (stage.clear_doc = NULL or stage.clear_doc = '') then stage.assignment ELSE stage.clear_doc
-        end as INVOICE_NO_DERIVED
+        end as invoice_no,
+        case when (stage.clear_doc = NULL or stage.clear_doc = '') then stage.assignment ELSE stage.clear_doc
+        end as payment_reference
 
         from vendor_invoice_load stage
-        where stage.doc_type in ('Y3', 'NJ', 'YM');
+        where stage.doc_type in ('Y3', 'NJ', 'YM')
 
         <include refid="sqlIncludes.sqlVendorInvoicesUpdateFragment"/>
     </update>

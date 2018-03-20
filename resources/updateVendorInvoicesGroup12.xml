@@ -29,7 +29,7 @@
         from vendor_invoice_load stage
         where stage.doc_type not in
        ('AA','AB','GA','PB','PC','PD','PP','Y3','G1','G2','GC','GD','GE','GH','GL','GR','GV','NA','NI','NJ','NK',
-        'NM','PH','PS','PL','RE','RB','RC','RD','RG','RH','RM','RS','Y6','Y7','YM','ZP','ZV','ZZ');
+        'NM','PH','PS','PL','RE','RB','RC','RD','RG','RH','RM','RS','Y6','Y7','YM','ZP','ZV','ZZ')
     </select>
 
     <update id="mergeVendorInvoicesGroup12">
@@ -37,16 +37,19 @@
         <include refid="sqlIncludes.sqlVendorInvoicesInsertFragment" />
         select
         <include refid="sqlIncludes.sqlVendorInvoicesSelectFragment"/>
-        'OTHERS' as DOC_TYPE_CODE,
+        'OTHERS' as line_of_business,
         case
         when (stage.clear_doc = null or stage.clear_doc = '') then stage.assignment
         else stage.clear_doc
-        end as INVOICE_NO_DERIVED
+        end as invoice_no,
+        case
+        when (stage.clear_doc = null or stage.clear_doc = '') then stage.assignment
+        else stage.clear_doc
+        end as payment_reference
 
         from vendor_invoice_load stage
         where stage.doc_type not in
-        ('AA','AB','GA','PB','PC','PD','PP','Y3','G1','G2','GC','GD','GE','GH','GL','GR','GV','NA','NI','NJ','NK',
-        'NM','PH','PS','PL','RE','RB','RC','RD','RG','RH','RM','RS','Y6','Y7','YM','ZP','ZV','ZZ');
+        ('AA','AB','GA','PB','PC','PD','PP','Y3','G1','G2','GC','GD','GE','GH','GL','GR','GV','NA','NI','NJ','NK', 'NM','PH','PS','PL','RE','RB','RC','RD','RG','RH','RM','RS','Y6','Y7','YM','ZP','ZV','ZZ')
 
         <include refid="sqlIncludes.sqlVendorInvoicesUpdateFragment"/>
     </update>

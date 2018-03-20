@@ -26,7 +26,7 @@
          stage.reference as INVOICE_NO_DERIVED
 
         from vendor_invoice_load stage
-        where stage.doc_type in ('NI');
+        where stage.doc_type in ('NI')
 
     </select>
 
@@ -35,11 +35,12 @@
         <include refid="sqlIncludes.sqlVendorInvoicesInsertFragment" />
         select
         <include refid="sqlIncludes.sqlVendorInvoicesSelectFragment"/>
-        'INVOICE' as DOC_TYPE_CODE,
-        stage.reference as INVOICE_NO_DERIVED
+        'INVOICE' as line_of_business,
+        stage.reference as invoice_no,
+        stage.reference as payment_reference
 
         from vendor_invoice_load stage
-        where stage.doc_type in ('NI');
+        where stage.doc_type in ('NI')
 
         <include refid="sqlIncludes.sqlVendorInvoicesUpdateFragment"/>
     </update>

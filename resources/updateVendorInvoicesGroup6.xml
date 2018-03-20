@@ -26,7 +26,7 @@
         case when stage.trx_mode = 'H' then stage.assignment ELSE stage.clear_doc end as INVOICE_NO_DERIVED
 
         from vendor_invoice_load stage
-        where stage.doc_type in ('GC', 'GD');
+        where stage.doc_type in ('GC', 'GD')
     </select>
 
     <update id="mergeVendorInvoicesGroup6">
@@ -34,11 +34,12 @@
         <include refid="sqlIncludes.sqlVendorInvoicesInsertFragment" />
         select
         <include refid="sqlIncludes.sqlVendorInvoicesSelectFragment"/>
-        case when stage.trx_mode = 'H' then 'INVOICE' ELSE 'PAYMENT' end as DOC_TYPE_CODE,
-        case when stage.trx_mode = 'H' then stage.assignment ELSE stage.clear_doc end as INVOICE_NO_DERIVED
+        case when stage.trx_mode = 'H' then 'INVOICE' ELSE 'PAYMENT' end as line_of_business,
+        case when stage.trx_mode = 'H' then stage.assignment ELSE stage.clear_doc end as invoice_no,
+        case when stage.trx_mode = 'H' then stage.assignment ELSE stage.clear_doc end as payment_reference
 
         from vendor_invoice_load stage
-        where stage.doc_type in ('GC', 'GD');
+        where stage.doc_type in ('GC', 'GD')
 
         <include refid="sqlIncludes.sqlVendorInvoicesUpdateFragment"/>
     </update>

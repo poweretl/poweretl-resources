@@ -26,7 +26,7 @@
             stage.assignment as INVOICE_NO_DERIVED
 
         from vendor_invoice_load stage
-        where stage.doc_type in ('PB', 'PD','G1','GE','GR', 'NA', 'PH', 'PS');
+        where stage.doc_type in ('PB', 'PD','G1','GE','GR', 'NA', 'PH', 'PS')
     </select>
 
     <update id="mergeVendorInvoicesGroup2">
@@ -34,11 +34,12 @@
         <include refid="sqlIncludes.sqlVendorInvoicesInsertFragment" />
         select
         <include refid="sqlIncludes.sqlVendorInvoicesSelectFragment"/>
-        'INVOICE' as DOC_TYPE_CODE,
-        stage.assignment as INVOICE_NO_DERIVED
+        'INVOICE' as line_of_business,
+        stage.assignment as invoice_no,
+        stage.assignment as payment_reference
 
         from vendor_invoice_load stage
-        where stage.doc_type in ('PB', 'PD','G1','GE','GR', 'NA', 'PH', 'PS');
+        where stage.doc_type in ('PB', 'PD','G1','GE','GR', 'NA', 'PH', 'PS')
 
         <include refid="sqlIncludes.sqlVendorInvoicesUpdateFragment"/>
     </update>

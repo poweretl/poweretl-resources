@@ -38,8 +38,8 @@
         <include refid="sqlIncludes.sqlVendorInvoicesInsertFragment" />
         select
         <include refid="sqlIncludes.sqlVendorInvoicesSelectFragment"/>
-        case when stage.trx_mode = 'H' then stage.assignment ELSE stage.clear_doc end as invoice_no,
         case when stage.trx_mode = 'H' then 'INVOICE' ELSE 'CREDIT' end as line_of_business,
+        case when stage.trx_mode = 'H' then stage.assignment ELSE stage.clear_doc end as invoice_no,
         case when stage.trx_mode = 'H' then stage.assignment ELSE stage.clear_doc end as payment_reference
 
         from vendor_invoice_load stage

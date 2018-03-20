@@ -67,10 +67,9 @@
   item_no,
   alternate_payee2,
   load_id,
-  invoice_no,
   line_of_business,
+  invoice_no,
   payment_reference
-  
   )
  </sql>
 
@@ -137,8 +136,6 @@
   stage.item_no as item_no,
   cast(null as text) as alternate_payee2,
   stage.id as load_id,
-
-
  </sql>
 
  <sql id ="sqlVendorInvoicesUpdateFragment">
@@ -203,8 +200,8 @@
   item_no = EXCLUDED.item_no,
   alternate_payee2 = EXCLUDED.alternate_payee2,
   load_id = EXCLUDED.load_id,
-  invoice_no = EXCLUDED.invoice_no,
   line_of_business = EXCLUDED.line_of_business,
+  invoice_no = EXCLUDED.invoice_no,
   payment_reference = EXCLUDED.payment_reference
 
  </sql>

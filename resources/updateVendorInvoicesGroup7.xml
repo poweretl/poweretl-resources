@@ -32,7 +32,7 @@
             else clear_doc end end as INVOICE_NO_DERIVED
 
           from vendor_invoice_load stage
-            where stage.doc_type in ('GH', 'RC', 'RD','RG','G2','ZZ');
+            where stage.doc_type in ('GH', 'RC', 'RD','RG','G2','ZZ')
 
     </select>
 
@@ -42,14 +42,19 @@
         select
         <include refid="sqlIncludes.sqlVendorInvoicesSelectFragment"/>
         case when stage.trx_mode = 'H' then 'INVOICE'
-        else 'PAYMENT' end as DOC_TYPE_CODE,
+        else 'PAYMENT' end as line_of_business,
         case when stage.trx_mode = 'H' then stage.assignment
         else
         case when (stage.clear_doc = null or stage.clear_doc = '') then stage.assignment
-        else clear_doc end end as INVOICE_NO_DERIVED
+        else clear_doc end end as invoice_no,
+        case when stage.trx_mode = 'H' then stage.assignment
+        else
+        case when (stage.clear_doc = null or stage.clear_doc = '') then stage.assignment
+        else clear_doc end end as payment_reference
+
 
         from vendor_invoice_load stage
-        where stage.doc_type in ('GH', 'RC', 'RD','RG','G2','ZZ');
+        where stage.doc_type in ('GH', 'RC', 'RD','RG','G2','ZZ')
 
         <include refid="sqlIncludes.sqlVendorInvoicesUpdateFragment"/>
     </update>
