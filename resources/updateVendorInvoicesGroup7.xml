@@ -9,7 +9,7 @@
         <result property="assignment" column="assignment" javaType="java.lang.String"/>
         <result property="clear_doc" column="clear_doc" javaType="java.lang.String"/>
         <result property="trx_mode" column="trx_mode" javaType="java.lang.String"/>
-        <result property="load_id" column="load_id" javaType="java.lang.Integer"/>
+        <result property="load_id" column="load_id" javaType="java.lang.Long"/>
         <result property="DOC_TYPE_CODE" column="DOC_TYPE_CODE" javaType="java.lang.String"/>
         <result property="INVOICE_NO_DERIVED" column="INVOICE_NO_DERIVED" javaType="java.lang.String"/>
     </resultMap>
