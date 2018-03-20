@@ -31,7 +31,7 @@
     </select>
 
 
-    <update id="mergeVendorInvoicesGroup1">
+    <insert id="mergeVendorInvoicesGroup1">
         insert into kv_vendor_invoices (doc_type, assignment, clear_doc, trx_mode, load_id, doc_type_code, invoice_no)
             select
                 stage.doc_type as doc_type,
@@ -47,5 +47,5 @@
             DO UPDATE
                 set invoice_no = EXCLUDED.invoice_no, load_id = EXCLUDED.load_id, doc_type = EXCLUDED.doc_type, assignment = EXCLUDED.assignment, clear_doc = EXCLUDED.clear_doc,
                     trx_mode = EXCLUDED.trx_mode, doc_type_code = EXCLUDED.doc_type_code;
-    </update>
+    </insert>
 </mapper>
