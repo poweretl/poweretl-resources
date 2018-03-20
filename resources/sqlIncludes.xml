@@ -6,13 +6,13 @@
 <mapper namespace="sqlIncludes.xml">
 
  <sql id="sqlVendorInvoicesFragment">
- insert into kv_vendor_invoices
+ insert into kv_vendor_invoices (
   id,
   tenant_id,
   import_id,
   account_id,
   invoice_date,
-  invoice_no,
+  
   invoice_description,
   invoice_due_date,
   invoice_amount,
@@ -35,7 +35,7 @@
   invoice_pic_code,
   invoice_pic_name,
   last_listener_run,
-  line_of_business,
+  
   vendor_no,
   tax_code,
   tax_id,
@@ -45,7 +45,7 @@
   document_id,
   business_area_id,
   tax_amount,
-  payment_reference,
+  
   document_no,
   mode,
   amount_dc,
@@ -66,7 +66,12 @@
   alt_payee,
   item_no,
   alternate_payee2,
-  load_id
+  load_id,
+  invoice_no,
+  line_of_business,
+  payment_reference
+  
+  )
  </sql>
 
 
