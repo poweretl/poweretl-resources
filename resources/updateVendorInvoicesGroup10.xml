@@ -24,26 +24,20 @@
         'DEBIT' as DOC_TYPE_CODE,
         stage.assignment as INVOICE_NO_DERIVED
       from vendor_invoice_load stage
-      left join kv_vendor_invoices inv on stage.id = inv.load_id
       where stage.doc_type in ('NI','NM','RM','Y6');
     </select>
 
-    <insert id="mergeVendorInvoicesGroup10">
-        insert into kv_vendor_invoices (doc_type, assignment, clear_doc, trx_mode, load_id, doc_type_code, invoice_no)
-            select
-                stage.doc_type as doc_type,
-                stage.assignment as assignment,
-                stage.clear_doc as clear_doc,
-                stage.trx_mode as trx_mode,
-                inv.load_id as load_id,
-                'DEBIT' as DOC_TYPE_CODE,
-                stage.assignment as INVOICE_NO_DERIVED
-            from vendor_invoice_load stage
-                left join kv_vendor_invoices inv on stage.id = inv.load_id
-            where stage.doc_type in ('NI','NM','RM','Y6')
-        on CONFLICT (load_id)
-        DO UPDATE
-        set invoice_no = EXCLUDED.invoice_no, load_id = EXCLUDED.load_id, doc_type = EXCLUDED.doc_type, assignment = EXCLUDED.assignment, clear_doc = EXCLUDED.clear_doc,
-        trx_mode = EXCLUDED.trx_mode, doc_type_code = EXCLUDED.doc_type_code;
-    </insert>
+    <update id="mergeVendorInvoicesGroup10">
+
+        <include refid="sqlIncludes.sqlVendorInvoicesInsertFragment" />
+        select
+        <include refid="sqlIncludes.sqlVendorInvoicesSelectFragment"/>
+        'DEBIT' as DOC_TYPE_CODE,
+        stage.assignment as INVOICE_NO_DERIVED
+
+        from vendor_invoice_load stage
+        where stage.doc_type in ('NI','NM','RM','Y6');
+
+        <include refid="sqlIncludes.sqlVendorInvoicesUpdateFragment"/>
+    </update>
 </mapper>
