@@ -33,7 +33,7 @@
         'NM','PH','PS','PL','RE','RB','RC','RD','RG','RH','RM','RS','Y6','Y7','YM','ZP','ZV','ZZ');
     </select>
 
-    <insert id="mergeVendorInvoicesGroup1">
+    <insert id="mergeVendorInvoicesGroup12">
         insert into kv_vendor_invoices (doc_type, assignment, clear_doc, trx_mode, load_id, doc_type_code, invoice_no)
             select
                 stage.doc_type as doc_type,

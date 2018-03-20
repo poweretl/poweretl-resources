@@ -3,9 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="sqlIncludes.xml">
+<mapper namespace="sqlIncludes">
 
- <sql id="sqlVendorInvoicesFragment">
+ <sql id="sqlVendorInvoicesInsertFragment">
  insert into kv_vendor_invoices (
   id,
   tenant_id,
@@ -75,5 +75,138 @@
  </sql>
 
 
+ <sql id="sqlVendorInvoicesSelectFragment">
+  nextval('kv_vendor_invoices_id') as id,
+  58 as tenant_id,
+  0 as import_id,
+  <!-- use vendor_no and company code to get account_id -->
+  -1 as account_id,
+  stage.invoice_date,
+
+  stage.invoice_description as invoice_description,
+  stage.invoice_due_date as invoice_due_date,
+  stage.invoice_amount,
+  0 as invoice_outstanding,
+  0 as dpd,
+  0 as mpd,
+  0 as status_id,
+  current_timestamp as created_at,
+  current_timestamp as updated_at,
+  '0' as created_by,
+  '0' as updated_by,
+  2 as invoice_status_id,
+  0 as invoice_outstanding_with_interest,
+  0.0 as gst,
+  0 as import_status_id,
+  cast(null as text) as import_note,
+  0 as branch_id,
+  cast(null as text) as branch_code,
+  false as in_aging,
+  cast(null as text) as invoice_pic_code,
+  cast(null as text) as invoice_pic_name,
+  current_timestamp as last_listener_run,
+
+  stage.vendor_no as vendor_no,
+  stage.gst_code as tax_code,
+  stage.tax_id,
+  stage.clear_doc as clearing_doc,
+  stage.reference,
+  stage.assignment as assignment,
+  stage.document_id,
+  stage.business_area_id,
+  stage.tax_amount,
+
+  stage.transaction_no as document_no,
+  stage.trx_mode as mode,
+  stage.amount_dc,
+  stage.amount_lc,
+  stage.purchase_order_no,
+  stage.gst_code as gst_code,
+  0 as portal_status_id,
+  stage.cheque_no,
+  stage.currency_code,
+  stage.document_status_id,
+  0 as invoice_outstanding_dc,
+  stage.entered_date as entered_date,
+  stage.transaction_date as transaction_date,
+  stage.payment_term,
+  stage.baseline_date,
+  0 as cleardoc_id,
+  0 as reference_id,
+  stage.alt_payee,
+  stage.item_no as item_no,
+  cast(null as text) as alternate_payee2,
+  stage.id as load_id,
+
+
+ </sql>
+
+ <sql id ="sqlVendorInvoicesUpdateFragment">
+
+  on CONFLICT (load_id)
+  DO UPDATE
+  set
+  id = EXCLUDED.id,
+  tenant_id = EXCLUDED.tenant_id,
+  import_id = EXCLUDED.import_id,
+  account_id = EXCLUDED.account_id,
+  invoice_date = EXCLUDED.invoice_date,
+  invoice_description = EXCLUDED.invoice_description,
+  invoice_due_date = EXCLUDED.invoice_due_date,
+  invoice_amount = EXCLUDED.invoice_amount,
+  invoice_outstanding = EXCLUDED.invoice_outstanding,
+  dpd = EXCLUDED.dpd,
+  mpd = EXCLUDED.mpd,
+  status_id = EXCLUDED.status_id,
+  created_at = EXCLUDED.created_at,
+  updated_at = EXCLUDED.updated_at,
+  created_by = EXCLUDED.created_by,
+  updated_by = EXCLUDED.updated_by,
+  invoice_status_id = EXCLUDED.invoice_status_id,
+  invoice_outstanding_with_interest = EXCLUDED.invoice_outstanding_with_interest,
+  gst = EXCLUDED.gst,
+  import_status_id = EXCLUDED.import_status_id,
+  import_note = EXCLUDED.import_note,
+  branch_id = EXCLUDED.branch_id,
+  branch_code = EXCLUDED.branch_code,
+  in_aging = EXCLUDED.in_aging,
+  invoice_pic_code = EXCLUDED.invoice_pic_code,
+  invoice_pic_name = EXCLUDED.invoice_pic_name,
+  last_listener_run = EXCLUDED.last_listener_run,
+  vendor_no = EXCLUDED.vendor_no,
+  tax_code = EXCLUDED.tax_code,
+  tax_id = EXCLUDED.tax_id,
+  clearing_doc = EXCLUDED.clearing_doc,
+  reference = EXCLUDED.reference,
+  assignment = EXCLUDED.assignment,
+  document_id = EXCLUDED.document_id,
+  business_area_id = EXCLUDED.business_area_id,
+  tax_amount = EXCLUDED.tax_amount,
+  document_no = EXCLUDED.document_no,
+  mode = EXCLUDED.mode,
+  amount_dc = EXCLUDED.amount_dc,
+  amount_lc = EXCLUDED.amount_lc,
+  purchase_order_no = EXCLUDED.purchase_order_no,
+  gst_code = EXCLUDED.gst_code,
+  portal_status_id = EXCLUDED.portal_status_id,
+  cheque_no = EXCLUDED.cheque_no,
+  currency_code = EXCLUDED.currency_code,
+  document_status_id = EXCLUDED.document_status_id,
+  invoice_outstanding_dc = EXCLUDED.invoice_outstanding_dc,
+  entered_date = EXCLUDED.entered_date,
+  transaction_date = EXCLUDED.transaction_date,
+  payment_term = EXCLUDED.payment_term,
+  baseline_date = EXCLUDED.baseline_date,
+  cleardoc_id = EXCLUDED.cleardoc_id,
+  reference_id = EXCLUDED.reference_id,
+  alt_payee = EXCLUDED.alt_payee,
+  item_no = EXCLUDED.item_no,
+  alternate_payee2 = EXCLUDED.alternate_payee2,
+  load_id = EXCLUDED.load_id,
+  invoice_no = EXCLUDED.invoice_no,
+  line_of_business = EXCLUDED.line_of_business,
+  payment_reference = EXCLUDED.payment_reference
+
+ </sql>
 
 </mapper>

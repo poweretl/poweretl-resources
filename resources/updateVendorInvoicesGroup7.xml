@@ -32,35 +32,25 @@
             else clear_doc end end as INVOICE_NO_DERIVED
 
           from vendor_invoice_load stage
-            left join kv_vendor_invoices inv on stage.id = inv.load_id
             where stage.doc_type in ('GH', 'RC', 'RD','RG','G2','ZZ');
 
     </select>
 
-    <insert id="mergeVendorInvoicesGroup7">
-        insert into kv_vendor_invoices (doc_type, assignment, clear_doc, trx_mode, load_id, doc_type_code, invoice_no)
-            select
-                stage.doc_type AS doc_type,
-                stage.assignment AS assignment,
-                stage.clear_doc AS clear_doc,
-                stage.trx_mode AS trx_mode,
-                inv.load_id AS load_id,
+    <update id="mergeVendorInvoicesGroup7">
 
-                case
-                when stage.trx_mode = 'H' then 'INVOICE'
-                else 'PAYMENT' end as DOC_TYPE_CODE,
-                case when stage.trx_mode = 'H' then stage.assignment
-                else
-                    case
-                    when (stage.clear_doc = null or stage.clear_doc = '') then stage.assignment
-                    else clear_doc end end as INVOICE_NO_DERIVED
+        <include refid="sqlIncludes.sqlVendorInvoicesInsertFragment" />
+        select
+        <include refid="sqlIncludes.sqlVendorInvoicesSelectFragment"/>
+        case when stage.trx_mode = 'H' then 'INVOICE'
+        else 'PAYMENT' end as DOC_TYPE_CODE,
+        case when stage.trx_mode = 'H' then stage.assignment
+        else
+        case when (stage.clear_doc = null or stage.clear_doc = '') then stage.assignment
+        else clear_doc end end as INVOICE_NO_DERIVED
 
-            from vendor_invoice_load stage
-                left join kv_vendor_invoices inv on stage.id = inv.load_id
-            where stage.doc_type in ('GH', 'RC', 'RD','RG','G2','ZZ')
-        on CONFLICT (load_id)
-        DO UPDATE
-        set invoice_no = EXCLUDED.invoice_no, load_id = EXCLUDED.load_id, doc_type = EXCLUDED.doc_type, assignment = EXCLUDED.assignment, clear_doc = EXCLUDED.clear_doc,
-        trx_mode = EXCLUDED.trx_mode, doc_type_code = EXCLUDED.doc_type_code;
-    </insert>
+        from vendor_invoice_load stage
+        where stage.doc_type in ('GH', 'RC', 'RD','RG','G2','ZZ');
+
+        <include refid="sqlIncludes.sqlVendorInvoicesUpdateFragment"/>
+    </update>
 </mapper>
