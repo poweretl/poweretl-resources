@@ -130,27 +130,28 @@
         });
     </script>
 
-    <!--  Ajax For calculateoutstanding batch -->
+    <!--  Ajax For all batches -->
 
     <script type="text/javascript">
         $(function () {
-            $('#submitBatchForm').submit(function (e) {
+            $('.submitBatchForm').submit(function (e) {
+                var currentForm = this;
                 e.preventDefault();
-                if ($(this).parsley().isValid()) {
-                    $('#submitBatchForm').hide();
-                    $('<div id = "status"><span class="red glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Batch in progress...</div>').insertAfter('#submitBatchForm');
+                if ($(currentForm).parsley().isValid()) {
+                    $(currentForm).hide();
+                    $('<div id = "status"><span class="red glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Batch in progress...</div>').insertAfter($(currentForm));
                     $.ajax({
-                        url: $('#submitBatchForm').attr('action'),
-                        data: $(this).serialize(),
+                        url: $(currentForm).attr('action'),
+                        data: $(currentForm).serialize(),
                         type: 'POST',
                         success: function (data) {
                             console.log(data);
-                            $('#status').hide();
+                            $('#status').remove();
                             if (data == -1) {
-                                $('#numberOfRows').html("The batch is currently running, please wait");
+                                $('<div>The batch is currently running, please wait...</div>').insertAfter($(currentForm));
                             }
                             else
-                                $('#numberOfRows').html("Records updated: " + data);
+                                $('<div></div>').html("Records updated: " + data).insertAfter($(currentForm));
                         }
                     });
                 }
@@ -159,7 +160,7 @@
 
     </script>
     <!--  Ajax For lump sum payment batch -->
-    <script type="text/javascript">
+    <!--<script type="text/javascript">
         $(function () {
             $('#submitBatchForm2').submit(function (e) {
                 e.preventDefault();
@@ -184,7 +185,7 @@
             });
         });
     </script>
-    <!--  Ajax for age invoice batch -->
+    &lt;!&ndash;  Ajax for age invoice batch &ndash;&gt;
     <script type="text/javascript">
         $(function () {
             $('#submitBatchForm3').submit(function (e) {
@@ -210,7 +211,7 @@
             });
         });
     </script>
-    <!--  Ajax for Update Vendor Invoices Group 1 -->
+    &lt;!&ndash;  Ajax for Update Vendor Invoices Group 1 &ndash;&gt;
     <script type="text/javascript">
         $(function () {
             $('#submitBatchForm4').submit(function (e) {
@@ -236,7 +237,7 @@
             });
         });
     </script>
-    <!--  Ajax for Update Vendor Invoices Group 2 -->
+    &lt;!&ndash;  Ajax for Update Vendor Invoices Group 2 &ndash;&gt;
     <script type="text/javascript">
         $(function () {
             $('#submitBatchForm5').submit(function (e) {
@@ -262,7 +263,7 @@
             });
         });
     </script>
-    <!--  Ajax for Update Vendor Invoices Group 3 -->
+    &lt;!&ndash;  Ajax for Update Vendor Invoices Group 3 &ndash;&gt;
     <script type="text/javascript">
         $(function () {
             $('#submitBatchForm6').submit(function (e) {
@@ -288,7 +289,7 @@
             });
         });
     </script>
-    <!--  Ajax for Update Vendor Invoices Group 4 -->
+    &lt;!&ndash;  Ajax for Update Vendor Invoices Group 4 &ndash;&gt;
     <script type="text/javascript">
         $(function () {
             $('#submitBatchForm7').submit(function (e) {
@@ -314,7 +315,7 @@
             });
         });
     </script>
-    <!--  Ajax for Update Vendor Invoices Group 5 -->
+    &lt;!&ndash;  Ajax for Update Vendor Invoices Group 5 &ndash;&gt;
     <script type="text/javascript">
         $(function () {
             $('#submitBatchForm8').submit(function (e) {
@@ -340,7 +341,7 @@
             });
         });
     </script>
-    <!--  Ajax for Update Vendor Invoices Group 6 -->
+    &lt;!&ndash;  Ajax for Update Vendor Invoices Group 6 &ndash;&gt;
     <script type="text/javascript">
         $(function () {
             $('#submitBatchForm9').submit(function (e) {
@@ -366,7 +367,7 @@
             });
         });
     </script>
-    <!--  Ajax for Update Vendor Invoices Group 7 -->
+    &lt;!&ndash;  Ajax for Update Vendor Invoices Group 7 &ndash;&gt;
     <script type="text/javascript">
         $(function () {
             $('#submitBatchForm10').submit(function (e) {
@@ -392,7 +393,7 @@
             });
         });
     </script>
-    <!--  Ajax for Update Vendor Invoices Group 8 -->
+    &lt;!&ndash;  Ajax for Update Vendor Invoices Group 8 &ndash;&gt;
     <script type="text/javascript">
         $(function () {
             $('#submitBatchForm11').submit(function (e) {
@@ -418,7 +419,7 @@
             });
         });
     </script>
-    <!--  Ajax for Update Vendor Invoices Group 9 -->
+    &lt;!&ndash;  Ajax for Update Vendor Invoices Group 9 &ndash;&gt;
     <script type="text/javascript">
         $(function () {
             $('#submitBatchForm12').submit(function (e) {
@@ -444,7 +445,7 @@
             });
         });
     </script>
-    <!--  Ajax for Update Vendor Invoices Group 10 -->
+    &lt;!&ndash;  Ajax for Update Vendor Invoices Group 10 &ndash;&gt;
     <script type="text/javascript">
         $(function () {
             $('#submitBatchForm13').submit(function (e) {
@@ -470,7 +471,7 @@
             });
         });
     </script>
-    <!--  Ajax for Update Vendor Invoices Group 11 -->
+    &lt;!&ndash;  Ajax for Update Vendor Invoices Group 11 &ndash;&gt;
     <script type="text/javascript">
         $(function () {
             $('#submitBatchForm14').submit(function (e) {
@@ -496,7 +497,7 @@
             });
         });
     </script>
-    <!--  Ajax for Update Vendor Invoices Group 12 -->
+    &lt;!&ndash;  Ajax for Update Vendor Invoices Group 12 &ndash;&gt;
     <script type="text/javascript">
         $(function () {
             $('#submitBatchForm15').submit(function (e) {
@@ -521,6 +522,6 @@
                 }
             });
         });
-    </script>
+    </script>-->
     
 </div>

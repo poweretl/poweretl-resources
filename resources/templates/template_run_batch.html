@@ -32,7 +32,7 @@
 				<tr>
 					<td>1</td>
 					<td>PBK - Calculate Outstanding</td>
-					<td><form id="submitBatchForm" action="/calcoutstanding"
+					<td><form class="submitBatchForm" action="/calcoutstanding"
 							  method="POST" data-parsley-validate>
 						<input type=number required name=tenant_id value=63 hidden>
 						<button class="btn btn-xs btn-link" type="submit">
@@ -40,188 +40,187 @@
 										  class="glyphicon glyphicon-send blue"> </span>
 						</button>
 					</form>
-						<div class="text-success" id="numberOfRows">
-						</div></td>
+                    </td>
 				</tr>
 				<tr>
 					<td>2</td>
 					<td>PBK - Lump Sum Payment</td>
-					<td><form id="submitBatchForm2" action="/lumpSumPayment"
+					<td><form class="submitBatchForm" action="/lumpSumPayment"
 							  method="POST" data-parsley-validate>
 						<button class="btn btn-xs btn-link" type="submit">
 									<span data-toggle="tooltip" title="Run Batch"
 										  class="glyphicon glyphicon-send blue"> </span>
 						</button>
 					</form>
-						<div class="text-success" id="numberOfRows2"></div></td>
+                    </td>
 				</tr>
 				<tr>
 					<td>3</td>
 					<td>PBK - Age Invoice</td>
-					<td><form id="submitBatchForm3" action="/ageinvoice"
+					<td><form class="submitBatchForm" action="/ageinvoice"
 							  method="POST" data-parsley-validate>
 						<input type=number required name=tenant_id value=63 hidden>
 						<button class="btn btn-xs btn-link" type="submit">
 									<span data-toggle="tooltip" title="Run Batch"
 										  class="glyphicon glyphicon-send blue"> </span>
 						</button>
-					</form><div class="text-success" id="numberOfRows3">
-					</div></td>
+					</form>
+                    </td>
 				</tr>
                 <tr>
                     <td>4</td>
                     <td>MAHB - Update Vendor Invoices Group 1</td>
-                    <td><form id="submitBatchForm4" action="/loadvendorinvoicesgroup1"
+                    <td><form class="submitBatchForm" action="/loadvendorinvoicesgroup1"
                               method="POST" data-parsley-validate>
                         <button class="btn btn-xs btn-link" type="submit">
 									<span data-toggle="tooltip" title="Run Batch"
                                           class="glyphicon glyphicon-send blue"> </span>
                         </button>
-                    </form><div class="text-success" id="numberOfRows4">
-                    </div></td>
+                    </form>
+                    </td>
                 </tr>
 
                 <tr>
                 <td>5</td>
                 <td>MAHB - Update Vendor Invoices Group 2</td>
-                <td><form id="submitBatchForm5" action="/loadvendorinvoicesgroup2"
+                <td><form class="submitBatchForm" action="/loadvendorinvoicesgroup2"
                           method="POST" data-parsley-validate>
                     <button class="btn btn-xs btn-link" type="submit">
 									<span data-toggle="tooltip" title="Run Batch"
                                           class="glyphicon glyphicon-send blue"> </span>
                     </button>
-                </form><div class="text-success" id="numberOfRows5">
-                </div></td>
+                </form>
+                </td>
                 </tr>
 
                 <tr>
                 <td>6</td>
                 <td>MAHB - Update Vendor Invoices Group 3</td>
-                <td><form id="submitBatchForm6" action="/loadvendorinvoicesgroup3"
+                <td><form class="submitBatchForm" action="/loadvendorinvoicesgroup3"
                           method="POST" data-parsley-validate>
                     <button class="btn btn-xs btn-link" type="submit">
 									<span data-toggle="tooltip" title="Run Batch"
                                           class="glyphicon glyphicon-send blue"> </span>
                     </button>
-                </form><div class="text-success" id="numberOfRows6">
-                </div></td>
+                </form>
+                </td>
                 </tr>
 
                 <tr>
                 <td>7</td>
                 <td>MAHB - Update Vendor Invoices Group 4</td>
-                <td><form id="submitBatchForm7" action="/loadvendorinvoicesgroup4"
+                <td><form class="submitBatchForm" action="/loadvendorinvoicesgroup4"
                           method="POST" data-parsley-validate>
                     <button class="btn btn-xs btn-link" type="submit">
 									<span data-toggle="tooltip" title="Run Batch"
                                           class="glyphicon glyphicon-send blue"> </span>
                     </button>
-                </form><div class="text-success" id="numberOfRows7">
-                </div></td>
+                </form>
+                </td>
                 </tr>
 
                 <tr>
                 <td>8</td>
                 <td>MAHB - Update Vendor Invoices Group 5</td>
-                <td><form id="submitBatchForm8" action="/loadvendorinvoicesgroup5"
+                <td><form class="submitBatchForm" action="/loadvendorinvoicesgroup5"
                           method="POST" data-parsley-validate>
                     <button class="btn btn-xs btn-link" type="submit">
 									<span data-toggle="tooltip" title="Run Batch"
                                           class="glyphicon glyphicon-send blue"> </span>
                     </button>
-                </form><div class="text-success" id="numberOfRows8">
-                </div></td>
+                </form>
+                </td>
                 </tr>
 
                 <tr>
                 <td>9</td>
                 <td>MAHB - Update Vendor Invoices Group 6</td>
-                <td><form id="submitBatchForm9" action="/loadvendorinvoicesgroup6"
+                <td><form class="submitBatchForm" action="/loadvendorinvoicesgroup6"
                           method="POST" data-parsley-validate>
                     <button class="btn btn-xs btn-link" type="submit">
 									<span data-toggle="tooltip" title="Run Batch"
                                           class="glyphicon glyphicon-send blue"> </span>
                     </button>
-                </form><div class="text-success" id="numberOfRows9">
-                </div></td>
+                </form>
+                </td>
                 </tr>
 
                 <tr>
                 <td>10</td>
                 <td>MAHB - Update Vendor Invoices Group 7</td>
-                <td><form id="submitBatchForm10" action="/loadvendorinvoicesgroup7"
+                <td><form class="submitBatchForm" action="/loadvendorinvoicesgroup7"
                           method="POST" data-parsley-validate>
                     <button class="btn btn-xs btn-link" type="submit">
 									<span data-toggle="tooltip" title="Run Batch"
                                           class="glyphicon glyphicon-send blue"> </span>
                     </button>
-                </form><div class="text-success" id="numberOfRows10">
-                </div></td>
+                </form>
+                </td>
                 </tr>
 
                 <tr>
                 <td>11</td>
                 <td>MAHB - Update Vendor Invoices Group 8</td>
-                <td><form id="submitBatchForm11" action="/loadvendorinvoicesgroup8"
+                <td><form class="submitBatchForm" action="/loadvendorinvoicesgroup8"
                           method="POST" data-parsley-validate>
                     <button class="btn btn-xs btn-link" type="submit">
 									<span data-toggle="tooltip" title="Run Batch"
                                           class="glyphicon glyphicon-send blue"> </span>
                     </button>
-                </form><div class="text-success" id="numberOfRows11">
-                </div></td>
+                </form>
+                </td>
                 </tr>
 
                 <tr>
                 <td>12</td>
                 <td>MAHB - Update Vendor Invoices Group 9</td>
-                <td><form id="submitBatchForm12" action="/loadvendorinvoicesgroup9"
+                <td><form class="submitBatchForm" action="/loadvendorinvoicesgroup9"
                           method="POST" data-parsley-validate>
                     <button class="btn btn-xs btn-link" type="submit">
 									<span data-toggle="tooltip" title="Run Batch"
                                           class="glyphicon glyphicon-send blue"> </span>
                     </button>
-                </form><div class="text-success" id="numberOfRows12">
-                </div></td>
+                </form>
+                </td>
                 </tr>
 
                 <tr>
                 <td>13</td>
                 <td>MAHB - Update Vendor Invoices Group 10</td>
-                <td><form id="submitBatchForm13" action="/loadvendorinvoicesgroup10"
+                <td><form class="submitBatchForm" action="/loadvendorinvoicesgroup10"
                           method="POST" data-parsley-validate>
                     <button class="btn btn-xs btn-link" type="submit">
 									<span data-toggle="tooltip" title="Run Batch"
                                           class="glyphicon glyphicon-send blue"> </span>
                     </button>
-                </form><div class="text-success" id="numberOfRows13">
-                </div></td>
+                </form>
+                </td>
                 </tr>
 
                 <tr>
                 <td>14</td>
                 <td>MAHB - Update Vendor Invoices Group 11</td>
-                <td><form id="submitBatchForm14" action="/loadvendorinvoicesgroup11"
+                <td><form class="submitBatchForm" action="/loadvendorinvoicesgroup11"
                           method="POST" data-parsley-validate>
                     <button class="btn btn-xs btn-link" type="submit">
 									<span data-toggle="tooltip" title="Run Batch"
                                           class="glyphicon glyphicon-send blue"> </span>
                     </button>
-                </form><div class="text-success" id="numberOfRows14">
-                </div></td>
+                </form>
+                </td>
                 </tr>
 
                 <tr>
                 <td>15</td>
                 <td>MAHB - Update Vendor Invoices Group 12</td>
-                <td><form id="submitBatchForm15" action="/loadvendorinvoicesgroup12"
+                <td><form class="submitBatchForm" action="/loadvendorinvoicesgroup12"
                           method="POST" data-parsley-validate>
                     <button class="btn btn-xs btn-link" type="submit">
 									<span data-toggle="tooltip" title="Run Batch"
                                           class="glyphicon glyphicon-send blue"> </span>
                     </button>
-                </form><div class="text-success" id="numberOfRows15">
-                </div></td>
+                </form>
+                </td>
                 </tr>
 				</tbody>
 			</table>
