@@ -95,16 +95,16 @@ mother_invoice_ref
     <include refid="selectTrxInvoice-fragment"/>
     case
     when stage.doc_type = 'AB' and stage.is_invoice = true then 'INVOICE'
-    when stage.doc_type = 'AB' and (stage.is_invoice = false and is_credit_note = true) then 'CREDIT'
-    when stage.doc_type = 'AB' and (stage.is_invoice = false and is_credit_note = false) then 'OTHERS'
+    when stage.doc_type = 'AB' and (stage.is_invoice = false and stage.is_credit_note = true) then 'CREDIT'
+    when stage.doc_type = 'AB' and (stage.is_invoice = false and stage.is_credit_note = false) then 'OTHERS'
     END AS line_of_business,
 
     case
     when stage.doc_type = 'AB' and stage.is_invoice = true then stage.bill_doc end as invoice_no,
 
     case
-    when stage.doc_type = 'AB' and (stage.is_invoice = false and is_credit_note = true) then stage.parent_invoice_no
-    when stage.doc_type = 'AB' and (stage.is_invoice = false and is_credit_note = false) then stage.reference
+    when stage.doc_type = 'AB' and (stage.is_invoice = false and stage.is_credit_note = true) then stage.parent_invoice_no
+    when stage.doc_type = 'AB' and (stage.is_invoice = false and stage.is_credit_note = false) then stage.reference
     end as invoice_reference
 
     <include refid="updateTrxInvoice-fragment"/>
@@ -118,7 +118,131 @@ mother_invoice_ref
     END AS line_of_business,
     CASE
     WHEN stage.doc_type = 'YV' THEN stage.bill_doc
-    END AS invoice_no
+    END AS invoice_no,
+    CASE
+    WHEN stage.doc_type = 'YV' THEN null
+    END AS invoice_reference
+
+    <include refid="updateTrxInvoice-fragment"/>
+</update>
+
+<update id="updateTransactionInvoiceYW">
+
+    <include refid="insertTrxInvoice-fragment" />
+    <include refid="selectTrxInvoice-fragment"/>
+    CASE
+    WHEN stage.oc_type = 'YW' THEN 'INVOICE'
+    END AS line_of_business,
+    CASE
+    WHEN stage.doc_type = 'YW' THEN stage.document_no
+    END AS invoice_no,
+    CASE
+    WHEN stage.doc_type = 'YW' THEN null
+    END AS invoice_reference
+
+    <include refid="updateTrxInvoice-fragment"/>
+</update>
+
+<update id="updateTransactionInvoiceYX">
+
+    <include refid="insertTrxInvoice-fragment" />
+    <include refid="selectTrxInvoice-fragment"/>
+    CASE
+    WHEN stage.doc_type = 'YX' THEN 'INVOICE'
+    END AS line_of_business,
+    CASE
+    WHEN stage.doc_type = 'YX' THEN stage.bill_doc
+    END AS invoice_no,
+    CASE
+    WHEN stage.doc_type = 'YX' THEN null
+    END AS invoice_reference
+
+    <include refid="updateTrxInvoice-fragment"/>
+</update>
+
+<update id="updateTransactionInvoiceYK">
+
+    <include refid="insertTrxInvoice-fragment" />
+    <include refid="selectTrxInvoice-fragment"/>
+    CASE
+    WHEN stage.doc_type = 'YK' THEN 'INVOICE'
+    END AS line_of_business,
+    CASE
+    WHEN stage.doc_type = 'YK' THEN stage.document_no
+    END AS invoice_no,
+    CASE
+    WHEN stage.doc_type = 'YK' THEN null
+    END AS invoice_reference
+
+    <include refid="updateTrxInvoice-fragment"/>
+</update>
+
+<update id="updateTransactionInvoiceY1">
+
+    <include refid="insertTrxInvoice-fragment" />
+    <include refid="selectTrxInvoice-fragment"/>
+    CASE
+    WHEN stage.doc_type = 'Y1' THEN 'PAYMENT'
+    END AS line_of_business,
+    CASE
+    when stage.doc_type = 'Y1' then null
+    end as invoice_no,
+    CASE
+    WHEN stage.doc_type = 'Y1' THEN stage.reference
+    END AS invoice_reference
+
+    <include refid="updateTrxInvoice-fragment"/>
+</update>
+
+<update id="updateTransactionInvoiceYE">
+
+    <include refid="insertTrxInvoice-fragment" />
+    <include refid="selectTrxInvoice-fragment"/>
+    CASE
+    WHEN stage.doc_type = 'YE' THEN 'DEBIT'
+    END AS line_of_business,
+    CASE
+    WHEN stage.doc_type = 'YE' THEN stage.document_no
+    END AS invoice_no,
+    CASE
+    WHEN stage.doc_type = 'YE' THEN null
+    END AS invoice_reference
+
+    <include refid="updateTrxInvoice-fragment"/>
+</update>
+
+<update id="updateTransactionInvoiceYM">
+
+    <include refid="insertTrxInvoice-fragment" />
+    <include refid="selectTrxInvoice-fragment"/>
+    CASE
+    WHEN stage.doc_type = 'YM' THEN 'CREDIT'
+    END AS line_of_business,
+    CASE
+    when stage.doc_type = 'YM' then null
+    end as invoice_no,
+    CASE
+    WHEN stage.doc_type = 'YM' AND (stage.bill_doc = null) THEN stage.assignment
+    WHEN stage.doc_type = 'YM' AND (stage.bill_doc != null) THEN stage.bill_doc
+    END AS invoice_reference
+
+    <include refid="updateTrxInvoice-fragment"/>
+</update>
+
+<update id="updateTransactionInvoiceYF">
+
+    <include refid="insertTrxInvoice-fragment" />
+    <include refid="selectTrxInvoice-fragment"/>
+
+    CASE
+    WHEN stage.doc_type = 'YF' THEN 'CREDIT'
+    END AS line_of_business,
+    CASE
+    when stage.doc_type = 'YF' then null
+    end as invoice_no,
+    CASE
+    WHEN stage.doc_type = 'YF' THEN stage.reference
+    END AS invoice_reference
 
     <include refid="updateTrxInvoice-fragment"/>
 </update>
@@ -128,19 +252,40 @@ mother_invoice_ref
     <include refid="insertTrxInvoice-fragment" />
     <include refid="selectTrxInvoice-fragment"/>
     case
-    when doc_type = 'ZZ' and (transaction_type_id = 1 and reference = 'RI') then 'LPC'
-    when doc_type = 'ZZ' and (transaction_type_id = 1 and reference != 'RI') then 'INVOICE'
-    when doc_type = 'ZZ' then 'PAYMENT'
+    when stage.doc_type = 'ZZ' and (stage.transaction_type_id = 1 and stage.reference = 'RI') then 'LPC'
+    when stage.doc_type = 'ZZ' and (stage.transaction_type_id = 1 and stage.reference != 'RI') then 'INVOICE'
+    when stage.doc_type = 'ZZ' then 'PAYMENT'
     end as line_of_business,
 
     case
-    when doc_type = 'ZZ' and (transaction_type_id = 1 and reference = 'RI') then document_no
-    when doc_type = 'ZZ' and (transaction_type_id = 1 and reference != 'RI') then bill_doc
+    when stage.doc_type = 'ZZ' and (stage.transaction_type_id = 1 and stage.reference = 'RI') then stage.document_no
+    when stage.doc_type = 'ZZ' and (stage.transaction_type_id = 1 and stage.reference != 'RI') then stage.bill_doc
     end as invoice_no,
 
     case
-    when doc_type = 'ZZ' and (transaction_type_id != 1 and reference != 'RI') then clearing_doc
+    when stage.doc_type = 'ZZ' and (stage.transaction_type_id != 1 and stage.reference != 'RI') then stage.clearing_doc
     end as invoice_reference
+
+    <include refid="updateTrxInvoice-fragment"/>
+</update>
+
+<update id="updateTransactionInvoiceOthers">
+
+    <include refid="insertTrxInvoice-fragment" />
+    <include refid="selectTrxInvoice-fragment"/>
+
+    CASE
+    WHEN stage.doc_type not in ('AB','RG','YY','GI','RI','RM','RV','RY','YC','YD','YH','YI','YJ','YL','YN', 'YO',
+    'YP','YQ','YR','YS','YT','YU','YV','YW','YX','YK','Y1','YE','YM','YF','ZZ') THEN 'OTHERS'
+    END AS line_of_business,
+    CASE
+    WHEN stage.doc_type not in ('AB','RG','YY','GI','RI','RM','RV','RY','YC','YD','YH','YI','YJ','YL','YN', 'YO',
+    'YP','YQ','YR','YS','YT','YU','YV','YW','YX','YK','Y1','YE','YM','YF','ZZ') THEN null
+    END AS invoice_no,
+    CASE
+    WHEN stage.doc_type not in ('AB','RG','YY','GI','RI','RM','RV','RY','YC','YD','YH','YI','YJ','YL','YN', 'YO',
+    'YP','YQ','YR','YS','YT','YU','YV','YW','YX','YK','Y1','YE','YM','YF','ZZ') THEN stage.reference
+    END AS invoice_reference
 
     <include refid="updateTrxInvoice-fragment"/>
 </update>
