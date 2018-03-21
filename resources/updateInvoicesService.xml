@@ -84,5 +84,38 @@ left join kv_invoices inv on stage.id = inv.load_id
 
 
 
+<update id="updateTransactionInvoiceZZ">
+
+select 
+
+
+
+case 
+when doc_type = 'ZZ' and (transaction_type_id = 1 and reference = 'RI') then 'LPC'
+when doc_type = 'ZZ' and (transaction_type_id = 1 and reference != 'RI') then 'INVOICE' 
+when doc_type = 'ZZ' then 'PAYMENT'
+end as line_of_business,
+
+
+case 
+when doc_type = 'ZZ' and (transaction_type_id = 1 and reference = 'RI') then document_no
+when doc_type = 'ZZ' and (transaction_type_id = 1 and reference != 'RI') then bill_doc 
+end as invoice_no,
+
+case 
+when doc_type = 'ZZ' and (transaction_type_id != 1 and reference != 'RI') then clearing_doc
+end as invoice_reference
+
+
+
+
+from transaction_load
+
+
+
+</update>
+
+
+
    
 </mapper>
