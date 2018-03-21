@@ -15,107 +15,133 @@ mother_invoice_ref
 
  -->
 <sql id="selectTrxInvoice-fragment">
-select 
-coalesce(inv.id,nextval('kv_invoices_id')) as id,
-stage.id as load_id,
-58 as tenant_id,
-0 as import_id,
-stage.account_id,
-0 as dpd,
-0 as mpd,
-0 as status_id,
-current_timestamp as created_at,
-current_timestamp as updated_at,
-'0' as created_by,
-'0' as updated_by,
-0 as invoice_status_id,
-0 as invoice_outstanding_with_interest,
-0 as gst,
-0 as import_status_id,
-0 as branch_id,
-false as in_aging,
-0 as flag_id,
-current_timestamp as last_listener_run,
-null as recon_acct,
-'MY' as currency,
-null as tax_code,
-0 as kv_amount,
-0 as kv_amount_dc,
+    select
+    coalesce(inv.id,nextval('kv_invoices_id')) as id,
+    stage.id as load_id,
+    58 as tenant_id,
+    0 as import_id,
+    stage.account_id,
+    0 as dpd,
+    0 as mpd,
+    0 as status_id,
+    current_timestamp as created_at,
+    current_timestamp as updated_at,
+    '0' as created_by,
+    '0' as updated_by,
+    0 as invoice_status_id,
+    0 as invoice_outstanding_with_interest,
+    0 as gst,
+    0 as import_status_id,
+    0 as branch_id,
+    false as in_aging,
+    0 as flag_id,
+    current_timestamp as last_listener_run,
+    null as recon_acct,
+    'MY' as currency,
+    null as tax_code,
+    0 as kv_amount,
+    0 as kv_amount_dc,
 </sql>
 
 <sql id="insertTrxInvoice-fragment">
-insert into kv_invoices (
-id,load_id,tenant_id,import_id,account_id,dpd,mpd,status_id,created_at,updated_at,created_by,updated_by,invoice_status_id,
-invoice_outstanding_with_interest,gst,import_status_id,branch_id,in_aging,flag_id,last_listener_run,recon_acct,
-currency,tax_code,kv_amount,kv_amount_dc,line_of_business,invoice_no,invoice_reference
-)
-</sql>
+    insert into kv_invoices (
+    id,load_id,tenant_id,import_id,account_id,dpd,mpd,status_id,created_at,updated_at,created_by,updated_by,invoice_status_id,
+    invoice_outstanding_with_interest,gst,import_status_id,branch_id,in_aging,flag_id,last_listener_run,recon_acct,
+    currency,tax_code,kv_amount,kv_amount_dc,line_of_business,invoice_no,invoice_reference
+    )
+    </sql>
 
-<sql id="updateTrxInvoice-fragment">
-on conflict (load_id) do update
-set
-id = excluded.id,
+    <sql id="updateTrxInvoice-fragment">
+    from transaction_load
+    left join kv_invoices inv on stage.id = inv.load_id
+    on conflict (load_id) do update
+    set
+    id = excluded.id,
+    load_id = excluded.load_id,
+    tenant_id = excluded.tenant_id,
+    import_id = excluded.import_id,
+    account_id = excluded.account_id,
+    dpd = excluded.dpd,
+    mpd = excluded.mpd,
+    status_id = excluded.status_id,
+    created_at = excluded.created_at,
+    updated_at = excluded.updated_at,
+    created_by = excluded.created_by,
+    updated_by = excluded.updated_by,
+    invoice_status_id = excluded.invoice_status_id,
+    invoice_outstanding_with_interest = excluded.invoice_outstanding_with_interest,
+    gst = excluded.gst,
+    import_status_id = excluded.import_status_id,
+    branch_id = excluded.branch_id,
+    in_aging = excluded.in_aging,
+    flag_id = excluded.flag_id,
+    last_listener_run = excluded.last_listener_run,
+    recon_acct = excluded.recon_acct,
+    currency = excluded.currency,
+    tax_code = excluded.tax_code,
+    kv_amount = excluded.kv_amount,
+    kv_amount_dc = excluded.kv_amount_dc,
+    line_of_business = excluded.line_of_business,
+    invoice_no = excluded.invoice_no,
+    invoice_reference = excluded.invoice_reference
 </sql>
 
 
 <update id="updateTransactionInvoiceAB">
 
-<!-- mother_invoice_ref is invoice_reference -->
-<include refid="insertTrxInvoice-fragment" />
-<include refid="selectTrxInvoice-fragment"/>
-case 
-when stage.doc_type = 'AB' and stage.is_invoice = true then 'INVOICE' 
-when stage.doc_type = 'AB' and (stage.is_invoice = false and is_credit_note = true) then 'CREDIT' 
-when stage.doc_type = 'AB' and (stage.is_invoice = false and is_credit_note = false) then 'OTHERS'
-END AS line_of_business,
+    <!-- mother_invoice_ref is invoice_reference -->
+    <!-- transaction_no is document_no -->
+    <include refid="insertTrxInvoice-fragment" />
+    <include refid="selectTrxInvoice-fragment"/>
+    case
+    when stage.doc_type = 'AB' and stage.is_invoice = true then 'INVOICE'
+    when stage.doc_type = 'AB' and (stage.is_invoice = false and is_credit_note = true) then 'CREDIT'
+    when stage.doc_type = 'AB' and (stage.is_invoice = false and is_credit_note = false) then 'OTHERS'
+    END AS line_of_business,
 
-case 
-when stage.doc_type = 'AB' and stage.is_invoice = true then stage.bill_doc end as invoice_no,
+    case
+    when stage.doc_type = 'AB' and stage.is_invoice = true then stage.bill_doc end as invoice_no,
 
-case 
-when stage.doc_type = 'AB' and (stage.is_invoice = false and is_credit_note = true) then stage.parent_invoice_no 
-when stage.doc_type = 'AB' and (stage.is_invoice = false and is_credit_note = false) then stage.reference 
-end as invoice_reference
+    case
+    when stage.doc_type = 'AB' and (stage.is_invoice = false and is_credit_note = true) then stage.parent_invoice_no
+    when stage.doc_type = 'AB' and (stage.is_invoice = false and is_credit_note = false) then stage.reference
+    end as invoice_reference
 
-from transaction_load stage
-left join kv_invoices inv on stage.id = inv.load_id
-<include refid="updateTrxInvoice-fragment"/>
+    <include refid="updateTrxInvoice-fragment"/>
 </update>
 
+<update id="updateTransactionInvoiceYV">
+    <include refid="insertTrxInvoice-fragment" />
+    <include refid="selectTrxInvoice-fragment"/>
+    CASE
+    WHEN stage.doc_type = 'YV' THEN 'INVOICE'
+    END AS line_of_business,
+    CASE
+    WHEN stage.doc_type = 'YV' THEN stage.bill_doc
+    END AS invoice_no
 
+    <include refid="updateTrxInvoice-fragment"/>
+</update>
 
 <update id="updateTransactionInvoiceZZ">
 
-select 
+    <include refid="insertTrxInvoice-fragment" />
+    <include refid="selectTrxInvoice-fragment"/>
+    case
+    when doc_type = 'ZZ' and (transaction_type_id = 1 and reference = 'RI') then 'LPC'
+    when doc_type = 'ZZ' and (transaction_type_id = 1 and reference != 'RI') then 'INVOICE'
+    when doc_type = 'ZZ' then 'PAYMENT'
+    end as line_of_business,
 
+    case
+    when doc_type = 'ZZ' and (transaction_type_id = 1 and reference = 'RI') then document_no
+    when doc_type = 'ZZ' and (transaction_type_id = 1 and reference != 'RI') then bill_doc
+    end as invoice_no,
 
+    case
+    when doc_type = 'ZZ' and (transaction_type_id != 1 and reference != 'RI') then clearing_doc
+    end as invoice_reference
 
-case 
-when doc_type = 'ZZ' and (transaction_type_id = 1 and reference = 'RI') then 'LPC'
-when doc_type = 'ZZ' and (transaction_type_id = 1 and reference != 'RI') then 'INVOICE' 
-when doc_type = 'ZZ' then 'PAYMENT'
-end as line_of_business,
-
-
-case 
-when doc_type = 'ZZ' and (transaction_type_id = 1 and reference = 'RI') then document_no
-when doc_type = 'ZZ' and (transaction_type_id = 1 and reference != 'RI') then bill_doc 
-end as invoice_no,
-
-case 
-when doc_type = 'ZZ' and (transaction_type_id != 1 and reference != 'RI') then clearing_doc
-end as invoice_reference
-
-
-
-
-from transaction_load
-
-
-
+    <include refid="updateTrxInvoice-fragment"/>
 </update>
-
-
-
-   
 </mapper>
