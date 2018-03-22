@@ -102,7 +102,39 @@
     </update>
 
     <insert id="insertInvoiceTransaction">
-        insert into kv_invoices (
+        insert into kv_invoices
+        (
+        tenant_id,
+        import_id,
+        account_id,
+        dpd,
+        mpd,
+        status_id,
+        created_at,
+        updated_at,
+        created_by,
+        updated_by,
+        invoice_status_id,
+        invoice_outstanding_with_interest,
+        gst,
+        import_status_id,
+        branch_id,
+        in_aging,
+        flag_id,
+        last_listener_run,
+        recon_acct,
+        currency,
+        tax_code,
+        kv_amount,
+        kv_amount_dc,
+        line_of_business,
+        invoice_no,
+        invoice_reference
+        
+        ) 
+        
+        values
+         (
         #{id},
         #{tenant_id},
         #{import_id},
