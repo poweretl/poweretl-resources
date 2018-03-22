@@ -14,7 +14,10 @@
     </select>
 
     <update id = "updateAgeInvoice">
-        update invoices set dpd = ((current_date - #{invoice_due_date})) where id = #{id} and tenant_id = #{tenant_id}
+        update invoices set dpd =
+        case when (0 > (current_date -#{invoice_due_date})) then 0
+        else ((current_date - #{invoice_due_date})) end
+        where id = #{id} and tenant_id = #{tenant_id}
         
     </update>
 </mapper>
