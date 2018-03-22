@@ -269,24 +269,6 @@
 
     </select>
 
-    <select id="getTransactionYN"  resultMap="getTransaction-map">
-        SELECT
-        stage.id as load_id,
-        CASE
-        WHEN DOC_TYPE = 'YN' THEN
-        'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
-        CASE
-        WHEN DOC_TYPE = 'YN' THEN
-        stage.document_no END AS INVOICE_NO,
-        CASE
-        WHEN stage.doc_type = 'YN' THEN null
-        END AS invoice_reference
-
-        from transaction_load stage
-        where stage.doc_type = 'YN'
-
-    </select>
-
     <select id="getTransactionYN" resultMap="getTransaction-map">
         SELECT
         stage.id as load_id,
@@ -525,7 +507,7 @@
         where stage.doc_type = 'YE'
     </select>
 
-    <select id="getTransactionYF" resultMap="getTransaction-map">
+    <select id="getTransactionYM" resultMap="getTransaction-map">
         SELECT
         stage.id as load_id,
         CASE
@@ -606,7 +588,8 @@
 
     <update id="updateTransactionLoad">
         update transaction_load
-        set line_of_business = #{line_of_business},
+        set
+        line_of_business = #{line_of_business},
         invoice_no = #{invoice_no},
         invoice_reference = #{invoice_reference}
         where id = #{load_id}
