@@ -109,6 +109,7 @@
 		<mapper resource="updateVendorInvoicesGroup11.xml"/>
 		<mapper resource="updateVendorInvoicesGroup12.xml"/>
 		<mapper resource="updateInvoicesService.xml"/>
+		<mapper resource="transactionUpdateService.xml"/>
 	</mappers>
 
 </configuration>

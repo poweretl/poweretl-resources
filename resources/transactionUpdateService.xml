@@ -5,12 +5,14 @@
 
 <mapper namespace="transactionUpdateService">
 
+    <resultMap type="java.util.HashMap" id="getTransaction-map" >
+        <result property="line_of_business" column="line_of_business" javaType="java.lang.String"/>
+        <result property="invoice_no" column="invoice_no" javaType="java.lang.String"/>
+        <result property="invoice_reference" column="invoice_reference" javaType="java.lang.String"/>
+    </resultMap>
 
 
-
-
-
-<select id="getTransactionAB">
+<select id="getTransactionAB" resultMap="getTransaction-map">
    select
    stage.id as load_id,
     case
@@ -33,8 +35,7 @@
 
 </select>
 
-
-    <select id="getTransactionRG">
+    <select id="getTransactionRG" resultMap="getTransaction-map">
     SELECT
     stage.id as load_id,
     CASE
@@ -51,25 +52,546 @@
     where stage.doc_type = 'RG'
     </select>
 
+    <select id="getTransactionYY"  resultMap="getTransaction-map">
+        SELECT
+        stage.id as load_id,
+        CASE
+        WHEN DOC_TYPE ='YY' AND transaction_type_id = 1 THEN
+        'INVOICE'
+        WHEN DOC_TYPE = 'YY'AND transaction_type_id != 1 THEN
+        'PAYMENT' ELSE NULL END AS LINE_OF_BUSINESS,
+        CASE
+        WHEN DOC_TYPE ='YY' AND transaction_type_id = 1 THEN
+        stage.document_no ELSE null end as invoice_no,
+        CASE
+        WHEN DOC_TYPE = 'YY'AND transaction_type_id != 1 THEN
+        stage.parent_invoice_no ELSE null END AS invoice_reference
 
+        from transaction_load stage
+        where stage.doc_type = 'YY'
 
+    </select>
 
+    <select id="getTransactionGI"  resultMap="getTransaction-map">
+        SELECT
+        stage.id as load_id,
+        CASE
+        WHEN DOC_TYPE = 'GI' AND transaction_type_id = 1 THEN
+        'INVOICE'
+        WHEN DOC_TYPE = 'GI' AND transaction_type_id != 1 THEN
+        'PAYMENT' ELSE NULL END AS LINE_OF_BUSINESS,
+        CASE
+        WHEN DOC_TYPE = 'GI' AND transaction_type_id = 1 THEN
+        stage.bill_doc ELSE null end as invoice_no,
+        CASE
+        WHEN DOC_TYPE = 'GI' AND transaction_type_id != 1 THEN
+        stage.parent_invoice_no ELSE null END AS invoice_reference
 
+        from transaction_load stage
+        where stage.doc_type = 'GI'
 
+    </select>
 
+    <select id="getTransactionRI"  resultMap="getTransaction-map">
+        SELECT
+        stage.id as load_id,
+        CASE
+        WHEN DOC_TYPE = 'RI' AND transaction_type_id = 1 THEN
+        'LPC'
+        WHEN DOC_TYPE = 'RI' AND transaction_type_id != 1 THEN
+        'PAYMENT' ELSE NULL END AS LINE_OF_BUSINESS,
+        CASE
+        WHEN DOC_TYPE = 'RI' AND transaction_type_id = 1 THEN
+        stage.document_no ELSE null end as invoice_no,
+        CASE
+        WHEN DOC_TYPE = 'RI' AND transaction_type_id != 1 THEN
+        stage.parent_invoice_no ELSE null END AS invoice_reference
 
+        from transaction_load stage
+        where stage.doc_type = 'RI'
+    </select>
 
-    <update id="updateTransaction">
+    <select id="getTransactionRM"  resultMap="getTransaction-map">
+        SELECT
+        stage.id as load_id,
+        CASE
+        WHEN DOC_TYPE = 'RM' THEN
+        'DEBIT' ELSE '' END AS LINE_OF_BUSINESS,
+        CASE
+        WHEN DOC_TYPE = 'RM' THEN
+        stage.bill_doc END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'RM' THEN null
+        END AS invoice_reference
+
+        from transaction_load stage
+        where stage.doc_type = 'RM'
+    </select>
+
+    <select id="getTransactionRV"  resultMap="getTransaction-map">
+        SELECT
+        stage.id as load_id,
+        CASE
+        WHEN doc_type = 'RV' AND (stage.assignment = stage.bill_doc) THEN
+        'INVOICE'
+        WHEN doc_type = 'RV' AND (stage.assignment != stage.bill_doc) AND transaction_type_id = 1 THEN
+        'DEBIT'
+        WHEN doc_type = 'RV' and (stage.assignment != stage.bill_doc)
+        AND transaction_type_id != 1 THEN
+        'CREDIT'END AS line_of_business,
+        CASE
+        WHEN doc_type = 'RV' AND
+        (stage.assignment != stage.bill_doc) THEN stage.assignment END AS invoice_reference
+
+        from transaction_load stage
+        where stage.doc_type = 'RV'
+
+    </select>
+
+    <select id="getTransactionRY"  resultMap="getTransaction-map">
+        SELECT
+        stage.id as load_id,
+        CASE
+        WHEN DOC_TYPE = 'RY' THEN
+        'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+        CASE
+        WHEN DOC_TYPE = 'RY' THEN
+        stage.bill_doc END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'RY' THEN null
+        END AS invoice_reference
+
+        from transaction_load stage
+        where stage.doc_type = 'RY'
+    </select>
+
+    <select id="getTransactionYC"  resultMap="getTransaction-map">
+        SELECT
+        stage.id as load_id,
+        CASE
+        WHEN DOC_TYPE = 'YC' THEN
+        'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+        CASE
+        WHEN DOC_TYPE = 'YC' THEN
+        stage.document_no END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'YC' THEN null
+        END AS invoice_reference
+
+        from transaction_load stage
+        where stage.doc_type = 'YC'
+    </select>
+
+    <select id="getTransactionYD"  resultMap="getTransaction-map">
+        SELECT
+        stage.id as load_id,
+        CASE
+        WHEN DOC_TYPE = 'YD' THEN
+        'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+        CASE
+        WHEN DOC_TYPE = 'YD' THEN
+        stage.bill_doc END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'YD' THEN null
+        END AS invoice_reference
+
+        from transaction_load stage
+        where stage.doc_type = 'YD'
+
+    </select>
+
+    <select id="getTransactionYH"  resultMap="getTransaction-map">
+        SELECT
+        stage.id as load_id,
+        CASE
+        WHEN DOC_TYPE = 'YH' THEN
+        'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+        CASE
+        WHEN DOC_TYPE = 'YH' THEN
+        stage.bill_doc END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'YH' THEN null
+        END AS invoice_reference
+
+        from transaction_load stage
+        where stage.doc_type = 'YH'
+    </select>
+
+    <select id="getTransactionYI"  resultMap="getTransaction-map">
+        SELECT
+        stage.id as load_id,
+        CASE
+        WHEN DOC_TYPE = 'YI' THEN
+        'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+        CASE
+        WHEN DOC_TYPE = 'YI' THEN
+        stage.document_no END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'YI' THEN null
+        END AS invoice_reference
+
+        from transaction_load stage
+        where stage.doc_type = 'YI'
+    </select>
+
+    <select id="getTransactionYJ"  resultMap="getTransaction-map">
+        SELECT
+        stage.id as load_id,
+        CASE
+        WHEN DOC_TYPE = 'YJ' THEN
+        'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+        CASE
+        WHEN DOC_TYPE = 'YJ' THEN
+        stage.document_no END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'YJ' THEN null
+        END AS invoice_reference
+
+        from transaction_load stage
+        where stage.doc_type = 'YJ'
+    </select>
+
+    <select id="getTransactionYL"  resultMap="getTransaction-map">
+        SELECT
+        stage.id as load_id,
+        CASE
+        WHEN DOC_TYPE = 'YL' THEN
+        'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+        CASE
+        WHEN DOC_TYPE = 'YL' THEN
+        stage.bill_doc END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'YL' THEN null
+        END AS invoice_reference
+
+        from transaction_load stage
+        where stage.doc_type = 'YL'
+
+    </select>
+
+    <select id="getTransactionYN" resultMap="getTransaction-map">
+        SELECT
+        stage.id as load_id,
+        CASE
+        WHEN DOC_TYPE = 'YN' THEN
+        'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+        CASE
+        WHEN DOC_TYPE = 'YN' THEN
+        stage.document_no END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'YN' THEN null
+        END AS invoice_reference
+
+        from transaction_load stage
+        where stage.doc_type = 'YN'
+    </select>
+
+    <select id="getTransactionYO" resultMap="getTransaction-map">
+        SELECT
+        stage.id as load_id,
+        CASE
+        WHEN DOC_TYPE = 'YO' THEN
+        'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+        CASE
+        WHEN DOC_TYPE = 'YO' THEN
+        stage.bill_doc END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'YO' THEN null
+        END AS invoice_reference
+
+        from transaction_load stage
+        where stage.doc_type = 'YO'
+    </select>
+
+    <select id="getTransactionYP" resultMap="getTransaction-map">
+        SELECT
+        stage.id as load_id,
+        CASE
+        WHEN DOC_TYPE = 'YP' THEN
+        'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+        CASE
+        WHEN DOC_TYPE = 'YP' THEN
+        stage.document_no END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'YP' THEN null
+        END AS invoice_reference
+
+        from transaction_load stage
+        where stage.doc_type = 'YP'
+    </select>
+
+    <select id="getTransactionYQ" resultMap="getTransaction-map">
+        SELECT
+        stage.id as load_id,
+        CASE
+        WHEN DOC_TYPE = 'YQ' THEN
+        'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+        CASE
+        WHEN DOC_TYPE = 'YQ' THEN
+        stage.bill_doc END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'YQ' THEN null
+        END AS invoice_reference
+
+        from transaction_load stage
+        where stage.doc_type = 'YQ'
+    </select>
+
+    <select id="getTransactionYR" resultMap="getTransaction-map">
+        SELECT
+        stage.id as load_id,
+        CASE
+        WHEN DOC_TYPE = 'YR' THEN
+        'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+        CASE
+        WHEN DOC_TYPE = 'YR' THEN
+        stage.bill_doc END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'YR' THEN null
+        END AS invoice_reference
+
+        from transaction_load stage
+        where stage.doc_type = 'YR'
+    </select>
+
+    <select id="getTransactionYS" resultMap="getTransaction-map">
+        SELECT
+        stage.id as load_id,
+        CASE
+        WHEN DOC_TYPE = 'YS' THEN
+        'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+        CASE
+        WHEN DOC_TYPE = 'YS' THEN
+        stage.bill_doc END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'YS' THEN null
+        END AS invoice_reference
+
+        from transaction_load stage
+        where stage.doc_type = 'YS'
+    </select>
+
+    <select id="getTransactionYT" resultMap="getTransaction-map">
+        SELECT
+        stage.id as load_id,
+        CASE
+        WHEN DOC_TYPE = 'YT' THEN
+        'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+        CASE
+        WHEN DOC_TYPE = 'YT' THEN
+        stage.bill_doc END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'YT' THEN null
+        END AS invoice_reference
+
+        from transaction_load stage
+        where stage.doc_type = 'YT'
+    </select>
+
+    <select id="getTransactionYU" resultMap="getTransaction-map">
+        SELECT
+        stage.id as load_id,
+        CASE
+        WHEN DOC_TYPE = 'YU' THEN
+        'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+        CASE
+        WHEN DOC_TYPE = 'YU' THEN
+        stage.bill_doc END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'YU' THEN null
+        END AS invoice_reference
+
+        from transaction_load stage
+        where stage.doc_type = 'YU'
+    </select>
+
+    <select id="getTransactionYV" resultMap="getTransaction-map">
+        SELECT
+        stage.id as load_id,
+        CASE
+        WHEN stage.doc_type = 'YV' THEN 'INVOICE'
+        END AS line_of_business,
+        CASE
+        WHEN stage.doc_type = 'YV' THEN stage.bill_doc
+        END AS invoice_no,
+        CASE
+        WHEN stage.doc_type = 'YV' THEN null
+        END AS invoice_reference
+
+        from transaction_load stage
+        where stage.doc_type = 'YV'
+    </select>
+
+    <select id="getTransactionYW" resultMap="getTransaction-map">
+        SELECT
+        stage.id as load_id,
+        CASE
+        WHEN stage.oc_type = 'YW' THEN 'INVOICE'
+        END AS line_of_business,
+        CASE
+        WHEN stage.doc_type = 'YW' THEN stage.document_no
+        END AS invoice_no,
+        CASE
+        WHEN stage.doc_type = 'YW' THEN null
+        END AS invoice_reference
+
+        from transaction_load stage
+        where stage.doc_type = 'YW'
+    </select>
+
+    <select id="getTransactionYX" resultMap="getTransaction-map">
+        SELECT
+        stage.id as load_id,
+        CASE
+        WHEN stage.doc_type = 'YX' THEN 'INVOICE'
+        END AS line_of_business,
+        CASE
+        WHEN stage.doc_type = 'YX' THEN stage.bill_doc
+        END AS invoice_no,
+        CASE
+        WHEN stage.doc_type = 'YX' THEN null
+        END AS invoice_reference
+
+        from transaction_load stage
+        where stage.doc_type = 'YX'
+    </select>
+
+    <select id="getTransactionYK" resultMap="getTransaction-map">
+        SELECT
+        stage.id as load_id,
+        CASE
+        WHEN stage.doc_type = 'YK' THEN 'INVOICE'
+        END AS line_of_business,
+        CASE
+        WHEN stage.doc_type = 'YK' THEN stage.document_no
+        END AS invoice_no,
+        CASE
+        WHEN stage.doc_type = 'YK' THEN null
+        END AS invoice_reference
+
+        from transaction_load stage
+        where stage.doc_type = 'YK'
+    </select>
+
+    <select id="getTransactionY1" resultMap="getTransaction-map">
+        SELECT
+        stage.id as load_id,
+        CASE
+        WHEN stage.doc_type = 'Y1' THEN 'PAYMENT'
+        END AS line_of_business,
+        CASE
+        when stage.doc_type = 'Y1' then null
+        end as invoice_no,
+        CASE
+        WHEN stage.doc_type = 'Y1' THEN stage.reference
+        END AS invoice_reference
+
+        from transaction_load stage
+        where stage.doc_type = 'Y1'
+    </select>
+
+    <select id="getTransactionYE" resultMap="getTransaction-map">
+        SELECT
+        stage.id as load_id,
+        CASE
+        WHEN stage.doc_type = 'YE' THEN 'DEBIT'
+        END AS line_of_business,
+        CASE
+        WHEN stage.doc_type = 'YE' THEN stage.document_no
+        END AS invoice_no,
+        CASE
+        WHEN stage.doc_type = 'YE' THEN null
+        END AS invoice_reference
+
+        from transaction_load stage
+        where stage.doc_type = 'YE'
+    </select>
+
+    <select id="getTransactionYM" resultMap="getTransaction-map">
+        SELECT
+        stage.id as load_id,
+        CASE
+        WHEN stage.doc_type = 'YM' THEN 'CREDIT'
+        END AS line_of_business,
+        CASE
+        when stage.doc_type = 'YM' then null
+        end as invoice_no,
+        CASE
+        WHEN stage.doc_type = 'YM' AND (stage.bill_doc = null) THEN stage.assignment
+        WHEN stage.doc_type = 'YM' AND (stage.bill_doc != null) THEN stage.bill_doc
+        END AS invoice_reference
+
+        from transaction_load stage
+        where stage.doc_type = 'YM'
+    </select>
+
+    <select id="getTransactionYF" resultMap="getTransaction-map">
+        select
+        stage.id as load_id,
+        CASE
+        WHEN stage.doc_type = 'YF' THEN 'CREDIT'
+        END AS line_of_business,
+        CASE
+        when stage.doc_type = 'YF' then null
+        end as invoice_no,
+        CASE
+        WHEN stage.doc_type = 'YF' THEN stage.reference
+        END AS invoice_reference
+
+        from transaction_load stage
+        where stage.doc_type = 'YF'
+    </select>
+
+    <select id="getTransactionZZ" resultMap="getTransaction-map">
+        select
+        stage.id as load_id,
+        case
+        when stage.doc_type = 'ZZ' and (stage.transaction_type_id = 1 and stage.reference = 'RI') then 'LPC'
+        when stage.doc_type = 'ZZ' and (stage.transaction_type_id = 1 and stage.reference != 'RI') then 'INVOICE'
+        when stage.doc_type = 'ZZ' then 'PAYMENT'
+        end as line_of_business,
+
+        case
+        when stage.doc_type = 'ZZ' and (stage.transaction_type_id = 1 and stage.reference = 'RI') then stage.document_no
+        when stage.doc_type = 'ZZ' and (stage.transaction_type_id = 1 and stage.reference != 'RI') then stage.bill_doc
+        end as invoice_no,
+
+        case
+        when stage.doc_type = 'ZZ' and (stage.transaction_type_id != 1 and stage.reference != 'RI') then
+        stage.clearing_doc
+        end as invoice_reference
+
+        from transaction_load stage
+        where stage.doc_type = 'ZZ'
+    </select>
+
+    <select id="getTransactionOthers" resultMap="getTransaction-map">
+        SELECT
+        stage.id as load_id,
+        CASE
+        WHEN stage.doc_type not in ('AB','RG','YY','GI','RI','RM','RV','RY','YC','YD','YH','YI','YJ','YL','YN', 'YO',
+        'YP','YQ','YR','YS','YT','YU','YV','YW','YX','YK','Y1','YE','YM','YF','ZZ') THEN 'OTHERS'
+        END AS line_of_business,
+        CASE
+        WHEN stage.doc_type not in ('AB','RG','YY','GI','RI','RM','RV','RY','YC','YD','YH','YI','YJ','YL','YN', 'YO',
+        'YP','YQ','YR','YS','YT','YU','YV','YW','YX','YK','Y1','YE','YM','YF','ZZ') THEN null
+        END AS invoice_no,
+        CASE
+        WHEN stage.doc_type not in ('AB','RG','YY','GI','RI','RM','RV','RY','YC','YD','YH','YI','YJ','YL','YN', 'YO',
+        'YP','YQ','YR','YS','YT','YU','YV','YW','YX','YK','Y1','YE','YM','YF','ZZ') THEN stage.reference
+        END AS invoice_reference
+
+        from transaction_load stage
+        where stage.doc_type not in ('AB','RG','YY','GI','RI','RM','RV','RY','YC','YD','YH','YI','YJ','YL','YN', 'YO',
+        'YP','YQ','YR','YS','YT','YU','YV','YW','YX','YK','Y1','YE','YM','YF','ZZ')
+    </select>
+
+    <update id="updateTransactionLoad">
         update transaction_load
-        set line_of_business = #{line_of_business},
+        set
+        line_of_business = #{line_of_business},
         invoice_no = #{invoice_no},
         invoice_reference = #{invoice_reference}
         where id = #{load_id}
     </update>
-
-
-
 </mapper>
-
-
-
