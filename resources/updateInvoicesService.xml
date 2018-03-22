@@ -124,7 +124,14 @@
         'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
         CASE
         WHEN DOC_TYPE = 'RG' THEN
-        stage.document_no END AS INVOICE_NO
+        stage.document_no END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'RG' THEN null
+        END AS invoice_reference
+
+        from transaction_load stage
+        left join kv_invoices inv on stage.id = inv.load_id
+        where stage.doc_type = 'RG'
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>
@@ -144,6 +151,10 @@
         WHEN DOC_TYPE = 'YY'AND transaction_type_id != 1 THEN
         stage.parent_invoice_no ELSE null END AS invoice_reference
 
+        from transaction_load stage
+        left join kv_invoices inv on stage.id = inv.load_id
+        where stage.doc_type = 'YY'
+
         <include refid="updateTrxInvoice-fragment"/>
     </update>
 
@@ -161,6 +172,10 @@
         CASE
         WHEN DOC_TYPE = 'GI' AND transaction_type_id != 1 THEN
         stage.parent_invoice_no ELSE null END AS invoice_reference
+
+        from transaction_load stage
+        left join kv_invoices inv on stage.id = inv.load_id
+        where stage.doc_type = 'GI'
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>
@@ -180,6 +195,10 @@
         WHEN DOC_TYPE = 'RI' AND transaction_type_id != 1 THEN
         stage.parent_invoice_no ELSE null END AS invoice_reference
 
+        from transaction_load stage
+        left join kv_invoices inv on stage.id = inv.load_id
+        where stage.doc_type = 'RI'
+
         <include refid="updateTrxInvoice-fragment"/>
     </update>
 
@@ -195,6 +214,10 @@
         CASE
         WHEN stage.doc_type = 'RM' THEN null
         END AS invoice_reference
+
+        from transaction_load stage
+        left join kv_invoices inv on stage.id = inv.load_id
+        where stage.doc_type = 'RM'
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>
@@ -214,6 +237,10 @@
         WHEN doc_type = 'RV' AND
         (stage.assignment != stage.bill_doc) THEN stage.assignment END AS invoice_reference
 
+        from transaction_load stage
+        left join kv_invoices inv on stage.id = inv.load_id
+        where stage.doc_type = 'RV'
+
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>
@@ -231,6 +258,10 @@
         WHEN stage.doc_type = 'RY' THEN null
         END AS invoice_reference
 
+        from transaction_load stage
+        left join kv_invoices inv on stage.id = inv.load_id
+        where stage.doc_type = 'RY'
+
         <include refid="updateTrxInvoice-fragment"/>
     </update>
 
@@ -246,6 +277,10 @@
         CASE
         WHEN stage.doc_type = 'YC' THEN null
         END AS invoice_reference
+
+        from transaction_load stage
+        left join kv_invoices inv on stage.id = inv.load_id
+        where stage.doc_type = 'YC'
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>
@@ -263,6 +298,10 @@
         WHEN stage.doc_type = 'YD' THEN null
         END AS invoice_reference
 
+        from transaction_load stage
+        left join kv_invoices inv on stage.id = inv.load_id
+        where stage.doc_type = 'YD'
+
         <include refid="updateTrxInvoice-fragment"/>
     </update>
 
@@ -278,6 +317,10 @@
         CASE
         WHEN stage.doc_type = 'YH' THEN null
         END AS invoice_reference
+
+        from transaction_load stage
+        left join kv_invoices inv on stage.id = inv.load_id
+        where stage.doc_type = 'YH'
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>
@@ -295,6 +338,10 @@
         WHEN stage.doc_type = 'YI' THEN null
         END AS invoice_reference
 
+        from transaction_load stage
+        left join kv_invoices inv on stage.id = inv.load_id
+        where stage.doc_type = 'YI'
+
         <include refid="updateTrxInvoice-fragment"/>
     </update>
 
@@ -310,6 +357,10 @@
         CASE
         WHEN stage.doc_type = 'YJ' THEN null
         END AS invoice_reference
+
+        from transaction_load stage
+        left join kv_invoices inv on stage.id = inv.load_id
+        where stage.doc_type = 'YJ'
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>
@@ -327,6 +378,10 @@
         WHEN stage.doc_type = 'YL' THEN null
         END AS invoice_reference
 
+        from transaction_load stage
+        left join kv_invoices inv on stage.id = inv.load_id
+        where stage.doc_type = 'YL'
+
         <include refid="updateTrxInvoice-fragment"/>
     </update>
 
@@ -342,6 +397,10 @@
         CASE
         WHEN stage.doc_type = 'YN' THEN null
         END AS invoice_reference
+
+        from transaction_load stage
+        left join kv_invoices inv on stage.id = inv.load_id
+        where stage.doc_type = 'YN'
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>
@@ -359,6 +418,10 @@
         WHEN stage.doc_type = 'YO' THEN null
         END AS invoice_reference
 
+        from transaction_load stage
+        left join kv_invoices inv on stage.id = inv.load_id
+        where stage.doc_type = 'YO'
+
         <include refid="updateTrxInvoice-fragment"/>
     </update>
 
@@ -367,10 +430,17 @@
         <include refid="selectTrxInvoice-fragment"/>
         CASE
         WHEN DOC_TYPE = 'YP' THEN
+        'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+        CASE
+        WHEN DOC_TYPE = 'YP' THEN
         stage.document_no END AS INVOICE_NO,
         CASE
         WHEN stage.doc_type = 'YP' THEN null
         END AS invoice_reference
+
+        from transaction_load stage
+        left join kv_invoices inv on stage.id = inv.load_id
+        where stage.doc_type = 'YP'
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>
@@ -388,6 +458,10 @@
         WHEN stage.doc_type = 'YQ' THEN null
         END AS invoice_reference
 
+        from transaction_load stage
+        left join kv_invoices inv on stage.id = inv.load_id
+        where stage.doc_type = 'YQ'
+
         <include refid="updateTrxInvoice-fragment"/>
     </update>
 
@@ -403,6 +477,10 @@
         CASE
         WHEN stage.doc_type = 'YR' THEN null
         END AS invoice_reference
+
+        from transaction_load stage
+        left join kv_invoices inv on stage.id = inv.load_id
+        where stage.doc_type = 'YR'
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>
@@ -420,6 +498,10 @@
         WHEN stage.doc_type = 'YS' THEN null
         END AS invoice_reference
 
+        from transaction_load stage
+        left join kv_invoices inv on stage.id = inv.load_id
+        where stage.doc_type = 'YS'
+
         <include refid="updateTrxInvoice-fragment"/>
     </update>
 
@@ -436,6 +518,10 @@
         WHEN stage.doc_type = 'YT' THEN null
         END AS invoice_reference
 
+        from transaction_load stage
+        left join kv_invoices inv on stage.id = inv.load_id
+        where stage.doc_type = 'YT'
+
         <include refid="updateTrxInvoice-fragment"/>
     </update>
 
@@ -451,6 +537,10 @@
         CASE
         WHEN stage.doc_type = 'YU' THEN null
         END AS invoice_reference
+
+        from transaction_load stage
+        left join kv_invoices inv on stage.id = inv.load_id
+        where stage.doc_type = 'YU'
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>
@@ -469,6 +559,10 @@
         WHEN stage.doc_type = 'YV' THEN null
         END AS invoice_reference
 
+        from transaction_load stage
+        left join kv_invoices inv on stage.id = inv.load_id
+        where stage.doc_type = 'YV'
+
         <include refid="updateTrxInvoice-fragment"/>
     </update>
 
@@ -485,6 +579,10 @@
         CASE
         WHEN stage.doc_type = 'YW' THEN null
         END AS invoice_reference
+
+        from transaction_load stage
+        left join kv_invoices inv on stage.id = inv.load_id
+        where stage.doc_type = 'YW'
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>
@@ -503,6 +601,10 @@
         WHEN stage.doc_type = 'YX' THEN null
         END AS invoice_reference
 
+        from transaction_load stage
+        left join kv_invoices inv on stage.id = inv.load_id
+        where stage.doc_type = 'YX'
+
         <include refid="updateTrxInvoice-fragment"/>
     </update>
 
@@ -519,6 +621,10 @@
         CASE
         WHEN stage.doc_type = 'YK' THEN null
         END AS invoice_reference
+
+        from transaction_load stage
+        left join kv_invoices inv on stage.id = inv.load_id
+        where stage.doc_type = 'YK'
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>
@@ -537,6 +643,10 @@
         WHEN stage.doc_type = 'Y1' THEN stage.reference
         END AS invoice_reference
 
+        from transaction_load stage
+        left join kv_invoices inv on stage.id = inv.load_id
+        where stage.doc_type = 'Y1'
+
         <include refid="updateTrxInvoice-fragment"/>
     </update>
 
@@ -553,6 +663,10 @@
         CASE
         WHEN stage.doc_type = 'YE' THEN null
         END AS invoice_reference
+
+        from transaction_load stage
+        left join kv_invoices inv on stage.id = inv.load_id
+        where stage.doc_type = 'YE'
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>
@@ -572,6 +686,10 @@
         WHEN stage.doc_type = 'YM' AND (stage.bill_doc != null) THEN stage.bill_doc
         END AS invoice_reference
 
+        from transaction_load stage
+        left join kv_invoices inv on stage.id = inv.load_id
+        where stage.doc_type = 'YM'
+
         <include refid="updateTrxInvoice-fragment"/>
     </update>
 
@@ -589,6 +707,10 @@
         CASE
         WHEN stage.doc_type = 'YF' THEN stage.reference
         END AS invoice_reference
+
+        from transaction_load stage
+        left join kv_invoices inv on stage.id = inv.load_id
+        where stage.doc_type = 'YF'
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>
@@ -613,6 +735,10 @@
         stage.clearing_doc
         end as invoice_reference
 
+        from transaction_load stage
+        left join kv_invoices inv on stage.id = inv.load_id
+        where stage.doc_type = 'ZZ'
+
         <include refid="updateTrxInvoice-fragment"/>
     </update>
 
@@ -633,6 +759,11 @@
         WHEN stage.doc_type not in ('AB','RG','YY','GI','RI','RM','RV','RY','YC','YD','YH','YI','YJ','YL','YN', 'YO',
         'YP','YQ','YR','YS','YT','YU','YV','YW','YX','YK','Y1','YE','YM','YF','ZZ') THEN stage.reference
         END AS invoice_reference
+
+        from transaction_load stage
+        left join kv_invoices inv on stage.id = inv.load_id
+        where stage.doc_type not in ('AB','RG','YY','GI','RI','RM','RV','RY','YC','YD','YH','YI','YJ','YL','YN', 'YO',
+        'YP','YQ','YR','YS','YT','YU','YV','YW','YX','YK','Y1','YE','YM','YF','ZZ')
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>

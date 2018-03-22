@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="transactionUpdateService">
+
+
+
+
+
+
+<select id="getTransactionAB">
+   select
+   stage.id as load_id,
+    case
+        when stage.doc_type = 'AB' and stage.is_invoice = true then 'INVOICE'
+        when stage.doc_type = 'AB' and (stage.is_invoice = false and stage.is_credit_note = true) then 'CREDIT'
+        when stage.doc_type = 'AB' and (stage.is_invoice = false and stage.is_credit_note = false) then 'OTHERS'
+        END AS line_of_business,
+
+        case
+        when stage.doc_type = 'AB' and stage.is_invoice = true then stage.bill_doc end as invoice_no,
+
+        case
+        when stage.doc_type = 'AB' and (stage.is_invoice = false and stage.is_credit_note = true) then
+        stage.parent_invoice_no
+        when stage.doc_type = 'AB' and (stage.is_invoice = false and stage.is_credit_note = false) then stage.reference
+        end as invoice_reference
+
+        from transaction_load stage
+        where stage.doc_type = 'AB'
+
+</select>
+
+
+    <select id="getTransactionRG">
+    SELECT
+    stage.id as load_id,
+    CASE
+    WHEN DOC_TYPE = 'RG' THEN
+    'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+    CASE
+    WHEN DOC_TYPE = 'RG' THEN
+    stage.document_no END AS INVOICE_NO,
+    CASE
+    WHEN stage.doc_type = 'RG' THEN null
+    END AS invoice_reference
+
+    from transaction_load stage
+    where stage.doc_type = 'RG'
+    </select>
+
+
+
+
+
+
+
+
+
+    <update id="updateTransaction">
+        update transaction_load
+        set line_of_business = #{line_of_business},
+        invoice_no = #{invoice_no},
+        invoice_reference = #{invoice_reference}
+        where id = #{load_id}
+    </update>
+
+
+
+</mapper>
+
+
+
