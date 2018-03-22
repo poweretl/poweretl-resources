@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="updateInvoices">
+
+    <resultMap type="java.util.HashMap" id="getInvoiceTransaction-map">
+
+        <result property="id" column="id" javaType="java.lang.Long"/>
+        <result property="tenant_id" column="tenant_id" javaType="java.lang.Long"/>
+        <result property="import_id" column="import_id" javaType="java.lang.Long"/>
+        <result property="account_id" column="account_id" javaType="java.lang.Long"/>
+        <result property="dpd" column="dpd" javaType="java.lang.Long"/>
+        <result property="mpd" column="mpd" javaType="java.lang.Long"/>
+        <result property="status_id" column="status_id" javaType="java.lang.Long"/>
+        <result property="created_at" column="created_at" javaType="java.lang.Timestamp"/>
+        <result property="updated_at" column="updated_at" javaType="java.lang.Timestamp"/>
+        <result property="created_by" column="created_by" javaType="java.lang.Long"/>
+        <result property="updated_by" column="updated_by" javaType="java.lang.Long"/>
+        <result property="invoice_status_id" column="invoice_status_id" javaType="java.lang.Long"/>
+        <result property="invoice_outstanding_with_interest" column="invoice_outstanding_with_interest"
+                javaType="java.lang.Double"/>
+        <result property="gst" column="gst" javaType="java.lang.Double"/>
+        <result property="import_status_id" column="import_status_id" javaType="java.lang.Long"/>
+        <result property="branch_id" column="branch_id" javaType="java.lang.Long"/>
+        <result property="in_aging" column="in_aging" javaType="java.lang.Boolean"/>
+        <result property="flag_id" column="flag_id" javaType="java.lang.Long"/>
+        <result property="last_listener_run" column="last_listener_run" javaType="java.lang.Timestamp"/>
+        <result property="recon_acct" column="recon_acct" javaType="java.lang.String"/>
+        <result property="currency" column="currency" javaType="java.lang.String"/>
+        <result property="tax_code" column="tax_code" javaType="java.lang.String"/>
+        <result property="kv_amount" column="kv_amount" javaType="java.lang.Double"/>
+        <result property="kv_amount_dc" column="kv_amount_dc" javaType="java.lang.Double"/>
+        <result property="line_of_business" column="line_of_business" javaType="java.lang.String"/>
+        <result property="invoice_no" column="invoice_no" javaType="java.lang.String"/>
+        <result property="invoice_reference" column="invoice_reference" javaType="java.lang.String"/>
+
+    </resultMap>
+
+    <select id="getInvoiceTransaction" resultMap="getInvoiceTransaction-map">
+        SELECT
+        id,
+        tenant_id,
+        import_id,
+        account_id,
+        dpd,
+        mpd,
+        status_id,
+        created_at,
+        updated_at,
+        created_by,
+        updated_by,
+        invoice_status_id,
+        invoice_outstanding_with_interest,
+        gst,
+        import_status_id,
+        branch_id,
+        in_aging,
+        flag_id,
+        last_listener_run,
+        recon_acct,
+        currency,
+        tax_code,
+        kv_amount,
+        kv_amount_dc,
+        line_of_business,
+        invoice_no,
+        invoice_reference
+        FROM transaction_load
+    </select>
+
+    <update id="updateInvoiceTransaction">
+        update kv_invoices set
+        id = #{id},
+        tenant_id = #{tenant_id},
+        import_id = #{import_id},
+        account_id = #{account_id},
+        dpd = #{dpd},
+        mpd = #{mpd},
+        status_id = #{status_id},
+        created_at = #{created_at},
+        updated_at = #{updated_at},
+        created_by = #{created_by},
+        updated_by = #{updated_by},
+        invoice_status_id = #{invoice_status_id},
+        invoice_outstanding_with_interest = #{invoice_outstanding_with_interest},
+        gst = #{gst},
+        import_status_id = #{import_status_id},
+        branch_id = #{branch_id},
+        in_aging = #{in_aging},
+        flag_id = #{flag_id},
+        last_listener_run = #{last_listener_run},
+        recon_acct = #{recon_acct},
+        currency = #{currency},
+        tax_code = #{tax_code},
+        kv_amount = #{kv_amount},
+        kv_amount_dc = #{kv_amount_dc},
+        line_of_business = #{line_of_business},
+        invoice_no = #{invoice_no},
+        invoice_reference = #{invoice_reference}
+    </update>
+
+    <insert id="insertInvoiceTransaction">
+        insert into kv_invoices (
+        #{id},
+        #{tenant_id},
+        #{import_id},
+        #{account_id},
+        #{dpd},
+        #{mpd},
+        #{status_id},
+        #{created_at},
+        #{updated_at},
+        #{created_by},
+        #{updated_by},
+        #{invoice_status_id},
+        #{invoice_outstanding_with_interest},
+        #{gst},
+        #{import_status_id},
+        #{branch_id},
+        #{in_aging},
+        #{flag_id},
+        #{last_listener_run},
+        #{recon_acct},
+        #{currency},
+        #{tax_code},
+        #{kv_amount},
+        #{kv_amount_dc},
+        #{line_of_business},
+        #{invoice_no},
+        #{invoice_reference})
+    </insert>
+
+</mapper>
