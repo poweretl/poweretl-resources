@@ -132,4 +132,5 @@
         #{invoice_reference})
     </insert>
 
+    
 </mapper>
