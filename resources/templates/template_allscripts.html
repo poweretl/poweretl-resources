@@ -163,7 +163,9 @@
     <!-- Load all batches in the batch page, avoid next page ajax bug-->
     <script>
         $('#loadAllDatatable').dataTable( {
-            "paging": false
+            "paging": false,
+            scrollY: '50vh',
+            scrollCollapse: true
         } );
     </script>
 </div>
