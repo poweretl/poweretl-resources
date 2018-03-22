@@ -517,8 +517,8 @@
         when stage.doc_type = 'YM' then null
         end as invoice_no,
         CASE
-        WHEN stage.doc_type = 'YM' AND (stage.bill_doc = null) THEN stage.assignment
-        WHEN stage.doc_type = 'YM' AND (stage.bill_doc != null) THEN stage.bill_doc
+        WHEN stage.doc_type = 'YM' AND (stage.bill_doc is null) THEN stage.assignment
+        WHEN stage.doc_type = 'YM' AND (stage.bill_doc is not null) THEN stage.bill_doc
         END AS invoice_reference
 
         from transaction_load stage
