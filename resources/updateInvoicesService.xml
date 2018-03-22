@@ -16,7 +16,7 @@
      -->
     <sql id="selectTrxInvoice-fragment">
     select
-    coalesce(inv.id,nextval('kv_invoices_id')) as id,
+    coalesce (inv.id ,nextval('kv_invoices_id')) as id,
     stage.id as load_id,
     58 as tenant_id,
     0 as import_id,
@@ -44,16 +44,14 @@
 </sql>
 
     <sql id="insertTrxInvoice-fragment">
-    insert into kv_invoices (
+    insert into kv_invoices as invoices (
     id,load_id,tenant_id,import_id,account_id,dpd,mpd,status_id,created_at,updated_at,created_by,updated_by,invoice_status_id,
     invoice_outstanding_with_interest,gst,import_status_id,branch_id,in_aging,flag_id,last_listener_run,recon_acct,
-    currency,tax_code,kv_amount,kv_amount_dc,line_of_business,invoice_no,invoice_reference
-    )
+    currency,tax_code,kv_amount,kv_amount_dc,line_of_business,invoice_no,invoice_reference)
     </sql>
 
     <sql id="updateTrxInvoice-fragment">
-    from transaction_load
-    left join kv_invoices inv on stage.id = inv.load_id
+
     on conflict (load_id) do update
     set
     id = excluded.id,
@@ -84,6 +82,7 @@
     line_of_business = excluded.line_of_business,
     invoice_no = excluded.invoice_no,
     invoice_reference = excluded.invoice_reference
+    WHERE invoices.load_id = excluded.load_id
 </sql>
 
 
@@ -107,6 +106,10 @@
         stage.parent_invoice_no
         when stage.doc_type = 'AB' and (stage.is_invoice = false and stage.is_credit_note = false) then stage.reference
         end as invoice_reference
+
+        from transaction_load stage
+        left join kv_invoices inv on stage.id = inv.load_id
+        where stage.doc_type = 'AB'
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>
@@ -188,7 +191,10 @@
         'DEBIT' ELSE '' END AS LINE_OF_BUSINESS,
         CASE
         WHEN DOC_TYPE = 'RM' THEN
-        stage.bill_doc END AS INVOICE_NO
+        stage.bill_doc END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'RM' THEN null
+        END AS invoice_reference
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>
@@ -220,7 +226,10 @@
         'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
         CASE
         WHEN DOC_TYPE = 'RY' THEN
-        stage.bill_doc END AS INVOICE_NO
+        stage.bill_doc END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'RY' THEN null
+        END AS invoice_reference
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>
@@ -233,7 +242,10 @@
         'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
         CASE
         WHEN DOC_TYPE = 'YC' THEN
-        stage.document_no END AS INVOICE_NO
+        stage.document_no END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'YC' THEN null
+        END AS invoice_reference
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>
@@ -246,7 +258,10 @@
         'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
         CASE
         WHEN DOC_TYPE = 'YD' THEN
-        stage.bill_doc END AS INVOICE_NO
+        stage.bill_doc END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'YD' THEN null
+        END AS invoice_reference
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>
@@ -259,7 +274,10 @@
         'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
         CASE
         WHEN DOC_TYPE = 'YH' THEN
-        stage.bill_doc END AS INVOICE_NO
+        stage.bill_doc END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'YH' THEN null
+        END AS invoice_reference
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>
@@ -272,7 +290,10 @@
         'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
         CASE
         WHEN DOC_TYPE = 'YI' THEN
-        stage.document_no END AS INVOICE_NO
+        stage.document_no END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'YI' THEN null
+        END AS invoice_reference
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>
@@ -285,7 +306,10 @@
         'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
         CASE
         WHEN DOC_TYPE = 'YJ' THEN
-        stage.document_no END AS INVOICE_NO
+        stage.document_no END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'YJ' THEN null
+        END AS invoice_reference
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>
@@ -298,7 +322,10 @@
         'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
         CASE
         WHEN DOC_TYPE = 'YL' THEN
-        stage.bill_doc END AS INVOICE_NO
+        stage.bill_doc END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'YL' THEN null
+        END AS invoice_reference
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>
@@ -311,7 +338,10 @@
         'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
         CASE
         WHEN DOC_TYPE = 'YN' THEN
-        stage.document_no END AS INVOICE_NO
+        stage.document_no END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'YN' THEN null
+        END AS invoice_reference
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>
@@ -324,7 +354,10 @@
         'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
         CASE
         WHEN DOC_TYPE = 'YO' THEN
-        stage.bill_doc END AS INVOICE_NO
+        stage.bill_doc END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'YO' THEN null
+        END AS invoice_reference
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>
@@ -334,7 +367,10 @@
         <include refid="selectTrxInvoice-fragment"/>
         CASE
         WHEN DOC_TYPE = 'YP' THEN
-        stage.document_no END AS INVOICE_NO
+        stage.document_no END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'YP' THEN null
+        END AS invoice_reference
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>
@@ -347,7 +383,10 @@
         'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
         CASE
         WHEN DOC_TYPE = 'YQ' THEN
-        stage.bill_doc END AS INVOICE_NO
+        stage.bill_doc END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'YQ' THEN null
+        END AS invoice_reference
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>
@@ -360,7 +399,10 @@
         'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
         CASE
         WHEN DOC_TYPE = 'YR' THEN
-        stage.bill_doc END AS INVOICE_NO
+        stage.bill_doc END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'YR' THEN null
+        END AS invoice_reference
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>
@@ -373,7 +415,10 @@
         'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
         CASE
         WHEN DOC_TYPE = 'YS' THEN
-        stage.bill_doc END AS INVOICE_NO
+        stage.bill_doc END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'YS' THEN null
+        END AS invoice_reference
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>
@@ -386,7 +431,10 @@
         'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
         CASE
         WHEN DOC_TYPE = 'YT' THEN
-        stage.bill_doc END AS INVOICE_NO
+        stage.bill_doc END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'YT' THEN null
+        END AS invoice_reference
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>
@@ -399,7 +447,10 @@
         'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
         CASE
         WHEN DOC_TYPE = 'YU' THEN
-        stage.bill_doc END AS INVOICE_NO
+        stage.bill_doc END AS INVOICE_NO,
+        CASE
+        WHEN stage.doc_type = 'YU' THEN null
+        END AS invoice_reference
 
         <include refid="updateTrxInvoice-fragment"/>
     </update>
