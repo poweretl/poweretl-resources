@@ -426,7 +426,7 @@
         SELECT
         stage.id as load_id,
         CASE
-        WHEN stage.oc_type = 'YW' THEN 'INVOICE'
+        WHEN stage.doc_type = 'YW' THEN 'INVOICE'
         END AS line_of_business,
         CASE
         WHEN stage.doc_type = 'YW' THEN stage.document_no
