@@ -110,6 +110,8 @@
 		<mapper resource="updateVendorInvoicesGroup12.xml"/>
 		<mapper resource="updateInvoicesService.xml"/>
 		<mapper resource="transactionUpdateService.xml"/>
+        <mapper resource="postTransactionLoadService.xml"/>
+        <mapper resource="invoiceTransactionService.xml"/>
 	</mappers>
 
 </configuration>

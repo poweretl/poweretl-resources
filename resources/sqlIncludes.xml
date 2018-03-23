@@ -12,7 +12,6 @@
   import_id,
   account_id,
   invoice_date,
-  
   invoice_description,
   invoice_due_date,
   invoice_amount,
@@ -35,7 +34,6 @@
   invoice_pic_code,
   invoice_pic_name,
   last_listener_run,
-  
   vendor_no,
   tax_code,
   tax_id,
@@ -45,7 +43,6 @@
   document_id,
   business_area_id,
   tax_amount,
-  
   document_no,
   mode,
   amount_dc,
@@ -78,10 +75,8 @@
   nextval('kv_vendor_invoices_id') as id,
   58 as tenant_id,
   0 as import_id,
-  <!-- use vendor_no and company code to get account_id -->
-  -1 as account_id,
+  stage.account_id,
   stage.invoice_date,
-
   stage.invoice_description as invoice_description,
   stage.invoice_due_date as invoice_due_date,
   stage.invoice_amount,
@@ -95,7 +90,7 @@
   '0' as updated_by,
   2 as invoice_status_id,
   0 as invoice_outstanding_with_interest,
-  0.0 as gst,
+  stage.gst,
   0 as import_status_id,
   cast(null as text) as import_note,
   0 as branch_id,
@@ -104,7 +99,6 @@
   cast(null as text) as invoice_pic_code,
   cast(null as text) as invoice_pic_name,
   current_timestamp as last_listener_run,
-
   stage.vendor_no as vendor_no,
   stage.gst_code as tax_code,
   stage.tax_id,
@@ -114,7 +108,6 @@
   stage.document_id,
   stage.business_area_id,
   stage.tax_amount,
-
   stage.transaction_no as document_no,
   stage.trx_mode as mode,
   stage.amount_dc,
@@ -139,7 +132,6 @@
  </sql>
 
  <sql id ="sqlVendorInvoicesUpdateFragment">
-
   on CONFLICT (load_id)
   DO UPDATE
   set
@@ -203,7 +195,6 @@
   line_of_business = EXCLUDED.line_of_business,
   invoice_no = EXCLUDED.invoice_no,
   payment_reference = EXCLUDED.payment_reference
-
  </sql>
 
 </mapper>
