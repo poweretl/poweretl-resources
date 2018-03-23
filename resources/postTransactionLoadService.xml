@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="postTransactionLoadService">
+
+<update id="updateIsDepositTransaction">
+update transaction_load
+set is_deposit = true
+where spec_gl_ind in ('0', '1', '2', '3', '4', '5', '6', '8', '9');
+</update>
+
+
+<update id="updateInvoiceTransactionType">
+update transaction_load set transaction_type_id = 1 where mode = 'S'
+</update>
+
+<update id="updatePaymentTransactionType">
+update transaction_load set transaction_type_id = 2 where mode = 'H'
+</update>
+
+<update id="updateInvoiceStatusId">
+update transaction_load
+set invoice_status_id = case when invoice_amount &lt;= 0 then 12 else 6 end
+where load_execution_id &gt; 0
+</update>
+
+<update id="updateInvoiceInAging">
+update transaction_load
+set in_aging = true
+where load_execution_id &gt; 0 and invoice_amount &gt; 0
+</update>
+
+<resultMap type="java.util.HashMap" id="getAccount-map">
+  <result column="load_id" property="load_id" javaType="java.lang.Long"/>
+  <result column="account_no" property="account_no" javaType="java.lang.String"/>
+</resultMap>
+<select id="getAccount" resultMap="getAccount-map">
+ select id as load_id, account_no from transaction_load limit 20
+</select>
+
+
+<update id="updateCommercialTransaction">
+update transaction_load set is_commercial = #{isCommercial} where id = #{load_id} and 1=2
+</update>
+
+
+
+
+
+</mapper>
