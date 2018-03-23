@@ -14,8 +14,8 @@
         <result property="dpd" column="dpd" javaType="java.lang.Long"/>
         <result property="mpd" column="mpd" javaType="java.lang.Long"/>
         <result property="status_id" column="status_id" javaType="java.lang.Long"/>
-        <result property="created_at" column="created_at" javaType="java.lang.Timestamp"/>
-        <result property="updated_at" column="updated_at" javaType="java.lang.Timestamp"/>
+        <result property="created_at" column="created_at" javaType="java.sql.Timestamp"/>
+        <result property="updated_at" column="updated_at" javaType="java.sql.Timestamp"/>
         <result property="created_by" column="created_by" javaType="java.lang.Long"/>
         <result property="updated_by" column="updated_by" javaType="java.lang.Long"/>
         <result property="invoice_status_id" column="invoice_status_id" javaType="java.lang.Long"/>
@@ -26,7 +26,7 @@
         <result property="branch_id" column="branch_id" javaType="java.lang.Long"/>
         <result property="in_aging" column="in_aging" javaType="java.lang.Boolean"/>
         <result property="flag_id" column="flag_id" javaType="java.lang.Long"/>
-        <result property="last_listener_run" column="last_listener_run" javaType="java.lang.Timestamp"/>
+        <result property="last_listener_run" column="last_listener_run" javaType="java.sql.Timestamp"/>
         <result property="recon_acct" column="recon_acct" javaType="java.lang.String"/>
         <result property="currency" column="currency" javaType="java.lang.String"/>
         <result property="tax_code" column="tax_code" javaType="java.lang.String"/>
