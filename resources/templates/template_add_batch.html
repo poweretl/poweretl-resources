@@ -20,15 +20,15 @@
         </div>
         <div class="x_content">
             <br />
-            <form action="/addbatch" method="post" id="ajaxForm" data-parsley-validate
+            <form action="/batch" method="post" id="ajaxForm" data-parsley-validate
                   class="form-horizontal form-label-left">
-
+                <input hidden="true" th:value="${batchEditList?.id}" name="id">
                 <div class="form-group">
                     <label class="control-label col-md-2 col-sm-2"
                            for="code">Code <span class="required">*</span>
                     </label>
                     <div class="col-md-8 col-sm-8">
-                        <input name="code" type="text" required="required"
+                        <input th:value="${batchEditList?.code}" name="code" type="text" required="required"
                                placeholder="Batch Code"
                                class="form-control col-md-7 col-xs-12 hasclear">
                     </div>
@@ -38,7 +38,7 @@
                            for="name">Name <span class="required">*</span>
                     </label>
                     <div class="col-md-8 col-sm-8">
-                        <input name="name" type="text" required="required"
+                        <input th:value="${batchEditList?.name}" name="name" type="text" required="required"
                                placeholder="Batch Name"
                                class="form-control col-md-7 col-xs-12 hasclear">
                     </div>
@@ -48,7 +48,7 @@
                            for="description">Description <span class="required">*</span>
                     </label>
                     <div class="col-md-8 col-sm-8">
-                         <textarea name="description"
+                         <textarea th:text="${batchEditList?.description}" name="description"
                                    required="required"
                                    placeholder="Batch Description"
                                    class="form-control col-md-7 col-xs-12 hasclear"></textarea>
@@ -58,8 +58,9 @@
                     <label class="control-label col-md-2 col-sm-2 col-xs-6"
                            for="disable">Disable </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input name="disable"
+                        <input th:checked="${batchEditList?.disable}" name="disable"
                                type="checkbox" class="js-switch" />
+                        <div id = "insertMessage"></div>
                     </div>
                 </div>
 

@@ -124,7 +124,6 @@
                 if ($(this).parsley().isValid()) {
                     $.post($('#ajaxForm').attr('action'), $(this).serialize());
                     $('<div class = "green text-center"><b>Data has been saved successfully.<b></div>').insertAfter('#insertMessage').delay(3000).fadeOut();
-                    $("#datatable-buttons").load(document.URL + ' #datatable-buttons');
                 }
             });
         });
@@ -148,10 +147,10 @@
                             console.log(data);
                             $('#status').remove();
                             if (data == -1) {
-                                $('<div>The batch is currently running, please wait...</div>').insertAfter($(currentForm));
+                                $('<div class = "red text-center">The batch is currently running, please wait...</div>').insertAfter($(currentForm));
                             }
                             else
-                                $('<div></div>').html("Records updated: " + data).insertAfter($(currentForm));
+                                $('<div class = "green text-center"></div>').html("Records updated: " + data).insertAfter($(currentForm));
                         }
                     });
                 }
@@ -162,10 +161,12 @@
 
     <!-- Load all batches in the batch page, avoid next page ajax bug-->
     <script>
-        $('#loadAllDatatable').dataTable( {
-            "paging": false,
-            scrollY: '50vh',
-            scrollCollapse: true
-        } );
+        $('#loadAllDatatable').dataTable({
+                "paging": false,
+                scrollY: '100%',
+                scrollCollapse: true
+            }
+        );
+
     </script>
 </div>

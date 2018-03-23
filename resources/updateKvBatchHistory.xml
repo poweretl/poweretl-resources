@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="updateKvBatchHistory">
+    <insert id="insertBatchHistory">
+        <selectKey keyProperty="id" resultType="int" order="BEFORE" >
+            select nextval('kvbatch_history_id')
+        </selectKey>
+        insert into kvbatch_history
+        (id, batch_id, number_of_records_updated, updated_date)
+        values
+        (#{id}, #{batch_id}, #{number_of_records_updated}, current_timestamp)
+    </insert>
+
+    <resultMap type="java.util.HashMap" id="viewBatchHistory-map" >
+        <result property="id" column="id" javaType="java.lang.Long" />
+        <result property="batch_id" column="batch_id" javaType="java.lang.Long" />
+        <result property="number_of_records_updated" column="number_of_records_updated" javaType="java.lang.Long" />
+        <result property="updated_date" column="updated_date" javaType="java.sql.Timestamp" />
+    </resultMap>
+
+    <select id = "viewBatchHistory" resultMap = "viewBatchHistory-map">
+        select
+        number_of_records_updated, updated_date
+        from kvbatch_history
+    </select>
+
+</mapper>
