@@ -5,14 +5,15 @@
 
 <mapper namespace="transactionUpdateService">
 
-    <resultMap type="java.util.HashMap" id="getTransaction-map" >
+<!--    <resultMap type="java.util.HashMap" id="getTransaction-map" >
+        <result property="id" column = "id" javaType="java.lang.Long"/>
         <result property="line_of_business" column="line_of_business" javaType="java.lang.String"/>
         <result property="invoice_no" column="invoice_no" javaType="java.lang.String"/>
         <result property="invoice_reference" column="invoice_reference" javaType="java.lang.String"/>
-    </resultMap>
+    </resultMap>-->
 
 
-<select id="getTransactionAB" resultMap="getTransaction-map">
+<select id="getTransactionAB" resultType="java.util.HashMap">
    select
    stage.id as load_id,
     case
@@ -35,7 +36,7 @@
 
 </select>
 
-    <select id="getTransactionRG" resultMap="getTransaction-map">
+    <select id="getTransactionRG" resultType="java.util.HashMap">
     SELECT
     stage.id as load_id,
     CASE
@@ -52,7 +53,7 @@
     where stage.doc_type = 'RG'
     </select>
 
-    <select id="getTransactionYY"  resultMap="getTransaction-map">
+    <select id="getTransactionYY"  resultType="java.util.HashMap">
         SELECT
         stage.id as load_id,
         CASE
@@ -72,7 +73,7 @@
 
     </select>
 
-    <select id="getTransactionGI"  resultMap="getTransaction-map">
+    <select id="getTransactionGI"  resultType="java.util.HashMap">
         SELECT
         stage.id as load_id,
         CASE
@@ -92,7 +93,7 @@
 
     </select>
 
-    <select id="getTransactionRI"  resultMap="getTransaction-map">
+    <select id="getTransactionRI"  resultType="java.util.HashMap">
         SELECT
         stage.id as load_id,
         CASE
@@ -111,7 +112,7 @@
         where stage.doc_type = 'RI'
     </select>
 
-    <select id="getTransactionRM"  resultMap="getTransaction-map">
+    <select id="getTransactionRM"  resultType="java.util.HashMap">
         SELECT
         stage.id as load_id,
         CASE
@@ -128,7 +129,7 @@
         where stage.doc_type = 'RM'
     </select>
 
-    <select id="getTransactionRV"  resultMap="getTransaction-map">
+    <select id="getTransactionRV"  resultType="java.util.HashMap">
         SELECT
         stage.id as load_id,
         CASE
@@ -148,7 +149,7 @@
 
     </select>
 
-    <select id="getTransactionRY"  resultMap="getTransaction-map">
+    <select id="getTransactionRY"  resultType="java.util.HashMap">
         SELECT
         stage.id as load_id,
         CASE
@@ -165,7 +166,7 @@
         where stage.doc_type = 'RY'
     </select>
 
-    <select id="getTransactionYC"  resultMap="getTransaction-map">
+    <select id="getTransactionYC"  resultType="java.util.HashMap">
         SELECT
         stage.id as load_id,
         CASE
@@ -182,7 +183,7 @@
         where stage.doc_type = 'YC'
     </select>
 
-    <select id="getTransactionYD"  resultMap="getTransaction-map">
+    <select id="getTransactionYD"  resultType="java.util.HashMap">
         SELECT
         stage.id as load_id,
         CASE
@@ -200,7 +201,7 @@
 
     </select>
 
-    <select id="getTransactionYH"  resultMap="getTransaction-map">
+    <select id="getTransactionYH"  resultType="java.util.HashMap">
         SELECT
         stage.id as load_id,
         CASE
@@ -217,7 +218,7 @@
         where stage.doc_type = 'YH'
     </select>
 
-    <select id="getTransactionYI"  resultMap="getTransaction-map">
+    <select id="getTransactionYI"  resultType="java.util.HashMap">
         SELECT
         stage.id as load_id,
         CASE
@@ -234,7 +235,7 @@
         where stage.doc_type = 'YI'
     </select>
 
-    <select id="getTransactionYJ"  resultMap="getTransaction-map">
+    <select id="getTransactionYJ"  resultType="java.util.HashMap">
         SELECT
         stage.id as load_id,
         CASE
@@ -251,7 +252,7 @@
         where stage.doc_type = 'YJ'
     </select>
 
-    <select id="getTransactionYL"  resultMap="getTransaction-map">
+    <select id="getTransactionYL"  resultType="java.util.HashMap">
         SELECT
         stage.id as load_id,
         CASE
@@ -269,7 +270,7 @@
 
     </select>
 
-    <select id="getTransactionYN" resultMap="getTransaction-map">
+    <select id="getTransactionYN" resultType="java.util.HashMap">
         SELECT
         stage.id as load_id,
         CASE
@@ -286,7 +287,7 @@
         where stage.doc_type = 'YN'
     </select>
 
-    <select id="getTransactionYO" resultMap="getTransaction-map">
+    <select id="getTransactionYO" resultType="java.util.HashMap">
         SELECT
         stage.id as load_id,
         CASE
@@ -303,7 +304,7 @@
         where stage.doc_type = 'YO'
     </select>
 
-    <select id="getTransactionYP" resultMap="getTransaction-map">
+    <select id="getTransactionYP" resultType="java.util.HashMap">
         SELECT
         stage.id as load_id,
         CASE
@@ -320,7 +321,7 @@
         where stage.doc_type = 'YP'
     </select>
 
-    <select id="getTransactionYQ" resultMap="getTransaction-map">
+    <select id="getTransactionYQ" resultType="java.util.HashMap">
         SELECT
         stage.id as load_id,
         CASE
@@ -337,7 +338,7 @@
         where stage.doc_type = 'YQ'
     </select>
 
-    <select id="getTransactionYR" resultMap="getTransaction-map">
+    <select id="getTransactionYR" resultType="java.util.HashMap">
         SELECT
         stage.id as load_id,
         CASE
@@ -354,7 +355,7 @@
         where stage.doc_type = 'YR'
     </select>
 
-    <select id="getTransactionYS" resultMap="getTransaction-map">
+    <select id="getTransactionYS" resultType="java.util.HashMap">
         SELECT
         stage.id as load_id,
         CASE
@@ -371,7 +372,7 @@
         where stage.doc_type = 'YS'
     </select>
 
-    <select id="getTransactionYT" resultMap="getTransaction-map">
+    <select id="getTransactionYT" resultType="java.util.HashMap">
         SELECT
         stage.id as load_id,
         CASE
@@ -388,7 +389,7 @@
         where stage.doc_type = 'YT'
     </select>
 
-    <select id="getTransactionYU" resultMap="getTransaction-map">
+    <select id="getTransactionYU" resultType="java.util.HashMap">
         SELECT
         stage.id as load_id,
         CASE
@@ -405,7 +406,7 @@
         where stage.doc_type = 'YU'
     </select>
 
-    <select id="getTransactionYV" resultMap="getTransaction-map">
+    <select id="getTransactionYV" resultType="java.util.HashMap">
         SELECT
         stage.id as load_id,
         CASE
@@ -422,11 +423,11 @@
         where stage.doc_type = 'YV'
     </select>
 
-    <select id="getTransactionYW" resultMap="getTransaction-map">
+    <select id="getTransactionYW" resultType="java.util.HashMap">
         SELECT
         stage.id as load_id,
         CASE
-        WHEN stage.oc_type = 'YW' THEN 'INVOICE'
+        WHEN stage.doc_type = 'YW' THEN 'INVOICE'
         END AS line_of_business,
         CASE
         WHEN stage.doc_type = 'YW' THEN stage.document_no
@@ -439,7 +440,7 @@
         where stage.doc_type = 'YW'
     </select>
 
-    <select id="getTransactionYX" resultMap="getTransaction-map">
+    <select id="getTransactionYX" resultType="java.util.HashMap">
         SELECT
         stage.id as load_id,
         CASE
@@ -456,7 +457,7 @@
         where stage.doc_type = 'YX'
     </select>
 
-    <select id="getTransactionYK" resultMap="getTransaction-map">
+    <select id="getTransactionYK" resultType="java.util.HashMap">
         SELECT
         stage.id as load_id,
         CASE
@@ -473,7 +474,7 @@
         where stage.doc_type = 'YK'
     </select>
 
-    <select id="getTransactionY1" resultMap="getTransaction-map">
+    <select id="getTransactionY1" resultType="java.util.HashMap">
         SELECT
         stage.id as load_id,
         CASE
@@ -490,7 +491,7 @@
         where stage.doc_type = 'Y1'
     </select>
 
-    <select id="getTransactionYE" resultMap="getTransaction-map">
+    <select id="getTransactionYE" resultType="java.util.HashMap">
         SELECT
         stage.id as load_id,
         CASE
@@ -507,7 +508,7 @@
         where stage.doc_type = 'YE'
     </select>
 
-    <select id="getTransactionYM" resultMap="getTransaction-map">
+    <select id="getTransactionYM" resultType="java.util.HashMap">
         SELECT
         stage.id as load_id,
         CASE
@@ -525,7 +526,7 @@
         where stage.doc_type = 'YM'
     </select>
 
-    <select id="getTransactionYF" resultMap="getTransaction-map">
+    <select id="getTransactionYF" resultType="java.util.HashMap">
         select
         stage.id as load_id,
         CASE
@@ -542,7 +543,7 @@
         where stage.doc_type = 'YF'
     </select>
 
-    <select id="getTransactionZZ" resultMap="getTransaction-map">
+    <select id="getTransactionZZ" resultType="java.util.HashMap">
         select
         stage.id as load_id,
         case
@@ -565,7 +566,7 @@
         where stage.doc_type = 'ZZ'
     </select>
 
-    <select id="getTransactionOthers" resultMap="getTransaction-map">
+    <select id="getTransactionOthers" resultType="java.util.HashMap">
         SELECT
         stage.id as load_id,
         CASE
