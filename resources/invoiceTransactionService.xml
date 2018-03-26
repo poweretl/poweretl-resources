@@ -11,10 +11,10 @@
         <result property="tenant_id" column="tenant_id" javaType="java.lang.Long"/>
         <result property="import_id" column="import_id" javaType="java.lang.Long"/>
         <result property="account_id" column="account_id" javaType="java.lang.Long"/>
-        <result property="invoice_date" column="invoice_date" javaType="java.lang.Timestamp"/>
+        <result property="invoice_date" column="invoice_date" javaType="java.sql.Timestamp"/>
         <result property="invoice_no" column="invoice_no" javaType="java.lang.String"/>
         <result property="invoice_description" column="invoice_description" javaType="java.lang.String"/>
-        <result property="invoice_due_date" column="invoice_due_date" javaType="java.lang.Timestamp"/>
+        <result property="invoice_due_date" column="invoice_due_date" javaType="java.sql.Timestamp"/>
         <result property="invoice_amount" column="invoice_amount" javaType="java.lang.Double"/>
         <result property="invoice_outstanding" column="invoice_outstanding" javaType="java.lang.Double"/>
         <result property="dpd" column="dpd" javaType="java.lang.Long"/>
@@ -59,14 +59,14 @@
         <result property="spec_gl_ind" column="spec_gl_ind" javaType="java.lang.String"/>
         <result property="amount_dc" column="amount_dc" javaType="java.lang.Double"/>
         <result property="post_key" column="post_key" javaType="java.lang.String"/>
-        <result property="trx_date" column="trx_date" javaType="java.lang.Timestamp"/>
+        <result property="trx_date" column="trx_date" javaType="java.sql.Timestamp"/>
         <result property="reference_id" column="reference_id" javaType="java.lang.Long"/>
         <result property="cleardoc_id" column="cleardoc_id" javaType="java.lang.Long"/>
         <result property="invoice_days" column="invoice_days" javaType="java.lang.Long"/>
         <result property="inv_ref" column="inv_ref" javaType="java.lang.String"/>
         <result property="bill_doc" column="bill_doc" javaType="java.lang.Long"/>
         <result property="payment_term" column="payment_term" javaType="java.lang.String"/>
-        <result property="baseline_date" column="baseline_date" javaType="java.lang.Timestamp"/>
+        <result property="baseline_date" column="baseline_date" javaType="java.sql.Timestamp"/>
         <result property="contract_num" column="contract_num" javaType="java.lang.String"/>
         <result property="old_contract_id" column="old_contract_id" javaType="java.lang.Long"/>
         <result property="kv_amount" column="kv_amount" javaType="java.lang.Double"/>
