@@ -7,7 +7,7 @@
 
     <resultMap type="java.util.HashMap" id="getInvoiceTransaction-map">
 
-        <result property="id" column="id" javaType="java.lang.Long"/>
+        <result property="load_id" column="load_id" javaType="java.lang.Long"/>
         <result property="tenant_id" column="tenant_id" javaType="java.lang.Long"/>
         <result property="import_id" column="import_id" javaType="java.lang.Long"/>
         <result property="account_id" column="account_id" javaType="java.lang.Long"/>
@@ -87,7 +87,7 @@
 
     <select id="getInvoiceTransaction" resultMap="getInvoiceTransaction-map">
         SELECT
-        id,
+        id as load_id,
         tenant_id,
         import_id,
         account_id,
@@ -162,12 +162,13 @@
         load_execution_id,
         invoice_reference,
         account_no
-        FROM transaction_load
+        FROM transaction_load LIMIT 300000
     </select>
 
     <update id="updateInvoiceTransaction">
         update kv_invoices set
         id = #{id},
+        load_id = #{load_id},
         tenant_id = #{tenant_id},
         import_id = #{import_id},
         account_id = #{account_id},
@@ -245,9 +246,13 @@
     </update>
 
     <insert id="insertInvoiceTransaction">
+        <selectKey keyProperty="id" resultType="int" order="BEFORE" >
+            select nextval('kv_invoices_id')
+        </selectKey>
         insert into kv_invoices
         (
         id,
+        load_id,
         tenant_id,
         import_id,
         account_id,
@@ -328,6 +333,7 @@
         values
          (
         #{id},
+        #{load_id},
         #{tenant_id},
         #{import_id},
         #{account_id},
