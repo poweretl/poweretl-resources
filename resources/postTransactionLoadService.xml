@@ -61,6 +61,16 @@ when ((clearing_doc is null or clearing_doc = '') and is_commercial = false) the
 where load_execution_id &gt; 0
 </update>
 
+<select id="getTrxByPostKey" resultType="java.util.HashMap">
+select 
+load.id as load_id,
+coalesce(ref.invoice, false) as invoice, 
+coalesce(ref.credit_note,false) as credit_note  
+from transaction_load load
+left join kv_posting_key_ref ref on load.post_key = ref.key
+where load.doc_type = 'AB'
+</select>
+
 <update id="updateIsInvoiceAndIsCredit">
 update transaction_load
 set 
