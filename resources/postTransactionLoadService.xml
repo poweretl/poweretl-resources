@@ -11,7 +11,6 @@ set is_deposit = true
 where spec_gl_ind in ('0', '1', '2', '3', '4', '5', '6', '8', '9');
 </update>
 
-
 <update id="updateInvoiceTransactionType">
 update transaction_load set transaction_type_id = 1 where mode = 'S'
 </update>
@@ -37,12 +36,48 @@ where load_execution_id &gt; 0 and invoice_amount &gt; 0
   <result column="account_no" property="account_no" javaType="java.lang.String"/>
 </resultMap>
 <select id="getAccount" resultMap="getAccount-map">
- select id as load_id, account_no from transaction_load limit 20
+ select id as load_id, account_no from transaction_load limit 10
 </select>
 
+<update id="updateCommercialTransaction" parameterType="java.util.List" >
+<foreach collection="list" item="p"  separator=";">
+update transaction_load set is_commercial = #{p.isCommercial} where id = #{p.load_id}
+</foreach>
+</update>
 
-<update id="updateCommercialTransaction">
+
+<update id="updateCommercialTransaction1">
 update transaction_load set is_commercial = #{isCommercial} where id = #{load_id} and 1=2
+</update>
+
+
+<update id="updateParentInvoiceNo">
+update transaction_load
+set parent_invoice_no = 
+case 
+when clearing_doc is not null then clearing_doc
+when ((clearing_doc is null or clearing_doc = '') and is_commercial = true) then inv_ref
+when ((clearing_doc is null or clearing_doc = '') and is_commercial = false) then bill_doc  end
+where load_execution_id &gt; 0
+</update>
+
+<select id="getTrxByPostKey" resultType="java.util.HashMap">
+select 
+load.id as load_id,
+coalesce(ref.invoice, false) as invoice, 
+coalesce(ref.credit_note,false) as credit_note  
+from transaction_load load
+left join kv_posting_key_ref ref on load.post_key = ref.key
+where load.doc_type = 'AB'
+</select>
+
+<update id="updateIsInvoiceAndIsCredit">
+update transaction_load
+set 
+is_invoice = case when #{invoice} = true then true else false end,
+is_credit_note = case when #{credit_note} = true then true else false end
+where id = #{load_id}
+and doc_type = 'AB'
 </update>
 
 

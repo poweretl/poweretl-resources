@@ -18,6 +18,12 @@
 			</ul>
 			<div class="clearfix"></div>
 		</div>
+        <div class="modal fade text-center" id="statsModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                </div>
+            </div>
+        </div>
 		<div class="x_content">
 			<table id="loadAllDatatable"
 				   class="table table-striped table-bordered">
@@ -26,7 +32,7 @@
 					<th>No.</th>
 					<th>Batch Name</th>
 					<th>Actions</th>
-                    <th>Last Run</th>
+                    <th>Stats</th>
 				</tr>
 				</thead>
 				<tbody>
@@ -44,15 +50,16 @@
 					</form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
-                    </td>
+                        <a href="/batch_history?batch_id=1" class = "btn-sm">
+                    <span data-toggle="modal" href="batchHistory.html" data-target="#statsModal" title="View Stats"
+                          class="glyphicon glyphicon-eye-open green"> </span></a>
 				</tr>
 				<tr>
 					<td>2</td>
 					<td>PBK - Lump Sum Payment</td>
 					<td><form class="submitBatchForm" action="/lumpSumPayment"
 							  method="POST" data-parsley-validate>
+                        <input type=number required name=batch_id value=2 hidden>
 						<button class="btn btn-xs btn-link" type="submit">
 									<span data-toggle="tooltip" title="Run Batch"
 										  class="glyphicon glyphicon-send blue"> </span>
@@ -60,8 +67,9 @@
 					</form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        <a href="/batch_history?batch_id=2" class = "btn-sm">
+                            <span data-toggle="modal" href="batchHistory.html" data-target="#statsModal" title="View Stats"
+                                  class="glyphicon glyphicon-eye-open green"> </span></a><br>
                     </td>
 				</tr>
 				<tr>
@@ -77,8 +85,7 @@
 					</form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
 				</tr>
                 <tr>
@@ -93,8 +100,7 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -110,8 +116,7 @@
                 </form>
                 </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -127,8 +132,7 @@
                 </form>
                 </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -144,8 +148,7 @@
                 </form>
                 </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -161,8 +164,7 @@
                 </form>
                 </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -178,8 +180,7 @@
                 </form>
                 </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -195,8 +196,7 @@
                 </form>
                 </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -212,8 +212,7 @@
                 </form>
                 </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -229,8 +228,7 @@
                 </form>
                 </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -246,8 +244,7 @@
                 </form>
                 </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -263,8 +260,7 @@
                 </form>
                 </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -280,8 +276,7 @@
                 </form>
                 </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -297,8 +292,7 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -314,8 +308,7 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -331,8 +324,7 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -348,8 +340,7 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -365,8 +356,7 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -382,8 +372,7 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -399,8 +388,7 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -416,8 +404,7 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -433,8 +420,7 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -450,8 +436,7 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -467,8 +452,7 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -484,8 +468,7 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -501,8 +484,7 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -518,8 +500,7 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -535,8 +516,7 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -552,8 +532,7 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -569,8 +548,7 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -586,8 +564,7 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -603,8 +580,7 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -620,8 +596,7 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -637,8 +612,7 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -654,8 +628,7 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -671,8 +644,7 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -688,8 +660,7 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -705,8 +676,7 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -722,8 +692,7 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -739,8 +708,7 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -756,8 +724,7 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -773,8 +740,7 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -790,8 +756,7 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -807,8 +772,7 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
                     </td>
                 </tr>
 
@@ -824,8 +788,87 @@
                     </form>
                     </td>
                     <td>
-                        Date: <span></span><br>
-                        Records Updated: <span></span>
+                        
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>48</td>
+                    <td>MAHB - Update Post Transaction</td>
+                    <td><form class="submitBatchForm" action="/updatePostTrx"
+                              method="POST" data-parsley-validate>
+                        <button class="btn btn-xs btn-link" type="submit">
+									<span data-toggle="tooltip" title="Run Batch"
+                                          class="glyphicon glyphicon-send blue"> </span>
+                        </button>
+                    </form>
+                    </td>
+                    <td>
+                        
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>49</td>
+                    <td>MAHB - Is Commercial</td>
+                    <td><form class="submitBatchForm" action="/isCommercial"
+                              method="POST" data-parsley-validate>
+                        <button class="btn btn-xs btn-link" type="submit">
+									<span data-toggle="tooltip" title="Run Batch"
+                                          class="glyphicon glyphicon-send blue"> </span>
+                        </button>
+                    </form>
+                    </td>
+                    <td>
+                        
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>50</td>
+                    <td>MAHB - Update Parent Invoice No.</td>
+                    <td><form class="submitBatchForm" action="/updateParentInvoiceNo"
+                              method="POST" data-parsley-validate>
+                        <button class="btn btn-xs btn-link" type="submit">
+									<span data-toggle="tooltip" title="Run Batch"
+                                          class="glyphicon glyphicon-send blue"> </span>
+                        </button>
+                    </form>
+                    </td>
+                    <td>
+                        
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>51</td>
+                    <td>MAHB - Update Is Invoice & Is Credit</td>
+                    <td><form class="submitBatchForm" action="/updateIsInvoiceAndIsCredit"
+                              method="POST" data-parsley-validate>
+                        <button class="btn btn-xs btn-link" type="submit">
+									<span data-toggle="tooltip" title="Run Batch"
+                                          class="glyphicon glyphicon-send blue"> </span>
+                        </button>
+                    </form>
+                    </td>
+                    <td>
+                        
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>52</td>
+                    <td>MAHB - Update Clearing Doc Based Invoices </td>
+                    <td><form class="submitBatchForm" action="/loadClearingDocBasedInvoices"
+                              method="POST" data-parsley-validate>
+                        <button class="btn btn-xs btn-link" type="submit">
+									<span data-toggle="tooltip" title="Run Batch"
+                                          class="glyphicon glyphicon-send blue"> </span>
+                        </button>
+                    </form>
+                    </td>
+                    <td>
+                        
                     </td>
                 </tr>
 
