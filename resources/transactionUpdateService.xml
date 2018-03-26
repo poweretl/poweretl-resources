@@ -16,6 +16,19 @@
 and stage.is_deposit is not true
 </sql>
 
+
+<select id="getTrxClearingDocBasedTypes" resultType="java.util.HashMap">
+SELECT
+stage.id as load_id,
+'PAYMENT'::text AS LINE_OF_BUSINESS,
+null::text as invoice_no,
+stage.parent_invoice_no AS invoice_reference
+from transaction_load stage
+where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
+<include refid="otherExclusions-Frag" />
+</select>
+
+
 <select id="getTransactionAB" resultType="java.util.HashMap">
    select
    stage.id as load_id,
@@ -37,7 +50,6 @@ and stage.is_deposit is not true
         from transaction_load stage
         where stage.doc_type = 'AB'
         <include refid="otherExclusions-Frag" />
-
 </select>
 
     <select id="getTransactionRG" resultType="java.util.HashMap">
