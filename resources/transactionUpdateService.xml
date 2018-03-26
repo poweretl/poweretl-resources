@@ -12,6 +12,9 @@
         <result property="invoice_reference" column="invoice_reference" javaType="java.lang.String"/>
     </resultMap>-->
 
+<sql id="otherExclusions-Frag">
+and stage.is_deposit is not true
+</sql>
 
 <select id="getTransactionAB" resultType="java.util.HashMap">
    select
@@ -33,6 +36,7 @@
 
         from transaction_load stage
         where stage.doc_type = 'AB'
+        <include refid="otherExclusions-Frag" />
 
 </select>
 
