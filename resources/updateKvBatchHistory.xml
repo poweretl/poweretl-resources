@@ -11,7 +11,7 @@
         insert into kvbatch_history
         (id, batch_id, number_of_records_updated, updated_date)
         values
-        (#{id}, #{batch_id}, #{number_of_records_updated}, current_timestamp)
+        (#{id}, #{batch_id}, #{number_of_records_updated}, DATE_TRUNC('second', NOW()))
     </insert>
 
     <resultMap type="java.util.HashMap" id="viewBatchHistory-map" >
@@ -21,10 +21,14 @@
         <result property="updated_date" column="updated_date" javaType="java.sql.Timestamp" />
     </resultMap>
 
+    <select id = "viewLatestBatchHistory" resultMap = "viewBatchHistory-map">
+        select id, batch_id, number_of_records_updated, updated_date
+        from kvbatch_history where batch_id = #{batch_id} order by id desc limit 1
+    </select>
+
     <select id = "viewBatchHistory" resultMap = "viewBatchHistory-map">
-        select
-        number_of_records_updated, updated_date
-        from kvbatch_history
+        select id, batch_id, number_of_records_updated, updated_date
+        from kvbatch_history where batch_id = #{batch_id} order by id desc
     </select>
 
 </mapper>

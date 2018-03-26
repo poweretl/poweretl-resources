@@ -147,10 +147,10 @@
                             console.log(data);
                             $('#status').remove();
                             if (data == -1) {
-                                $('<div class = "red text-center">The batch is currently running, please wait...</div>').insertAfter($(currentForm));
+                                $('<div class = "red"> The batch is currently running, please wait...</div>').insertAfter($(currentForm));
                             }
                             else
-                                $('<div class = "green text-center"></div>').html("Records updated: " + data).insertAfter($(currentForm));
+                                $('<div class = "green"></div>').html(" Records updated: " + data).insertAfter($(currentForm));
                         }
                     });
                 }
