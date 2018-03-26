@@ -113,6 +113,7 @@
         <mapper resource="postTransactionLoadService.xml"/>
         <mapper resource="invoiceTransactionService.xml"/>
         <mapper resource="updateKvBatchHistory.xml"/>
+		<mapper resource="updateDataDate.xml" />
 	</mappers>
 
 </configuration>
