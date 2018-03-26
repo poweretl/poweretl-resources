@@ -67,6 +67,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
     from transaction_load stage
     where stage.doc_type = 'RG'
+        <include refid="otherExclusions-Frag" />
     </select>
 
     <select id="getTransactionYY"  resultType="java.util.HashMap">
@@ -86,6 +87,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
         from transaction_load stage
         where stage.doc_type = 'YY'
+        <include refid="otherExclusions-Frag" />
 
     </select>
 
@@ -106,6 +108,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
         from transaction_load stage
         where stage.doc_type = 'GI'
+        <include refid="otherExclusions-Frag" />
 
     </select>
 
@@ -126,6 +129,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
         from transaction_load stage
         where stage.doc_type = 'RI'
+        <include refid="otherExclusions-Frag" />
     </select>
 
     <select id="getTransactionRM"  resultType="java.util.HashMap">
@@ -143,6 +147,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
         from transaction_load stage
         where stage.doc_type = 'RM'
+        <include refid="otherExclusions-Frag" />
     </select>
 
     <select id="getTransactionRV"  resultType="java.util.HashMap">
@@ -162,6 +167,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
         from transaction_load stage
         where stage.doc_type = 'RV'
+        <include refid="otherExclusions-Frag" />
 
     </select>
 
@@ -180,6 +186,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
         from transaction_load stage
         where stage.doc_type = 'RY'
+        <include refid="otherExclusions-Frag" />
     </select>
 
     <select id="getTransactionYC"  resultType="java.util.HashMap">
@@ -197,6 +204,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
         from transaction_load stage
         where stage.doc_type = 'YC'
+        <include refid="otherExclusions-Frag" />
     </select>
 
     <select id="getTransactionYD"  resultType="java.util.HashMap">
@@ -214,6 +222,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
         from transaction_load stage
         where stage.doc_type = 'YD'
+        <include refid="otherExclusions-Frag" />
 
     </select>
 
@@ -232,6 +241,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
         from transaction_load stage
         where stage.doc_type = 'YH'
+        <include refid="otherExclusions-Frag" />
     </select>
 
     <select id="getTransactionYI"  resultType="java.util.HashMap">
@@ -249,6 +259,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
         from transaction_load stage
         where stage.doc_type = 'YI'
+        <include refid="otherExclusions-Frag" />
     </select>
 
     <select id="getTransactionYJ"  resultType="java.util.HashMap">
@@ -266,6 +277,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
         from transaction_load stage
         where stage.doc_type = 'YJ'
+        <include refid="otherExclusions-Frag" />
     </select>
 
     <select id="getTransactionYL"  resultType="java.util.HashMap">
@@ -283,6 +295,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
         from transaction_load stage
         where stage.doc_type = 'YL'
+        <include refid="otherExclusions-Frag" />
 
     </select>
 
@@ -301,6 +314,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
         from transaction_load stage
         where stage.doc_type = 'YN'
+        <include refid="otherExclusions-Frag" />
     </select>
 
     <select id="getTransactionYO" resultType="java.util.HashMap">
@@ -318,6 +332,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
         from transaction_load stage
         where stage.doc_type = 'YO'
+        <include refid="otherExclusions-Frag" />
     </select>
 
     <select id="getTransactionYP" resultType="java.util.HashMap">
@@ -335,6 +350,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
         from transaction_load stage
         where stage.doc_type = 'YP'
+        <include refid="otherExclusions-Frag" />
     </select>
 
     <select id="getTransactionYQ" resultType="java.util.HashMap">
@@ -352,6 +368,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
         from transaction_load stage
         where stage.doc_type = 'YQ'
+        <include refid="otherExclusions-Frag" />
     </select>
 
     <select id="getTransactionYR" resultType="java.util.HashMap">
@@ -369,6 +386,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
         from transaction_load stage
         where stage.doc_type = 'YR'
+        <include refid="otherExclusions-Frag" />
     </select>
 
     <select id="getTransactionYS" resultType="java.util.HashMap">
@@ -386,6 +404,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
         from transaction_load stage
         where stage.doc_type = 'YS'
+        <include refid="otherExclusions-Frag" />
     </select>
 
     <select id="getTransactionYT" resultType="java.util.HashMap">
@@ -403,6 +422,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
         from transaction_load stage
         where stage.doc_type = 'YT'
+        <include refid="otherExclusions-Frag" />
     </select>
 
     <select id="getTransactionYU" resultType="java.util.HashMap">
@@ -420,6 +440,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
         from transaction_load stage
         where stage.doc_type = 'YU'
+        <include refid="otherExclusions-Frag" />
     </select>
 
     <select id="getTransactionYV" resultType="java.util.HashMap">
@@ -437,6 +458,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
         from transaction_load stage
         where stage.doc_type = 'YV'
+        <include refid="otherExclusions-Frag" />
     </select>
 
     <select id="getTransactionYW" resultType="java.util.HashMap">
@@ -454,6 +476,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
         from transaction_load stage
         where stage.doc_type = 'YW'
+        <include refid="otherExclusions-Frag" />
     </select>
 
     <select id="getTransactionYX" resultType="java.util.HashMap">
@@ -471,6 +494,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
         from transaction_load stage
         where stage.doc_type = 'YX'
+        <include refid="otherExclusions-Frag" />
     </select>
 
     <select id="getTransactionYK" resultType="java.util.HashMap">
@@ -488,6 +512,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
         from transaction_load stage
         where stage.doc_type = 'YK'
+        <include refid="otherExclusions-Frag" />
     </select>
 
     <select id="getTransactionY1" resultType="java.util.HashMap">
@@ -505,6 +530,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
         from transaction_load stage
         where stage.doc_type = 'Y1'
+        <include refid="otherExclusions-Frag" />
     </select>
 
     <select id="getTransactionYE" resultType="java.util.HashMap">
@@ -522,6 +548,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
         from transaction_load stage
         where stage.doc_type = 'YE'
+        <include refid="otherExclusions-Frag" />
     </select>
 
     <select id="getTransactionYM" resultType="java.util.HashMap">
@@ -540,6 +567,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
         from transaction_load stage
         where stage.doc_type = 'YM'
+        <include refid="otherExclusions-Frag" />
     </select>
 
     <select id="getTransactionYF" resultType="java.util.HashMap">
@@ -557,6 +585,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
         from transaction_load stage
         where stage.doc_type = 'YF'
+        <include refid="otherExclusions-Frag" />
     </select>
 
     <select id="getTransactionZZ" resultType="java.util.HashMap">
@@ -580,6 +609,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
         from transaction_load stage
         where stage.doc_type = 'ZZ'
+        <include refid="otherExclusions-Frag" />
     </select>
 
     <select id="getTransactionOthers" resultType="java.util.HashMap">
@@ -601,6 +631,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         from transaction_load stage
         where stage.doc_type not in ('AB','RG','YY','GI','RI','RM','RV','RY','YC','YD','YH','YI','YJ','YL','YN', 'YO',
         'YP','YQ','YR','YS','YT','YU','YV','YW','YX','YK','Y1','YE','YM','YF','ZZ')
+        <include refid="otherExclusions-Frag" />
     </select>
 
     <update id="updateTransactionLoad">
