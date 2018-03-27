@@ -71,7 +71,10 @@
         <result property="old_contract_id" column="old_contract_id" javaType="java.lang.Long"/>
         <result property="kv_amount" column="kv_amount" javaType="java.lang.Double"/>
         <result property="kv_amount_dc" column="kv_amount_dc" javaType="java.lang.Double"/>
-        <result property="company_id" column="company_id" javaType="java.lang.Long"/>
+        <result property="load_execution_id" column="load_execution_id" javaType="java.lang.Long"/>
+        <result property="invoice_reference" column="invoice_reference" javaType="java.lang.String"/>
+        
+       <!--<result property="company_id" column="company_id" javaType="java.lang.Long"/>
         <result property="is_commercial" column="is_commercial" javaType="java.lang.Boolean"/>
         <result property="is_deposit" column="is_deposit" javaType="java.lang.Boolean"/>
         <result property="is_invoice" column="is_invoice" javaType="java.lang.Boolean"/>
@@ -79,9 +82,7 @@
         <result property="parent_invoice_no" column="parent_invoice_no" javaType="java.lang.String"/>
         <result property="doc_type" column="doc_type" javaType="java.lang.String"/>
         <result property="transaction_type_id" column="transaction_type_id" javaType="java.lang.Long"/>
-        <result property="load_execution_id" column="load_execution_id" javaType="java.lang.Long"/>
-        <result property="invoice_reference" column="invoice_reference" javaType="java.lang.String"/>
-        <result property="account_no" column="account_no" javaType="java.lang.String"/>
+        <result property="account_no" column="account_no" javaType="java.lang.String"/> -->
 
     </resultMap>
 
@@ -95,7 +96,7 @@
         invoice_no,
         invoice_description,
         invoice_due_date,
-        invoice_amount,
+        (invoice_amount - tax_amount) as invoice_amount,
         invoice_outstanding,
         dpd,
         mpd,
@@ -151,6 +152,10 @@
         old_contract_id,
         kv_amount,
         kv_amount_dc,
+        load_execution_id,
+        invoice_reference
+        
+        <!--
         company_id,
         is_commercial,
         is_deposit,
@@ -161,14 +166,12 @@
         transaction_type_id,
         load_execution_id,
         invoice_reference,
-        account_no
-        FROM transaction_load LIMIT 300000
+        account_no -->
+        FROM transaction_load LIMIT 200
     </select>
 
     <update id="updateInvoiceTransaction">
         update kv_invoices set
-        id = #{id},
-        load_id = #{load_id},
         tenant_id = #{tenant_id},
         import_id = #{import_id},
         account_id = #{account_id},
@@ -232,7 +235,9 @@
         old_contract_id = #{old_contract_id},
         kv_amount = #{kv_amount},
         kv_amount_dc = #{kv_amount_dc},
-        company_id = #{company_id},
+        load_execution_id = #{load_execution_id},
+        invoice_reference = #{invoice_reference}
+       <!--company_id = #{company_id},
         is_commercial = #{is_commercial},
         is_deposit = #{is_deposit},
         is_invoice = #{is_invoice},
@@ -240,9 +245,10 @@
         parent_invoice_no = #{parent_invoice_no},
         doc_type = #{doc_type},
         transaction_type_id = #{transaction_type_id},
-        load_execution_id = #{load_execution_id},
-        invoice_reference = #{invoice_reference},
-        account_no = #{account_no}
+
+        account_no = #{account_no} -->
+        where
+        load_id = #{load_id}
     </update>
 
     <insert id="insertInvoiceTransaction">
@@ -316,7 +322,10 @@
         old_contract_id,
         kv_amount,
         kv_amount_dc,
-        company_id,
+        load_execution_id,
+        invoice_reference
+        
+        <!--company_id,
         is_commercial,
         is_deposit,
         is_invoice,
@@ -324,9 +333,8 @@
         parent_invoice_no,
         doc_type,
         transaction_type_id,
-        load_execution_id,
-        invoice_reference,
-        account_no
+
+        account_no -->
         
         ) 
         
@@ -397,6 +405,10 @@
         #{old_contract_id},
         #{kv_amount},
         #{kv_amount_dc},
+        #{load_execution_id},
+        #{invoice_reference}
+        
+        <!--
         #{company_id},
         #{is_commercial},
         #{is_deposit},
@@ -405,9 +417,7 @@
         #{parent_invoice_no},
         #{doc_type},
         #{transaction_type_id},
-        #{load_execution_id},
-        #{invoice_reference},
-        #{account_no}
+        #{account_no}   -->
         )
     </insert>
 
