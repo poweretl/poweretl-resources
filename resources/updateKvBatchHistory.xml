@@ -9,9 +9,9 @@
             select nextval('kvbatch_history_id')
         </selectKey>
         insert into kvbatch_history
-        (id, batch_id, number_of_records_updated, updated_date)
+        (id, batch_id, number_of_records_updated, updated_date, time_taken)
         values
-        (#{id}, #{batch_id}, #{number_of_records_updated}, DATE_TRUNC('second', NOW()))
+        (#{id}, #{batch_id}, #{number_of_records_updated}, DATE_TRUNC('second', NOW()), #{time_taken})
     </insert>
 
     <resultMap type="java.util.HashMap" id="viewBatchHistory-map" >
@@ -19,6 +19,7 @@
         <result property="batch_id" column="batch_id" javaType="java.lang.Long" />
         <result property="number_of_records_updated" column="number_of_records_updated" javaType="java.lang.Long" />
         <result property="updated_date" column="updated_date" javaType="java.sql.Timestamp" />
+        <result property="time_taken" column="time_taken" javaType="java.sql.Timestamp" />
     </resultMap>
 
     <select id = "viewLatestBatchHistory" resultMap = "viewBatchHistory-map">
