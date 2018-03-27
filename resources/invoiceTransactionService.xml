@@ -73,101 +73,84 @@
         <result property="kv_amount_dc" column="kv_amount_dc" javaType="java.lang.Double"/>
         <result property="load_execution_id" column="load_execution_id" javaType="java.lang.Long"/>
         <result property="invoice_reference" column="invoice_reference" javaType="java.lang.String"/>
-        
-       <!--<result property="company_id" column="company_id" javaType="java.lang.Long"/>
-        <result property="is_commercial" column="is_commercial" javaType="java.lang.Boolean"/>
-        <result property="is_deposit" column="is_deposit" javaType="java.lang.Boolean"/>
-        <result property="is_invoice" column="is_invoice" javaType="java.lang.Boolean"/>
-        <result property="is_credit_note" column="is_credit_note" javaType="java.lang.Boolean"/>
-        <result property="parent_invoice_no" column="parent_invoice_no" javaType="java.lang.String"/>
-        <result property="doc_type" column="doc_type" javaType="java.lang.String"/>
-        <result property="transaction_type_id" column="transaction_type_id" javaType="java.lang.Long"/>
-        <result property="account_no" column="account_no" javaType="java.lang.String"/> -->
-
+        <result property="updateRow" column="updateRow" javaType="java.lang.Boolean"/>
     </resultMap>
 
     <select id="getInvoiceTransaction" resultMap="getInvoiceTransaction-map">
+
         SELECT
-        id as load_id,
-        tenant_id,
-        import_id,
-        account_id,
-        invoice_date,
-        invoice_no,
-        invoice_description,
-        invoice_due_date,
-        (invoice_amount - tax_amount) as invoice_amount,
-        invoice_outstanding,
-        dpd,
-        mpd,
-        status_id,
-        created_at,
-        updated_at,
-        created_by,
-        updated_by,
-        invoice_status_id,
-        invoice_outstanding_with_interest,
-        gst,
-        import_status_id,
-        import_note,
-        branch_id,
-        branch_code,
-        invoice_id,
-        in_aging,
-        invoice_pic_code,
-        invoice_pic_name,
-        flag_id,
-        last_listener_run,
-        line_of_business,
-        account_num,
-        contract_id,
-        recon_acct,
-        currency,
-        tax_code,
-        tax_id,
-        clearing_doc,
-        reference,
-        assignment,
-        item_no,
-        document_id,
-        business_area_id,
-        payment_id,
-        balance,
-        tax_amount,
-        payment_reference,
-        document_no,
-        mode,
-        spec_gl_ind,
-        amount_dc,
-        post_key,
-        trx_date,
-        reference_id,
-        cleardoc_id,
-        invoice_days,
-        inv_ref,
-        bill_doc,
-        payment_term,
-        baseline_date,
-        contract_num,
-        old_contract_id,
-        kv_amount,
-        kv_amount_dc,
-        load_execution_id,
-        invoice_reference
-        
-        <!--
-        company_id,
-        is_commercial,
-        is_deposit,
-        is_invoice,
-        is_credit_note,
-        parent_invoice_no,
-        doc_type,
-        transaction_type_id,
-        load_execution_id,
-        invoice_reference,
-        account_no -->
-        FROM transaction_load LIMIT 200
+        load.id as load_id,
+        load.tenant_id,
+        load.import_id,
+        load.account_id,
+        load.invoice_date,
+        load.invoice_no,
+        load.invoice_description,
+        load.invoice_due_date,
+        (load.invoice_amount - load.tax_amount) as invoice_amount,
+        load.invoice_outstanding,
+        load.dpd,
+        load.mpd,
+        load.status_id,
+        load.created_at,
+        load.updated_at,
+        load.created_by,
+        load.updated_by,
+        load.invoice_status_id,
+        load.invoice_outstanding_with_interest,
+        load.gst,
+        load.import_status_id,
+        load.import_note,
+        load.branch_id,
+        load.branch_code,
+        load.invoice_id,
+        load.in_aging,
+        load.invoice_pic_code,
+        load.invoice_pic_name,
+        load.flag_id,
+        load.last_listener_run,
+        load.line_of_business,
+        load.account_num,
+        load.contract_id,
+        load.recon_acct,
+        load.currency,
+        load.tax_code,
+        load.tax_id,
+        load.clearing_doc,
+        load.reference,
+        load.assignment,
+        load.item_no,
+        load.document_id,
+        load.business_area_id,
+        load.payment_id,
+        load.balance,
+        load.tax_amount,
+        load.payment_reference,
+        load.document_no,
+        load.mode,
+        load.spec_gl_ind,
+        load.amount_dc,
+        load.post_key,
+        load.trx_date,
+        load.reference_id,
+        load.cleardoc_id,
+        load.invoice_days,
+        load.inv_ref,
+        load.bill_doc,
+        load.payment_term,
+        load.baseline_date,
+        load.contract_num,
+        load.old_contract_id,
+        load.kv_amount,
+        load.kv_amount_dc,
+        load.load_execution_id,
+        load.invoice_reference,
+        case when inv.load_id is not null then true else false end as updateRow
+
+        FROM transaction_load load
+        left join kv_invoices inv on load.id = inv.load_id 
+        order by load.id asc
+        limit 300000
     </select>
 
     <update id="updateInvoiceTransaction">
@@ -237,16 +220,6 @@
         kv_amount_dc = #{kv_amount_dc},
         load_execution_id = #{load_execution_id},
         invoice_reference = #{invoice_reference}
-       <!--company_id = #{company_id},
-        is_commercial = #{is_commercial},
-        is_deposit = #{is_deposit},
-        is_invoice = #{is_invoice},
-        is_credit_note = #{is_credit_note},
-        parent_invoice_no = #{parent_invoice_no},
-        doc_type = #{doc_type},
-        transaction_type_id = #{transaction_type_id},
-
-        account_no = #{account_no} -->
         where
         load_id = #{load_id}
     </update>
@@ -325,17 +298,6 @@
         load_execution_id,
         invoice_reference
         
-        <!--company_id,
-        is_commercial,
-        is_deposit,
-        is_invoice,
-        is_credit_note,
-        parent_invoice_no,
-        doc_type,
-        transaction_type_id,
-
-        account_no -->
-        
         ) 
         
         values
@@ -407,17 +369,6 @@
         #{kv_amount_dc},
         #{load_execution_id},
         #{invoice_reference}
-        
-        <!--
-        #{company_id},
-        #{is_commercial},
-        #{is_deposit},
-        #{is_invoice},
-        #{is_credit_note},
-        #{parent_invoice_no},
-        #{doc_type},
-        #{transaction_type_id},
-        #{account_no}   -->
         )
     </insert>
 
