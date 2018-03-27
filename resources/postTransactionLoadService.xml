@@ -61,7 +61,8 @@ when ((clearing_doc is null or clearing_doc = '') and is_commercial = false) the
 where load_execution_id &gt; 0
 </update>
 
-<select id="getTrxByPostKey" resultType="java.util.HashMap">
+<!-- this logic only applies to doc type AB only -->
+<select id="getTrxPostKeyFlagsForDocTypeAB" resultType="java.util.HashMap">
 select 
 load.id as load_id,
 coalesce(ref.invoice, false) as invoice, 

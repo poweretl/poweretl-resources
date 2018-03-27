@@ -130,6 +130,73 @@
   WHERE GST &gt; 0 and tenant_id = 65
   and debit_before_gst is not null
  </update>
+ 
+ 
+ <update id="updateTest">
+  update testxx set 
+  customer_name = #{customer_name}, 
+  updated_at = #{updated_at} 
+  where customer_no = #{customer_no}
+
+ </update>
+ 
+<!--  <![CDATA[]]> -->
+ 
+<update id="updateTest2">
+update test as t set 
+customer_name = data_table.customer_name
+
+from
+(select unnest(array[
+
+
+<foreach separator="," collection="list" index="index" item="p">
+#{p.customer_name}
+</foreach>
+<![CDATA[]) as customer_name, unnest(array[]]> 
+
+<foreach separator=","  collection="list" index="index" item="p">       
+#{p.customer_no}
+</foreach>
+<![CDATA[]) as customer_no) as data_table where t.customer_no = data_table.customer_no;]]>
+
+</update>
+
+
+  <select id="getBulkInvoices" resultType="java.util.HashMap">
+  select 
+  invoice_no, 
+  invoice_date, 
+  invoice_description, 
+  invoice_amount, 
+  in_aging, 
+  void_flag 
+  from invoices
+  </select>
+  
+  
+  <insert id="insertInvoices">
+  insert into invoice_test
+  (
+  invoice_no, 
+  invoice_date, 
+  invoice_description, 
+  invoice_amount, 
+  in_aging, 
+  void_flag 
+  )
+  values
+  <foreach item="p" collection="list" separator=",">
+  (
+  #{p.invoice_no}, 
+  #{p.invoice_date}, 
+  #{p.invoice_description},
+  #{p.invoice_amount},
+  #{p.in_aging},
+  #{p.void_flag}
+  )
+  </foreach>
+  </insert>
 
  
 
