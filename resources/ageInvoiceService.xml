@@ -8,7 +8,7 @@
     <select id="getAgeInvoiceById" resultType="hmap">
         select 
         invoice_due_date, 
-        DATE_PART('month', current_timestamp::timestamp - invoice_due_date::timestamp) as mpd,
+        (DATE_PART('year', current_date::date) - DATE_PART('year', invoice_due_date::date)) * 12 + (DATE_PART('month', current_date::date) - DATE_PART('month', invoice_due_date::date)) as mpd,
         tenant_id, 
         id 
         from invoices 
