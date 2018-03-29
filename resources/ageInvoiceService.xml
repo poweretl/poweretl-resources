@@ -4,19 +4,23 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="ageInvoiceService">
-    <resultMap type="java.util.HashMap" id="getAgeInvoiceById-map" >
-        <result property="id" column="id" javaType="java.lang.Long"/>
-        <result property="invoice_due_date" column="invoice_due_date" javaType="java.util.Date"/>
-    </resultMap>
 
-    <select id="getAgeInvoiceById" resultMap="getAgeInvoiceById-map">
-        select invoice_due_date, id from invoices where invoice_status_id in (16,17) and tenant_id = #{tenant_id}
+    <select id="getAgeInvoiceById" resultType="hmap">
+        select 
+        invoice_due_date, 
+        DATE_PART('day', current_timestamp::timestamp - invoice_due_date::timestamp) as mpd, 
+        tenant_id, 
+        id 
+        from invoices 
+        where invoice_status_id in (16,17) 
+        and tenant_id = #{tenant_id}
     </select>
 
     <update id = "updateAgeInvoice">
         update invoices set dpd =
         case when (0 > (current_date -#{invoice_due_date})) then 0
-        else ((current_date - #{invoice_due_date})) end
+        else ((current_date - #{invoice_due_date})) end,
+        mpd = case when #{mpd} &lt; 0 then 0 else #{mpd} end
         where id = #{id} and tenant_id = #{tenant_id}
         
     </update>
