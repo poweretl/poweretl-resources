@@ -31,23 +31,29 @@ set in_aging = true
 where load_execution_id &gt; 0 and invoice_amount &gt; 0
 </update>
 
-<resultMap type="java.util.HashMap" id="getAccount-map">
-  <result column="load_id" property="load_id" javaType="java.lang.Long"/>
-  <result column="account_no" property="account_no" javaType="java.lang.String"/>
-</resultMap>
-<select id="getAccount" resultMap="getAccount-map">
- select id as load_id, account_no from transaction_load limit 10
+<!-- <resultMap type="java.util.HashMap" id="getAccount-map"> -->
+<!--   <result column="load_id" property="load_id" javaType="java.lang.Long"/> -->
+<!--   <result column="account_no" property="account_no" javaType="java.lang.String"/> -->
+<!-- </resultMap> -->
+<!-- <select id="getAccount" resultMap="getAccount-map"> -->
+<!--  select id as load_id, account_no from transaction_load limit 10 -->
+<!-- </select> -->
+
+
+<select id="getTransactionLoad" resultType="transactionLoadModel">
+ select id, account_no as accountNo from transaction_load 
+ where SUBSTRING (account_no, 1, 1) = '3'
 </select>
 
-<update id="updateCommercialTransaction" parameterType="java.util.List" >
+<update id="updateCommercialTransaction1" parameterType="java.util.List" >
 <foreach collection="list" item="p"  separator=";">
 update transaction_load set is_commercial = #{p.isCommercial} where id = #{p.load_id}
 </foreach>
 </update>
 
 
-<update id="updateCommercialTransaction1">
-update transaction_load set is_commercial = #{isCommercial} where id = #{load_id} and 1=2
+<update id="updateCommercialTransaction">
+update transaction_load set is_commercial = #{isCommercial} where id = #{id}
 </update>
 
 
@@ -62,11 +68,11 @@ where load_execution_id &gt; 0
 </update>
 
 <!-- this logic only applies to doc type AB only -->
-<select id="getTrxPostKeyFlagsForDocTypeAB" resultType="java.util.HashMap">
+<select id="getTrxPostKeyFlagsForDocTypeAB" resultType="transactionLoadModel">
 select 
-load.id as load_id,
+load.id as id,
 coalesce(ref.invoice, false) as invoice, 
-coalesce(ref.credit_note,false) as credit_note  
+coalesce(ref.credit_note,false) as creditNote  
 from transaction_load load
 left join kv_posting_key_ref ref on load.post_key = ref.key
 where load.doc_type = 'AB'
@@ -76,8 +82,8 @@ where load.doc_type = 'AB'
 update transaction_load
 set 
 is_invoice = case when #{invoice} = true then true else false end,
-is_credit_note = case when #{credit_note} = true then true else false end
-where id = #{load_id}
+is_credit_note = case when #{creditNote} = true then true else false end
+where id = #{id}
 and doc_type = 'AB'
 </update>
 
