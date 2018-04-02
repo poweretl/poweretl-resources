@@ -5,21 +5,13 @@
 
 <mapper namespace="transactionUpdateService">
 
-<!--    <resultMap type="java.util.HashMap" id="getTransaction-map" >
-        <result property="id" column = "id" javaType="java.lang.Long"/>
-        <result property="line_of_business" column="line_of_business" javaType="java.lang.String"/>
-        <result property="invoice_no" column="invoice_no" javaType="java.lang.String"/>
-        <result property="invoice_reference" column="invoice_reference" javaType="java.lang.String"/>
-    </resultMap>-->
-
 <sql id="otherExclusions-Frag">
 and stage.is_deposit is not true
 </sql>
-
-
-<select id="getTrxClearingDocBasedTypes" resultType="java.util.HashMap">
+    
+<select id="getTrxClearingDocBasedTypes" resultType="com.kollect.etl.entity.TransactionLoad">
 SELECT
-stage.id as load_id,
+stage.id as id,
 'PAYMENT'::text AS LINE_OF_BUSINESS,
 null::text as invoice_no,
 stage.parent_invoice_no AS invoice_reference
@@ -29,9 +21,9 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 </select>
 
 
-<select id="getTransactionAB" resultType="java.util.HashMap">
+<select id="getTransactionAB" resultType="com.kollect.etl.entity.TransactionLoad">
    select
-   stage.id as load_id,
+   stage.id as id,
     case
         when stage.doc_type = 'AB' and stage.is_invoice = true then 'INVOICE'
         when stage.doc_type = 'AB' and (stage.is_invoice = false and stage.is_credit_note = true) then 'CREDIT'
@@ -52,9 +44,9 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         <include refid="otherExclusions-Frag" />
 </select>
 
-    <select id="getTransactionRG" resultType="java.util.HashMap">
+    <select id="getTransactionRG" resultType="com.kollect.etl.entity.TransactionLoad">
     SELECT
-    stage.id as load_id,
+    stage.id as id,
     CASE
     WHEN DOC_TYPE = 'RG' THEN
     'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
@@ -70,9 +62,9 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         <include refid="otherExclusions-Frag" />
     </select>
 
-    <select id="getTransactionYY"  resultType="java.util.HashMap">
+    <select id="getTransactionYY"  resultType="com.kollect.etl.entity.TransactionLoad">
         SELECT
-        stage.id as load_id,
+        stage.id as id,
         CASE
         WHEN DOC_TYPE ='YY' AND transaction_type_id = 1 THEN
         'INVOICE'
@@ -91,9 +83,9 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
     </select>
 
-    <select id="getTransactionGI"  resultType="java.util.HashMap">
+    <select id="getTransactionGI"  resultType="com.kollect.etl.entity.TransactionLoad">
         SELECT
-        stage.id as load_id,
+        stage.id as id,
         CASE
         WHEN DOC_TYPE = 'GI' AND transaction_type_id = 1 THEN
         'INVOICE'
@@ -112,9 +104,9 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
     </select>
 
-    <select id="getTransactionRI"  resultType="java.util.HashMap">
+    <select id="getTransactionRI"  resultType="com.kollect.etl.entity.TransactionLoad">
         SELECT
-        stage.id as load_id,
+        stage.id as id,
         CASE
         WHEN DOC_TYPE = 'RI' AND transaction_type_id = 1 THEN
         'LPC'
@@ -132,9 +124,9 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         <include refid="otherExclusions-Frag" />
     </select>
 
-    <select id="getTransactionRM"  resultType="java.util.HashMap">
+    <select id="getTransactionRM"  resultType="com.kollect.etl.entity.TransactionLoad">
         SELECT
-        stage.id as load_id,
+        stage.id as id,
         CASE
         WHEN DOC_TYPE = 'RM' THEN
         'DEBIT' ELSE '' END AS LINE_OF_BUSINESS,
@@ -150,9 +142,9 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         <include refid="otherExclusions-Frag" />
     </select>
 
-    <select id="getTransactionRV"  resultType="java.util.HashMap">
+    <select id="getTransactionRV"  resultType="com.kollect.etl.entity.TransactionLoad">
         SELECT
-        stage.id as load_id,
+        stage.id as id,
         CASE
         WHEN doc_type = 'RV' AND (stage.assignment = stage.bill_doc) THEN
         'INVOICE'
@@ -171,9 +163,9 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
     </select>
 
-    <select id="getTransactionRY"  resultType="java.util.HashMap">
+    <select id="getTransactionRY"  resultType="com.kollect.etl.entity.TransactionLoad">
         SELECT
-        stage.id as load_id,
+        stage.id as id,
         CASE
         WHEN DOC_TYPE = 'RY' THEN
         'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
@@ -189,9 +181,9 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         <include refid="otherExclusions-Frag" />
     </select>
 
-    <select id="getTransactionYC"  resultType="java.util.HashMap">
+    <select id="getTransactionYC"  resultType="com.kollect.etl.entity.TransactionLoad">
         SELECT
-        stage.id as load_id,
+        stage.id as id,
         CASE
         WHEN DOC_TYPE = 'YC' THEN
         'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
@@ -207,9 +199,9 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         <include refid="otherExclusions-Frag" />
     </select>
 
-    <select id="getTransactionYD"  resultType="java.util.HashMap">
+    <select id="getTransactionYD"  resultType="com.kollect.etl.entity.TransactionLoad">
         SELECT
-        stage.id as load_id,
+        stage.id as id,
         CASE
         WHEN DOC_TYPE = 'YD' THEN
         'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
@@ -226,9 +218,9 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
     </select>
 
-    <select id="getTransactionYH"  resultType="java.util.HashMap">
+    <select id="getTransactionYH"  resultType="com.kollect.etl.entity.TransactionLoad">
         SELECT
-        stage.id as load_id,
+        stage.id as id,
         CASE
         WHEN DOC_TYPE = 'YH' THEN
         'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
@@ -244,9 +236,9 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         <include refid="otherExclusions-Frag" />
     </select>
 
-    <select id="getTransactionYI"  resultType="java.util.HashMap">
+    <select id="getTransactionYI"  resultType="com.kollect.etl.entity.TransactionLoad">
         SELECT
-        stage.id as load_id,
+        stage.id as id,
         CASE
         WHEN DOC_TYPE = 'YI' THEN
         'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
@@ -262,9 +254,9 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         <include refid="otherExclusions-Frag" />
     </select>
 
-    <select id="getTransactionYJ"  resultType="java.util.HashMap">
+    <select id="getTransactionYJ"  resultType="com.kollect.etl.entity.TransactionLoad">
         SELECT
-        stage.id as load_id,
+        stage.id as id,
         CASE
         WHEN DOC_TYPE = 'YJ' THEN
         'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
@@ -280,9 +272,9 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         <include refid="otherExclusions-Frag" />
     </select>
 
-    <select id="getTransactionYL"  resultType="java.util.HashMap">
+    <select id="getTransactionYL"  resultType="com.kollect.etl.entity.TransactionLoad">
         SELECT
-        stage.id as load_id,
+        stage.id as id,
         CASE
         WHEN DOC_TYPE = 'YL' THEN
         'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
@@ -299,9 +291,9 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
 
     </select>
 
-    <select id="getTransactionYN" resultType="java.util.HashMap">
+    <select id="getTransactionYN" resultType="com.kollect.etl.entity.TransactionLoad">
         SELECT
-        stage.id as load_id,
+        stage.id as id,
         CASE
         WHEN DOC_TYPE = 'YN' THEN
         'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
@@ -317,9 +309,9 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         <include refid="otherExclusions-Frag" />
     </select>
 
-    <select id="getTransactionYO" resultType="java.util.HashMap">
+    <select id="getTransactionYO" resultType="com.kollect.etl.entity.TransactionLoad">
         SELECT
-        stage.id as load_id,
+        stage.id as id,
         CASE
         WHEN DOC_TYPE = 'YO' THEN
         'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
@@ -335,9 +327,9 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         <include refid="otherExclusions-Frag" />
     </select>
 
-    <select id="getTransactionYP" resultType="java.util.HashMap">
+    <select id="getTransactionYP" resultType="com.kollect.etl.entity.TransactionLoad">
         SELECT
-        stage.id as load_id,
+        stage.id as id,
         CASE
         WHEN DOC_TYPE = 'YP' THEN
         'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
@@ -353,9 +345,9 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         <include refid="otherExclusions-Frag" />
     </select>
 
-    <select id="getTransactionYQ" resultType="java.util.HashMap">
+    <select id="getTransactionYQ" resultType="com.kollect.etl.entity.TransactionLoad">
         SELECT
-        stage.id as load_id,
+        stage.id as id,
         CASE
         WHEN DOC_TYPE = 'YQ' THEN
         'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
@@ -371,9 +363,9 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         <include refid="otherExclusions-Frag" />
     </select>
 
-    <select id="getTransactionYR" resultType="java.util.HashMap">
+    <select id="getTransactionYR" resultType="com.kollect.etl.entity.TransactionLoad">
         SELECT
-        stage.id as load_id,
+        stage.id as id,
         CASE
         WHEN DOC_TYPE = 'YR' THEN
         'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
@@ -389,9 +381,9 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         <include refid="otherExclusions-Frag" />
     </select>
 
-    <select id="getTransactionYS" resultType="java.util.HashMap">
+    <select id="getTransactionYS" resultType="com.kollect.etl.entity.TransactionLoad">
         SELECT
-        stage.id as load_id,
+        stage.id as id,
         CASE
         WHEN DOC_TYPE = 'YS' THEN
         'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
@@ -407,9 +399,9 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         <include refid="otherExclusions-Frag" />
     </select>
 
-    <select id="getTransactionYT" resultType="java.util.HashMap">
+    <select id="getTransactionYT" resultType="com.kollect.etl.entity.TransactionLoad">
         SELECT
-        stage.id as load_id,
+        stage.id as id,
         CASE
         WHEN DOC_TYPE = 'YT' THEN
         'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
@@ -425,9 +417,9 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         <include refid="otherExclusions-Frag" />
     </select>
 
-    <select id="getTransactionYU" resultType="java.util.HashMap">
+    <select id="getTransactionYU" resultType="com.kollect.etl.entity.TransactionLoad">
         SELECT
-        stage.id as load_id,
+        stage.id as id,
         CASE
         WHEN DOC_TYPE = 'YU' THEN
         'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
@@ -443,9 +435,9 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         <include refid="otherExclusions-Frag" />
     </select>
 
-    <select id="getTransactionYV" resultType="java.util.HashMap">
+    <select id="getTransactionYV" resultType="com.kollect.etl.entity.TransactionLoad">
         SELECT
-        stage.id as load_id,
+        stage.id as id,
         CASE
         WHEN stage.doc_type = 'YV' THEN 'INVOICE'
         END AS line_of_business,
@@ -461,9 +453,9 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         <include refid="otherExclusions-Frag" />
     </select>
 
-    <select id="getTransactionYW" resultType="java.util.HashMap">
+    <select id="getTransactionYW" resultType="com.kollect.etl.entity.TransactionLoad">
         SELECT
-        stage.id as load_id,
+        stage.id as id,
         CASE
         WHEN stage.doc_type = 'YW' THEN 'INVOICE'
         END AS line_of_business,
@@ -479,9 +471,9 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         <include refid="otherExclusions-Frag" />
     </select>
 
-    <select id="getTransactionYX" resultType="java.util.HashMap">
+    <select id="getTransactionYX" resultType="com.kollect.etl.entity.TransactionLoad">
         SELECT
-        stage.id as load_id,
+        stage.id as id,
         CASE
         WHEN stage.doc_type = 'YX' THEN 'INVOICE'
         END AS line_of_business,
@@ -497,9 +489,9 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         <include refid="otherExclusions-Frag" />
     </select>
 
-    <select id="getTransactionYK" resultType="java.util.HashMap">
+    <select id="getTransactionYK" resultType="com.kollect.etl.entity.TransactionLoad">
         SELECT
-        stage.id as load_id,
+        stage.id as id,
         CASE
         WHEN stage.doc_type = 'YK' THEN 'INVOICE'
         END AS line_of_business,
@@ -515,9 +507,9 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         <include refid="otherExclusions-Frag" />
     </select>
 
-    <select id="getTransactionY1" resultType="java.util.HashMap">
+    <select id="getTransactionY1" resultType="com.kollect.etl.entity.TransactionLoad">
         SELECT
-        stage.id as load_id,
+        stage.id as id,
         CASE
         WHEN stage.doc_type = 'Y1' THEN 'PAYMENT'
         END AS line_of_business,
@@ -533,9 +525,9 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         <include refid="otherExclusions-Frag" />
     </select>
 
-    <select id="getTransactionYE" resultType="java.util.HashMap">
+    <select id="getTransactionYE" resultType="com.kollect.etl.entity.TransactionLoad">
         SELECT
-        stage.id as load_id,
+        stage.id as id,
         CASE
         WHEN stage.doc_type = 'YE' THEN 'DEBIT'
         END AS line_of_business,
@@ -551,9 +543,9 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         <include refid="otherExclusions-Frag" />
     </select>
 
-    <select id="getTransactionYM" resultType="java.util.HashMap">
+    <select id="getTransactionYM" resultType="com.kollect.etl.entity.TransactionLoad">
         SELECT
-        stage.id as load_id,
+        stage.id as id,
         CASE
         WHEN stage.doc_type = 'YM' THEN 'CREDIT'
         END AS line_of_business,
@@ -570,9 +562,9 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         <include refid="otherExclusions-Frag" />
     </select>
 
-    <select id="getTransactionYF" resultType="java.util.HashMap">
+    <select id="getTransactionYF" resultType="com.kollect.etl.entity.TransactionLoad">
         select
-        stage.id as load_id,
+        stage.id as id,
         CASE
         WHEN stage.doc_type = 'YF' THEN 'CREDIT'
         END AS line_of_business,
@@ -588,9 +580,9 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         <include refid="otherExclusions-Frag" />
     </select>
 
-    <select id="getTransactionZZ" resultType="java.util.HashMap">
+    <select id="getTransactionZZ" resultType="com.kollect.etl.entity.TransactionLoad">
         select
-        stage.id as load_id,
+        stage.id as id,
         case
         when stage.doc_type = 'ZZ' and (stage.transaction_type_id = 1 and stage.reference = 'RI') then 'LPC'
         when stage.doc_type = 'ZZ' and (stage.transaction_type_id = 1 and stage.reference != 'RI') then 'INVOICE'
@@ -612,9 +604,9 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         <include refid="otherExclusions-Frag" />
     </select>
 
-    <select id="getTransactionOthers" resultType="java.util.HashMap">
+    <select id="getTransactionOthers" resultType="com.kollect.etl.entity.TransactionLoad">
         SELECT
-        stage.id as load_id,
+        stage.id as id,
         CASE
         WHEN stage.doc_type not in ('AB','RG','YY','GI','RI','RM','RV','RY','YC','YD','YH','YI','YJ','YL','YN', 'YO',
         'YP','YQ','YR','YS','YT','YU','YV','YW','YX','YK','Y1','YE','YM','YF','ZZ') THEN 'OTHERS'
@@ -640,6 +632,6 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         line_of_business = #{line_of_business},
         invoice_no = #{invoice_no},
         invoice_reference = #{invoice_reference}
-        where id = #{load_id}
+        where id = #{id}
     </update>
 </mapper>
