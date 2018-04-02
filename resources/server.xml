@@ -18,6 +18,7 @@
   <typeAlias alias="bouble" type="java.lang.Double" />
   <typeAlias alias="date" type="java.util.Date" />
   <typeAlias alias="ts" type="java.sql.Timestamp" />
+  <typeAlias alias="transactionLoadModel" type="com.kollect.etl.entity.TransactionLoad"/>
  </typeAliases>
 
 	<environments default="postgres">

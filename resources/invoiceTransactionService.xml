@@ -76,7 +76,7 @@
         <result property="updateRow" column="updateRow" javaType="java.lang.Boolean"/>
     </resultMap>
 
-    <select id="getInvoiceTransaction" resultMap="getInvoiceTransaction-map">
+    <select id="getInvoiceTransaction" resultType="com.kollect.etl.entity.Invoice">
 
         SELECT
         load.id as load_id,
@@ -146,11 +146,10 @@
         load.load_execution_id,
         load.invoice_reference,
         case when inv.load_id is not null then true else false end as updateRow
-
         FROM transaction_load load
         left join kv_invoices inv on load.id = inv.load_id 
+        where load.line_of_business in ('INVOICE','LPC','DEBIT')
         order by load.id asc
-        limit 300000
     </select>
 
     <update id="updateInvoiceTransaction">
