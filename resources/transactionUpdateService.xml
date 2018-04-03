@@ -12,7 +12,7 @@ and stage.is_deposit is not true
 <select id="getTrxClearingDocBasedTypes" resultType="com.kollect.etl.entity.TransactionLoad">
 SELECT
 stage.id as id,
-'PAYMENT'::text AS LINE_OF_BUSINESS,
+'PAYMENT'::text AS line_of_business,
 null::text as invoice_no,
 stage.parent_invoice_no AS invoice_reference
 from transaction_load stage
@@ -49,10 +49,10 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
     stage.id as id,
     CASE
     WHEN DOC_TYPE = 'RG' THEN
-    'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+    'INVOICE' ELSE '' END AS line_of_business,
     CASE
     WHEN DOC_TYPE = 'RG' THEN
-    stage.document_no END AS INVOICE_NO,
+    stage.document_no END AS invoice_no,
     CASE
     WHEN stage.doc_type = 'RG' THEN null
     END AS invoice_reference
@@ -69,7 +69,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         WHEN DOC_TYPE ='YY' AND transaction_type_id = 1 THEN
         'INVOICE'
         WHEN DOC_TYPE = 'YY'AND transaction_type_id != 1 THEN
-        'PAYMENT' ELSE NULL END AS LINE_OF_BUSINESS,
+        'PAYMENT' ELSE NULL END AS line_of_business,
         CASE
         WHEN DOC_TYPE ='YY' AND transaction_type_id = 1 THEN
         stage.document_no ELSE null end as invoice_no,
@@ -90,7 +90,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         WHEN DOC_TYPE = 'GI' AND transaction_type_id = 1 THEN
         'INVOICE'
         WHEN DOC_TYPE = 'GI' AND transaction_type_id != 1 THEN
-        'PAYMENT' ELSE NULL END AS LINE_OF_BUSINESS,
+        'PAYMENT' ELSE NULL END AS line_of_business,
         CASE
         WHEN DOC_TYPE = 'GI' AND transaction_type_id = 1 THEN
         stage.bill_doc ELSE null end as invoice_no,
@@ -111,7 +111,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         WHEN DOC_TYPE = 'RI' AND transaction_type_id = 1 THEN
         'LPC'
         WHEN DOC_TYPE = 'RI' AND transaction_type_id != 1 THEN
-        'PAYMENT' ELSE NULL END AS LINE_OF_BUSINESS,
+        'PAYMENT' ELSE NULL END AS line_of_business,
         CASE
         WHEN DOC_TYPE = 'RI' AND transaction_type_id = 1 THEN
         stage.document_no ELSE null end as invoice_no,
@@ -129,10 +129,10 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         stage.id as id,
         CASE
         WHEN DOC_TYPE = 'RM' THEN
-        'DEBIT' ELSE '' END AS LINE_OF_BUSINESS,
+        'DEBIT' ELSE '' END AS line_of_business,
         CASE
         WHEN DOC_TYPE = 'RM' THEN
-        stage.bill_doc END AS INVOICE_NO,
+        stage.bill_doc END AS invoice_no,
         CASE
         WHEN stage.doc_type = 'RM' THEN null
         END AS invoice_reference
@@ -142,6 +142,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         <include refid="otherExclusions-Frag" />
     </select>
 
+<!-- invoice no mapping missing so will use null -->
     <select id="getTransactionRV"  resultType="com.kollect.etl.entity.TransactionLoad">
         SELECT
         stage.id as id,
@@ -153,6 +154,7 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         WHEN doc_type = 'RV' and (stage.assignment != stage.bill_doc)
         AND transaction_type_id != 1 THEN
         'CREDIT'END AS line_of_business,
+        null as invoice_no,
         CASE
         WHEN doc_type = 'RV' AND
         (stage.assignment != stage.bill_doc) THEN stage.assignment END AS invoice_reference
@@ -168,10 +170,10 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         stage.id as id,
         CASE
         WHEN DOC_TYPE = 'RY' THEN
-        'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+        'INVOICE' ELSE '' END AS line_of_business,
         CASE
         WHEN DOC_TYPE = 'RY' THEN
-        stage.bill_doc END AS INVOICE_NO,
+        stage.bill_doc END AS invoice_no,
         CASE
         WHEN stage.doc_type = 'RY' THEN null
         END AS invoice_reference
@@ -186,10 +188,10 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         stage.id as id,
         CASE
         WHEN DOC_TYPE = 'YC' THEN
-        'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+        'INVOICE' ELSE '' END AS line_of_business,
         CASE
         WHEN DOC_TYPE = 'YC' THEN
-        stage.document_no END AS INVOICE_NO,
+        stage.document_no END AS invoice_no,
         CASE
         WHEN stage.doc_type = 'YC' THEN null
         END AS invoice_reference
@@ -204,10 +206,10 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         stage.id as id,
         CASE
         WHEN DOC_TYPE = 'YD' THEN
-        'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+        'INVOICE' ELSE '' END AS line_of_business,
         CASE
         WHEN DOC_TYPE = 'YD' THEN
-        stage.bill_doc END AS INVOICE_NO,
+        stage.bill_doc END AS invoice_no,
         CASE
         WHEN stage.doc_type = 'YD' THEN null
         END AS invoice_reference
@@ -223,10 +225,10 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         stage.id as id,
         CASE
         WHEN DOC_TYPE = 'YH' THEN
-        'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+        'INVOICE' ELSE '' END AS line_of_business,
         CASE
         WHEN DOC_TYPE = 'YH' THEN
-        stage.bill_doc END AS INVOICE_NO,
+        stage.bill_doc END AS invoice_no,
         CASE
         WHEN stage.doc_type = 'YH' THEN null
         END AS invoice_reference
@@ -241,10 +243,10 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         stage.id as id,
         CASE
         WHEN DOC_TYPE = 'YI' THEN
-        'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+        'INVOICE' ELSE '' END AS line_of_business,
         CASE
         WHEN DOC_TYPE = 'YI' THEN
-        stage.document_no END AS INVOICE_NO,
+        stage.document_no END AS invoice_no,
         CASE
         WHEN stage.doc_type = 'YI' THEN null
         END AS invoice_reference
@@ -259,10 +261,10 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         stage.id as id,
         CASE
         WHEN DOC_TYPE = 'YJ' THEN
-        'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+        'INVOICE' ELSE '' END AS line_of_business,
         CASE
         WHEN DOC_TYPE = 'YJ' THEN
-        stage.document_no END AS INVOICE_NO,
+        stage.document_no END AS invoice_no,
         CASE
         WHEN stage.doc_type = 'YJ' THEN null
         END AS invoice_reference
@@ -277,10 +279,10 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         stage.id as id,
         CASE
         WHEN DOC_TYPE = 'YL' THEN
-        'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+        'INVOICE' ELSE '' END AS line_of_business,
         CASE
         WHEN DOC_TYPE = 'YL' THEN
-        stage.bill_doc END AS INVOICE_NO,
+        stage.bill_doc END AS invoice_no,
         CASE
         WHEN stage.doc_type = 'YL' THEN null
         END AS invoice_reference
@@ -296,10 +298,10 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         stage.id as id,
         CASE
         WHEN DOC_TYPE = 'YN' THEN
-        'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+        'INVOICE' ELSE '' END AS line_of_business,
         CASE
         WHEN DOC_TYPE = 'YN' THEN
-        stage.document_no END AS INVOICE_NO,
+        stage.document_no END AS invoice_no,
         CASE
         WHEN stage.doc_type = 'YN' THEN null
         END AS invoice_reference
@@ -314,10 +316,10 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         stage.id as id,
         CASE
         WHEN DOC_TYPE = 'YO' THEN
-        'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+        'INVOICE' ELSE '' END AS line_of_business,
         CASE
         WHEN DOC_TYPE = 'YO' THEN
-        stage.bill_doc END AS INVOICE_NO,
+        stage.bill_doc END AS invoice_no,
         CASE
         WHEN stage.doc_type = 'YO' THEN null
         END AS invoice_reference
@@ -332,10 +334,10 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         stage.id as id,
         CASE
         WHEN DOC_TYPE = 'YP' THEN
-        'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+        'INVOICE' ELSE '' END AS line_of_business,
         CASE
         WHEN DOC_TYPE = 'YP' THEN
-        stage.document_no END AS INVOICE_NO,
+        stage.document_no END AS invoice_no,
         CASE
         WHEN stage.doc_type = 'YP' THEN null
         END AS invoice_reference
@@ -350,10 +352,10 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         stage.id as id,
         CASE
         WHEN DOC_TYPE = 'YQ' THEN
-        'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+        'INVOICE' ELSE '' END AS line_of_business,
         CASE
         WHEN DOC_TYPE = 'YQ' THEN
-        stage.bill_doc END AS INVOICE_NO,
+        stage.bill_doc END AS invoice_no,
         CASE
         WHEN stage.doc_type = 'YQ' THEN null
         END AS invoice_reference
@@ -368,10 +370,10 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         stage.id as id,
         CASE
         WHEN DOC_TYPE = 'YR' THEN
-        'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+        'INVOICE' ELSE '' END AS line_of_business,
         CASE
         WHEN DOC_TYPE = 'YR' THEN
-        stage.bill_doc END AS INVOICE_NO,
+        stage.bill_doc END AS invoice_no,
         CASE
         WHEN stage.doc_type = 'YR' THEN null
         END AS invoice_reference
@@ -386,10 +388,10 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         stage.id as id,
         CASE
         WHEN DOC_TYPE = 'YS' THEN
-        'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+        'INVOICE' ELSE '' END AS line_of_business,
         CASE
         WHEN DOC_TYPE = 'YS' THEN
-        stage.bill_doc END AS INVOICE_NO,
+        stage.bill_doc END AS invoice_no,
         CASE
         WHEN stage.doc_type = 'YS' THEN null
         END AS invoice_reference
@@ -404,10 +406,10 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         stage.id as id,
         CASE
         WHEN DOC_TYPE = 'YT' THEN
-        'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+        'INVOICE' ELSE '' END AS line_of_business,
         CASE
         WHEN DOC_TYPE = 'YT' THEN
-        stage.bill_doc END AS INVOICE_NO,
+        stage.bill_doc END AS invoice_no,
         CASE
         WHEN stage.doc_type = 'YT' THEN null
         END AS invoice_reference
@@ -422,10 +424,10 @@ where stage.doc_type  in ('RB', 'RD', 'RH', 'RS')
         stage.id as id,
         CASE
         WHEN DOC_TYPE = 'YU' THEN
-        'INVOICE' ELSE '' END AS LINE_OF_BUSINESS,
+        'INVOICE' ELSE '' END AS line_of_business,
         CASE
         WHEN DOC_TYPE = 'YU' THEN
-        stage.bill_doc END AS INVOICE_NO,
+        stage.bill_doc END AS invoice_no,
         CASE
         WHEN stage.doc_type = 'YU' THEN null
         END AS invoice_reference
