@@ -214,6 +214,7 @@
       portal_status_id = #{portal_status_id},
       invoice_outstanding_dc = #{invoice_outstanding_dc},
       load_id = #{load_id}
+      where load_id = #{load_id}
     </update>
 
 
@@ -244,5 +245,6 @@
     clearing_date = #{clearing_date},
     payment_type_id = #{payment_type_id},
     invoice_reference = #{invoice_reference}
+    where load_id = #{load_id}
   </update>
 </mapper>
