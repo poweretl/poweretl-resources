@@ -124,6 +124,7 @@
         <mapper resource="invoiceTransactionService.xml"/>
         <mapper resource="updateKvBatchHistory.xml"/>
 		<mapper resource="updateDataDate.xml" />
+		<mapper resource="invoiceVendorTransaction.xml" />
 	</mappers>
 
 </configuration>
