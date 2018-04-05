@@ -5,39 +5,62 @@
 
 <mapper namespace="postTransactionLoadService">
 
+<select id="getDepositTransactions" resultType="com.kollect.etl.entity.TransactionLoad">
+select id from transaction_load where spec_gl_ind in ('0', '1', '2', '3', '4', '5', '6', '8', '9')
+</select>
+
 <update id="updateIsDepositTransaction">
 update transaction_load
 set is_deposit = true
-where spec_gl_ind in ('0', '1', '2', '3', '4', '5', '6', '8', '9');
+where id = #{id}
 </update>
 
+
+<select id="getInvoiceTransactionType" resultType="com.kollect.etl.entity.TransactionLoad">
+select id from transaction_load where mode = 'S'
+</select>
+
+<select id="getPaymentTransactionType" resultType="com.kollect.etl.entity.TransactionLoad">
+select id from transaction_load where mode = 'H'
+</select>
+
 <update id="updateInvoiceTransactionType">
-update transaction_load set transaction_type_id = 1 where mode = 'S'
+update transaction_load set transaction_type_id = 1 where id = #{id}
 </update>
 
 <update id="updatePaymentTransactionType">
-update transaction_load set transaction_type_id = 2 where mode = 'H'
+update transaction_load set transaction_type_id = 2 where id = #{id}
 </update>
+
+
+<select id="getInvoiceStatusId" resultType="com.kollect.etl.entity.TransactionLoad">
+select 
+id,
+case when invoice_amount &lt;= 0 then 12 else 6 end as invoice_status_id
+from transaction_load 
+where load_execution_id &gt; 0
+</select>
 
 <update id="updateInvoiceStatusId">
 update transaction_load
-set invoice_status_id = case when invoice_amount &lt;= 0 then 12 else 6 end
-where load_execution_id &gt; 0
+set invoice_status_id = #{invoice_status_id}
+where id = #{id}
 </update>
+
+
+<select id="getInvoiceInAging" resultType="com.kollect.etl.entity.TransactionLoad">
+select 
+id
+from transaction_load 
+where load_execution_id &gt; 0 and invoice_amount &gt; 0
+</select>
 
 <update id="updateInvoiceInAging">
 update transaction_load
 set in_aging = true
-where load_execution_id &gt; 0 and invoice_amount &gt; 0
+where id = #{id}
 </update>
 
-<!-- <resultMap type="java.util.HashMap" id="getAccount-map"> -->
-<!--   <result column="load_id" property="load_id" javaType="java.lang.Long"/> -->
-<!--   <result column="account_no" property="account_no" javaType="java.lang.String"/> -->
-<!-- </resultMap> -->
-<!-- <select id="getAccount" resultMap="getAccount-map"> -->
-<!--  select id as load_id, account_no from transaction_load limit 10 -->
-<!-- </select> -->
 
 
 <select id="getTransactionLoad" resultType="transactionLoadModel">
@@ -57,16 +80,6 @@ update transaction_load set is_commercial = #{isCommercial} where id = #{id}
 </update>
 
 
-<update id="updateParentInvoiceNo">
-update transaction_load
-set parent_invoice_no = 
-case 
-when clearing_doc is not null then clearing_doc
-when ((clearing_doc is null or clearing_doc = '') and is_commercial = true) then inv_ref
-when ((clearing_doc is null or clearing_doc = '') and is_commercial = false) then bill_doc  end
-where load_execution_id &gt; 0
-</update>
-
 <!-- this logic only applies to doc type AB only -->
 <select id="getTrxPostKeyFlagsForDocTypeAB" resultType="transactionLoadModel">
 select 
@@ -85,6 +98,17 @@ is_invoice = case when #{invoice} = true then true else false end,
 is_credit_note = case when #{creditNote} = true then true else false end
 where id = #{id}
 and doc_type = 'AB'
+</update>
+
+
+<update id="updateParentInvoiceNo">
+update transaction_load
+set parent_invoice_no = 
+case 
+when clearing_doc is not null then clearing_doc
+when ((clearing_doc is null or clearing_doc = '') and is_commercial = true) then inv_ref
+when ((clearing_doc is null or clearing_doc = '') and is_commercial = false) then bill_doc  end
+where load_execution_id &gt; 0
 </update>
 
 

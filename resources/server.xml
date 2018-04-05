@@ -118,7 +118,6 @@
 		<mapper resource="updateVendorInvoicesGroup10.xml"/>
 		<mapper resource="updateVendorInvoicesGroup11.xml"/>
 		<mapper resource="updateVendorInvoicesGroup12.xml"/>
-		<mapper resource="updateInvoicesService.xml"/>
 		<mapper resource="transactionUpdateService.xml"/>
         <mapper resource="postTransactionLoadService.xml"/>
         <mapper resource="invoiceTransactionService.xml"/>
