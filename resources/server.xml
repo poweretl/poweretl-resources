@@ -95,13 +95,13 @@
 
 	<mappers>
         <mapper resource="sqlIncludes.xml" />
-		<mapper resource="AdhocQueryService.xml" />	
+		<mapper resource="AdhocQueryService.xml" />
 		<mapper resource="dcSettingService.xml" />
-		<mapper resource="emailSettingService.xml" />	
+		<mapper resource="emailSettingService.xml" />
 		<mapper resource="sftpSettingService.xml" />
-		<mapper resource="databaseSettingService.xml" />	
-		<mapper resource="hostService.xml" />	
-		<mapper resource="userManagementService.xml" />	
+		<mapper resource="databaseSettingService.xml" />
+		<mapper resource="hostService.xml" />
+		<mapper resource="userManagementService.xml" />
 		<mapper resource="calcOutstandingService.xml" />
 		<mapper resource="lumpSumPayment.xml" />
 		<mapper resource="ageInvoiceService.xml" />
@@ -121,7 +121,7 @@
 		<mapper resource="transactionUpdateService.xml"/>
         <mapper resource="postTransactionLoadService.xml"/>
         <mapper resource="invoiceTransactionService.xml"/>
-        <mapper resource="updateKvBatchHistory.xml"/>
+        <mapper resource="batchHistoryService.xml"/>
 		<mapper resource="updateDataDate.xml" />
 		<mapper resource="invoiceVendorTransaction.xml" />
 	</mappers>
