@@ -128,7 +128,7 @@
        </label>
       </div>
       <div class="">
-       <label> <input th:checked=${dcconfigSelectedList?.column_is_optional} name="column_is_optional" type="checkbox" class="js-switch" />
+       <label> <input th:checked="${dcconfigSelectedList?.column_is_optional} or 'checked'" name="column_is_optional" type="checkbox" class="js-switch" />
         Column Is Optional
        </label>
       </div>
