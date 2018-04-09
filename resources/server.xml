@@ -124,6 +124,7 @@
         <mapper resource="batchHistoryService.xml"/>
 		<mapper resource="updateDataDate.xml" />
 		<mapper resource="invoiceVendorTransaction.xml" />
+		<mapper resource="dataProfilerService.xml" />
 	</mappers>
 
 </configuration>
