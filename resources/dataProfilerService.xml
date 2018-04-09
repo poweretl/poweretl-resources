@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dataProfilerService">
+    <insert id="insertDataProfiler">
+        <selectKey keyProperty="id" resultType="int" order="BEFORE" >
+            select nextval('kvdata_profiler_id')
+        </selectKey>
+        insert into kvdata_profiler
+        (id, name, base_path, prefix, cloneAs, cloneBeforeUnique, cloneFile, uniqueKeyFields, uniqueKeyIndex, generateHash, regex,
+        replacement, expectedLength)
+        values
+        (#{id}, #{name}, #{base_path}, #{prefix}, #{cloneAs}, #{cloneBeforeUnique}, #{cloneFile},
+        #{uniqueKeyFields}, #{uniqueKeyIndex}, #{generateHash}, #{regex}, #{replacement}, #{expectedLength})
+    </insert>
+
+    <select id = "viewDataProfiler" resultType="java.util.HashMap">
+        select
+        id, name
+        from kvdata_profiler
+    </select>
+
+    <select id="getDataProfilerById" resultType="java.util.HashMap">
+        select
+            id, name, base_path, prefix, cloneAs, cloneBeforeUnique, cloneFile, uniqueKeyFields, uniqueKeyIndex, generateHash, regex,
+            replacement, expectedLength
+        from kvdata_profiler
+        where id = #{id}
+    </select>
+</mapper>
