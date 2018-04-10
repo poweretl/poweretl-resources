@@ -5,13 +5,8 @@
 
 <mapper namespace="calcPelitaOutstandingService">
 
-<resultMap type="java.util.HashMap" id="getPelitaOutstandingByTenantId-map" >
-<result property="id" column="id" javaType="java.lang.Integer"/>
-<result property="invoice_amount" column="invoice_amount" javaType="java.lang.Double"/>
-<result property="gst" column="gst" javaType="java.lang.Double"/>
-</resultMap>
 
-<select id="getPelitaOutstandingByTenantId" resultMap="getPelitaOutstandingByTenantId-map">
+<select id="getPelitaOutstandingByTenantId" resultType="hmap">
 
 select id, invoice_amount, gst from  invoices where tenant_id = #{tenant_id}
 
