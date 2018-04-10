@@ -136,8 +136,8 @@
 		<mapper resource="updateDataDate.xml" />
 		<mapper resource="invoiceVendorTransaction.xml" />
 		<mapper resource="dataProfilerService.xml" />
-		<mapper resource="pelitaAgeInvoiceService.xml" />
-		<mapper resource="pelitaCalcOutstandingService.xml" />
+		<mapper resource="pelita/pelitaAgeInvoiceService.xml" />
+		<mapper resource="pelita/pelitaCalcOutstandingService.xml" />
 	</mappers>
 
 </configuration>
