@@ -20,14 +20,15 @@
         </div>
         <div class="x_content">
             <br/>
-            <form action="/savefilechecker" method="post" data-parsley-validate
+            <form action="/savedataprofiler" method="post" data-parsley-validate
                   class="form-horizontal form-label-left">
+                <input hidden="true" th:value="${DProEditList?.id}" name="id">
                 <div class="form-group">
                     <label class="control-label col-md-2"
                            for="name">Name <span class="required">*</span>
                     </label>
                     <div class="col-md-10">
-                        <input name="name" type="text" required="required"
+                        <input th:value="${DProEditList?.name}" name="name" type="text" required="required"
                                placeholder="what is the profiler name?"
                                class="form-control col-md-7 col-xs-12 hasclear" maxlength="30">
                     </div>
@@ -37,7 +38,7 @@
                            for="path">File Path <span class="required">*</span>
                     </label>
                     <div class="col-md-10">
-                        <input name="base_path" type="text" required="required"
+                        <input th:value="${DProEditList?.base_path}" name="base_path" type="text" required="required"
                                placeholder="what is the file path?"
                                class="form-control col-md-7 col-xs-12 hasclear">
                     </div>
@@ -47,7 +48,7 @@
                            for="prefix">File Prefix <span class="required">*</span>
                     </label>
                     <div class="col-md-10">
-                        <input name="prefix" type="text" required="required"
+                        <input th:value="${DProEditList?.prefix}" name="prefix" type="text" required="required"
                                placeholder="what is the file prefix?"
                                class="form-control col-md-7 col-xs-12 hasclear">
                     </div>
@@ -57,7 +58,7 @@
                            for="clone-as">Clone As <span class="required">*</span>
                     </label>
                     <div class="col-md-10">
-                        <input name="cloneAs" type="text" required="required"
+                        <input th:value="${DProEditList?.cloneAs}" name="cloneAs" type="text" required="required"
                                placeholder="clone as?"
                                class="form-control col-md-7 col-xs-12 hasclear">
                     </div>
@@ -67,7 +68,7 @@
                            for="clone-before-unique">Clone Before Unique <span class="required">*</span>
                     </label>
                     <div class="col-md-10">
-                        <input name="cloneBeforeUnique"
+                        <input th:checked="${DProEditList?.cloneBeforeUnique}" name="cloneBeforeUnique"
                                type="checkbox" class="js-switch"/>
                     </div>
                 </div>
@@ -76,7 +77,7 @@
                            for="clone-file">Clone File <span class="required">*</span>
                     </label>
                     <div class="col-md-10">
-                        <input name="cloneFile"
+                        <input th:checked="${DProEditList?.cloneFile}" name="cloneFile"
                                type="checkbox" class="js-switch"/>
                     </div>
                 </div>
@@ -85,7 +86,7 @@
                            for="unique-key-fields">Unique Key Fields <span class="required">*</span>
                     </label>
                     <div class="col-md-10">
-                        <textarea name="uniqueKeyFields"
+                        <textarea th:text="${DProEditList?.uniqueKeyFields}" name="uniqueKeyFields"
                                   required="required"
                                   placeholder="columns (separated by commas) used to make a unique key"
                                   class="form-control hasclear"></textarea>
@@ -96,9 +97,9 @@
                            for="unique-key-index">Unique Key Index <span class="required">*</span>
                     </label>
                     <div class="col-md-10">
-                        <input name="uniqueKeyIndex" type="text" required="required"
+                        <textarea th:text="${DProEditList?.uniqueKeyIndex}" name="uniqueKeyIndex" type="text" required="required"
                                placeholder="index of keys for unique keys fields (separated by commas)"
-                               class="form-control col-md-7 col-xs-12 hasclear">
+                                  class="form-control col-md-7 col-xs-12 hasclear"></textarea>
                     </div>
                 </div>
                 <div class="form-group">
@@ -106,7 +107,7 @@
                            for="generate-hash">Generate Hash <span class="required">*</span>
                     </label>
                     <div class="col-md-10">
-                        <input name="generateHash"
+                        <input th:value="${DProEditList?.generateHash}" name="generateHash"
                                type="checkbox" class="js-switch"/>
                     </div>
                 </div>
@@ -115,7 +116,7 @@
                            for="regex">Regex
                     </label>
                     <div class="col-md-10">
-                        <input name="regex" type="text"
+                        <input th:value="${DProEditList?.regex}" name="regex" type="text"
                                placeholder="regex"
                                class="form-control col-md-7 col-xs-12 hasclear">
                     </div>
@@ -125,7 +126,7 @@
                            for="replacement">Replacement
                     </label>
                     <div class="col-md-10">
-                        <input name="replacement" type="text"
+                        <input th:value="${DProEditList?.replacement}" name="replacement" type="text"
                                placeholder="replacement"
                                class="form-control col-md-7 col-xs-12 hasclear">
                     </div>
@@ -135,7 +136,7 @@
                            for="expected-length">Expected Length
                     </label>
                     <div class="col-md-10">
-                        <input name="expectedLength" type="text"
+                        <input th:value="${DProEditList?.expectedLength}" name="expectedLength" type="text"
                                placeholder="expected length"
                                class="form-control col-md-7 col-xs-12 hasclear" min="0" pattern="\d*">
                     </div>
