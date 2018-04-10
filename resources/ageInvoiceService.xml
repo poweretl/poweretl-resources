@@ -17,8 +17,8 @@
     </select>
 
     <update id = "updateAgeInvoice">
-        update invoices set dpd =
-        case when (0 > (current_date -#{invoice_due_date})) then 0
+        update invoices set
+        dpd = case when (0 > (current_date -#{invoice_due_date})) then 0
         else ((current_date - #{invoice_due_date})) end,
         mpd = case when #{mpd} &lt; 0 then 0 else #{mpd} end
         where id = #{id} and tenant_id = #{tenant_id}

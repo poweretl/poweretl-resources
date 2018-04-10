@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pelitaAgeInvoiceService">
+
+    <select id="getPelitaAgeInvoiceById" resultType="hmap">
+      select case when invoice_outstanding > 0 then true
+        else false end as in_aging, id
+      from invoices where tenant_id =#{tenant_id}
+    </select>
+
+    <update id = "pelitaUpdateAgeInvoice">
+        update invoices set in_aging = #{in_aging} where id = #{id}
+    </update>
+</mapper>

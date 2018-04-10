@@ -91,6 +91,17 @@
                 <property name="password" value="${postgres_password}" />
             </dataSource>
         </environment>
+
+		<environment id="postgres_pelita_test">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${postgres_driver}" />
+				<property name="url" value="${postgres_pelita_test_url}" />
+				<property name="username" value="${postgres_username}" />
+				<property name="password" value="${postgres_password}" />
+			</dataSource>
+		</environment>
+
 	</environments>
 
 	<mappers>
@@ -125,6 +136,8 @@
 		<mapper resource="updateDataDate.xml" />
 		<mapper resource="invoiceVendorTransaction.xml" />
 		<mapper resource="dataProfilerService.xml" />
+		<mapper resource="pelitaAgeInvoiceService.xml" />
+		<mapper resource="pelitaCalcOutstandingService.xml" />
 	</mappers>
 
 </configuration>
