@@ -86,10 +86,10 @@
                            for="unique-key-fields">Unique Key Fields <span class="required">*</span>
                     </label>
                     <div class="col-md-10">
-                        <textarea th:text="${DProEditList?.uniqueKeyFields}" name="uniqueKeyFields"
+                        <input th:value="${DProEditList?.uniqueKeyFields}" name="uniqueKeyFields"
                                   required="required"
                                   placeholder="columns (separated by commas) used to make a unique key"
-                                  class="form-control hasclear"></textarea>
+                                  class="form-control hasclear">
                     </div>
                 </div>
                 <div class="form-group">
@@ -97,9 +97,9 @@
                            for="unique-key-index">Unique Key Index <span class="required">*</span>
                     </label>
                     <div class="col-md-10">
-                        <textarea th:text="${DProEditList?.uniqueKeyIndex}" name="uniqueKeyIndex" type="text" required="required"
+                        <input th:value="${DProEditList?.uniqueKeyIndex}" name="uniqueKeyIndex" type="text" required="required"
                                placeholder="index of keys for unique keys fields (separated by commas)"
-                                  class="form-control col-md-7 col-xs-12 hasclear"></textarea>
+                                  class="form-control col-md-7 col-xs-12 hasclear">
                     </div>
                 </div>
                 <div class="form-group">
