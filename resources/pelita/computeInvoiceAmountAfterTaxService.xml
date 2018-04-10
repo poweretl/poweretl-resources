@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="computeInvoiceAmountAfterTaxService">
+
+    <select id="getInvoiceAmountAfterTaxById" resultType="hmap">
+        select id, invoice_amount, gst from invoices where tenant_id = #{tenant_id}
+    </select>
+
+    <update id = "updateInvoiceAmountAfterTax">
+        update invoices set invoice_amount = coalesce((#{invoice_amount} - #{tax}),0.0),
+        invoice_outstanding = coalesce((#{invoice_amount} - #{tax}),0.0) where id = #{id}
+    </update>
+</mapper>

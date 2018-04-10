@@ -13,7 +13,7 @@
 
 <select id="getPelitaOutstandingByTenantId" resultMap="getPelitaOutstandingByTenantId-map">
 
-select id, invoice_amount, gst from  invoices where tenant_id = #{tenant_id} group by id, invoice_amount, gst
+select id, invoice_amount, gst from  invoices where tenant_id = #{tenant_id}
 
 </select>
 

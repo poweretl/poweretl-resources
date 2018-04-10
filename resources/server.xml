@@ -138,6 +138,8 @@
 		<mapper resource="dataProfilerService.xml" />
 		<mapper resource="pelita/pelitaAgeInvoiceService.xml" />
 		<mapper resource="pelita/pelitaCalcOutstandingService.xml" />
+		<mapper resource="pelita/computeInvoiceAmountAfterTaxService.xml" />
+		<mapper resource="pelita/invoiceStatusEvaluation.xml" />
 	</mappers>
 
 </configuration>
