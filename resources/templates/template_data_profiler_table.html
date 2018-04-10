@@ -26,7 +26,8 @@
                 <tr>
                     <th>No</th>
                     <th>Name</th>
-                    <th>Actions</th>
+                    <th>Edit</th>
+                    <th>Run</th>
                     <th>Stats</th>
                 </tr>
                 </thead>
@@ -36,15 +37,19 @@
                     <td th:text="${dpro.name}"></td>
                     <td><a th:href="@{'/dataprofiler?id=' + ${dpro.id}}" class="btn-sm">
                         <span data-toggle="tooltip" title="Edit" class="glyphicon glyphicon-pencil blue"> </span></a>
+                    </td>
+                    <td>
                         <form class="runDataProfiler" action="/rundataprofiler"
                               method="POST" data-parsley-validate>
                             <button class="btn btn-xs btn-link" type="submit">
-                                <span data-toggle="tooltip" title="Run Batch"
+                                <span data-toggle="tooltip" title="Run Profiler"
                                       class="glyphicon glyphicon-send blue"> </span>
                             </button>
                         </form>
                     </td>
-                    <td></td>
+                    <td>
+
+                    </td>
                 </tr>
                 </tbody>
             </table>
