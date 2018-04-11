@@ -136,7 +136,7 @@
 		<mapper resource="pbk/updateDataDate.xml" />
 		<mapper resource="invoiceVendorTransaction.xml" />
 		<mapper resource="dataProfilerService.xml" />
-		<mapper resource="pelita/pelitaInAgingService.xml" />
+		<mapper resource="pelita/inAgingService.xml" />
 		<mapper resource="pelita/computeInvoiceAmountAfterTaxService.xml" />
 		<mapper resource="pelita/invoiceStatusEvaluation.xml" />
 	</mappers>
