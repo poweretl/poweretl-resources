@@ -13,7 +13,7 @@
         id 
         from invoices 
         where invoice_status_id in (16,17) 
-        and tenant_id = #{tenant_id}
+        and tenant_id = 63
     </select>
 
     <update id = "updateAgeInvoice">
@@ -21,7 +21,7 @@
         dpd = case when (0 > (current_date -#{invoice_due_date})) then 0
         else ((current_date - #{invoice_due_date})) end,
         mpd = case when #{mpd} &lt; 0 then 0 else #{mpd} end
-        where id = #{id} and tenant_id = #{tenant_id}
+        where id = #{id} and tenant_id = 63
         
     </update>
 </mapper>

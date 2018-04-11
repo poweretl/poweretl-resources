@@ -41,7 +41,6 @@
                     <td>PBK - Calculate Outstanding</td>
                     <td><form class="submitBatchForm" action="/calcoutstanding"
                               method="POST" data-parsley-validate>
-                        <input type=number required name=tenant_id value=63 hidden>
                         <input type=number required name=batch_id value=1 hidden>
                         <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
                     </form>
@@ -70,7 +69,6 @@
                     <td>PBK - Age Invoice</td>
                     <td><form class="submitBatchForm" action="/ageinvoice"
                               method="POST" data-parsley-validate>
-                        <input type=number required name=tenant_id value=63 hidden>
                         <input type=number required name=batch_id value=3 hidden>
                         <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
                     </form>
