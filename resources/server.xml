@@ -114,7 +114,7 @@
 		<mapper resource="hostService.xml" />
 		<mapper resource="userManagementService.xml" />
 		<mapper resource="pbk/calcOutstandingService.xml" />
-		<mapper resource="pbk/lumpSumPayment.xml" />
+		<mapper resource="pbk/lumpSumPaymentService.xml" />
 		<mapper resource="pbk/ageInvoiceService.xml" />
 		<mapper resource="batchService.xml" />
 		<mapper resource="updateVendorInvoicesGroup1.xml"/>
@@ -133,7 +133,7 @@
         <mapper resource="postTransactionLoadService.xml"/>
         <mapper resource="invoiceTransactionService.xml"/>
         <mapper resource="batchHistoryService.xml"/>
-		<mapper resource="pbk/updateDataDate.xml" />
+		<mapper resource="pbk/updateDataDateService.xml" />
 		<mapper resource="invoiceVendorTransaction.xml" />
 		<mapper resource="dataProfilerService.xml" />
 		<mapper resource="pelita/inAgingService.xml" />
