@@ -139,6 +139,7 @@
 		<mapper resource="pelita/inAgingService.xml" />
 		<mapper resource="pelita/computeInvoiceAmountAfterTaxService.xml" />
 		<mapper resource="pelita/invoiceStatusEvaluation.xml" />
+		<mapper resource="pelita/pelitaAgeInvoiceService.xml" />
 	</mappers>
 
 </configuration>
