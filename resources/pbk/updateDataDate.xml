@@ -5,7 +5,8 @@
 
 <mapper namespace="updateDataDate">
     <update id="updateDataDate">
-        update kv_data_date set data_date = (current_date-1);
+        <include refid="sqlIncludes.updateDataDateFragment" />
+        where tenant_id = 63;
     </update>
 
 </mapper>

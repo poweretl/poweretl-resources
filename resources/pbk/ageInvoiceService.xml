@@ -7,7 +7,7 @@
 
     <select id="getAgeInvoiceById" resultType="hmap">
         <include refid="sqlIncludes.ageInvoiceSelectFragment"/>
-        and tenant_id = 63
+        WHERE invoice_status_id IN (16, 17) and tenant_id = 63
     </select>
 
     <update id = "updateAgeInvoice">

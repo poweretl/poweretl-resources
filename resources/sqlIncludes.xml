@@ -205,7 +205,6 @@
             tenant_id,
             id
         FROM invoices
-        WHERE invoice_status_id IN (16, 17)
     </sql>
     <sql id="ageInvoiceUpdateFragment">
         UPDATE invoices
@@ -217,5 +216,9 @@
                 THEN 0
                   ELSE #{mpd} END
         WHERE id = #{id}
+    </sql>
+    <sql id="updateDataDateFragment">
+        UPDATE kv_data_date
+        SET data_date = (current_date - 1)
     </sql>
 </mapper>
