@@ -20,7 +20,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="batch, status : ${LatestBatchHistoryList}">
+                            <tr th:each="batch, status : ${latestBatchHistoryList}">
                                 <td th:text="${batch?.updated_date}">
                                 </td>
                                 <td th:text="${batch?.number_of_records_updated}">
@@ -47,7 +47,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="batch, status : ${BatchHistoryList}">
+                            <tr th:each="batch, status : ${batchHistoryList}">
                                 <td th:text="${status.index + 1}"></td>
                                 <td th:text="${batch?.updated_date}">
                                 </td>

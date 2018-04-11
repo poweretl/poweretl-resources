@@ -32,4 +32,17 @@
         from kvbatch_history where batch_id = #{batch_id} order by id desc
     </select>
 
+    <select id="viewAllBatchHistory" resultMap = "viewBatchHistory-map">
+        SELECT
+            kvbatch.id,
+            kvbatch.name,
+            kvbatch.description,
+            kvbatch_history.updated_date,
+            kvbatch_history.time_taken,
+            kvbatch_history.number_of_records_updated
+        FROM kvbatch
+            INNER JOIN kvbatch_history ON kvbatch.id = kvbatch_history.batch_id
+        ORDER BY kvbatch_history.updated_date desc;
+    </select>
+
 </mapper>
