@@ -8,7 +8,7 @@
     <select id="getPelitaInAgingById" resultType="hmap">
       select case when invoice_outstanding > 0 then true
         else false end as in_aging, id
-      from invoices where tenant_id =#{tenant_id}
+      from invoices where tenant_id = 59
     </select>
 
     <update id = "pelitaUpdateInAging">

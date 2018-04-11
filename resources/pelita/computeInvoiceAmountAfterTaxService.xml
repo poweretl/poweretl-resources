@@ -6,7 +6,7 @@
 <mapper namespace="computeInvoiceAmountAfterTaxService">
 
     <select id="getInvoiceAmountAfterTaxById" resultType="hmap">
-        select id, invoice_amount, gst from invoices where tenant_id = #{tenant_id}
+        select id, invoice_amount, gst from invoices where tenant_id = 59
     </select>
 
 
