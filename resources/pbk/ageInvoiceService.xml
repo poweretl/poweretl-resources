@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ageInvoiceService">
+
+    <select id="getAgeInvoiceById" resultType="hmap">
+        select 
+        invoice_due_date, 
+        (DATE_PART('year', current_date::date) - DATE_PART('year', invoice_due_date::date)) * 12 + (DATE_PART('month', current_date::date) - DATE_PART('month', invoice_due_date::date)) as mpd,
+        tenant_id, 
+        id 
+        from invoices 
+        where invoice_status_id in (16,17) 
+        and tenant_id = 63
+    </select>
+
+    <update id = "updateAgeInvoice">
+        update invoices set
+        dpd = case when (0 > (current_date -#{invoice_due_date})) then 0
+        else ((current_date - #{invoice_due_date})) end,
+        mpd = case when #{mpd} &lt; 0 then 0 else #{mpd} end
+        where id = #{id} and tenant_id = 63
+        
+    </update>
+</mapper>
