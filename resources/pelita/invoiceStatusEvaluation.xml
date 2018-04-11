@@ -6,12 +6,12 @@
 <mapper namespace="invoiceStatusEvaluation">
 
     <select id="getInvoiceStatusById" resultType="hmap">
-        select id,case when invoice_outstanding &lt;= 0 then 12 else 6 end as invoice_status_id
-        from invoices where tenant_id = #{tenant_id}
+        select id,tenant_id, case when invoice_outstanding &lt;= 0 then 12 else 6 end as invoice_status_id
+        from invoices where tenant_id = 59
     </select>
 
     <update id = "updateInvoiceStatusEvaluation">
         update invoices set invoice_status_id = #{invoice_status_id}
-        where id = #{id}
+        where id = #{id} and tenant_id = #{tenant_id}
     </update>
 </mapper>
