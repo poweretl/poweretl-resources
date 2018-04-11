@@ -140,6 +140,7 @@
 		<mapper resource="pelita/computeInvoiceAmountAfterTaxService.xml" />
 		<mapper resource="pelita/invoiceStatusEvaluation.xml" />
 		<mapper resource="pelita/pelitaAgeInvoiceService.xml" />
+        <mapper resource="pelita/updateDataDateService.xml" />
 	</mappers>
 
 </configuration>

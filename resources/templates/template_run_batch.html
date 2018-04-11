@@ -3,7 +3,8 @@
     <div class="x_panel">
         <div class="x_title">
             <h2>
-                List of Available Batches <small></small>
+                List of Available Batches
+                <small></small>
             </h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
@@ -13,7 +14,8 @@
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#">Settings 1</a></li>
                         <li><a href="#">Settings 2</a></li>
-                    </ul></li>
+                    </ul>
+                </li>
                 <li><a class="close-link"><i class="fa fa-close"></i></a></li>
             </ul>
             <div class="clearfix"></div>
@@ -39,27 +41,29 @@
                 <tr>
                     <td>1</td>
                     <td>PBK - Calculate Outstanding</td>
-                    <td><form class="submitBatchForm" action="/calcoutstanding"
-                              method="POST" data-parsley-validate>
-                        <input type=number required name=batch_id value=1 hidden>
-                        <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
-                    </form>
                     <td>
-                        <a href="/batch_history?batch_id=1" class = "btn-sm">
+                        <form class="submitBatchForm" action="/calcoutstanding"
+                              method="POST" data-parsley-validate>
+                            <input type=number required name=batch_id value=1 hidden>
+                            <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
+                        </form>
+                    <td>
+                        <a href="/batch_history?batch_id=1" class="btn-sm">
                             <i th:replace="template_batch_table_fragment :: batchTableFragmentStats"></i>
                         </a>
                 </tr>
                 <tr>
                     <td>2</td>
                     <td>PBK - Lump Sum Payment</td>
-                    <td><form class="submitBatchForm" action="/lumpSumPayment"
+                    <td>
+                        <form class="submitBatchForm" action="/lumpSumPayment"
                               method="POST" data-parsley-validate>
-                        <input type=number required name=batch_id value=2 hidden>
-                        <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
-                    </form>
+                            <input type=number required name=batch_id value=2 hidden>
+                            <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
+                        </form>
                     </td>
                     <td>
-                        <a href="/batch_history?batch_id=2" class = "btn-sm">
+                        <a href="/batch_history?batch_id=2" class="btn-sm">
                             <i th:replace="template_batch_table_fragment :: batchTableFragmentStats"></i>
                         </a>
                     </td>
@@ -67,28 +71,30 @@
                 <tr>
                     <td>3</td>
                     <td>PBK - Age Invoice</td>
-                    <td><form class="submitBatchForm" action="/ageinvoice"
+                    <td>
+                        <form class="submitBatchForm" action="/ageinvoice"
                               method="POST" data-parsley-validate>
-                        <input type=number required name=batch_id value=3 hidden>
-                        <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
-                    </form>
+                            <input type=number required name=batch_id value=3 hidden>
+                            <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
+                        </form>
                     </td>
                     <td>
-                        <a href="/batch_history?batch_id=3" class = "btn-sm">
+                        <a href="/batch_history?batch_id=3" class="btn-sm">
                             <i th:replace="template_batch_table_fragment :: batchTableFragmentStats"></i></a>
                     </td>
                 </tr>
                 <tr>
                     <td>4</td>
                     <td>MAHB - Update Vendor Invoices Group 1</td>
-                    <td><form class="submitBatchForm" action="/loadvendorinvoicesgroup1"
+                    <td>
+                        <form class="submitBatchForm" action="/loadvendorinvoicesgroup1"
                               method="POST" data-parsley-validate>
-                        <input type=number required name=batch_id value=4 hidden>
-                        <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
-                    </form>
+                            <input type=number required name=batch_id value=4 hidden>
+                            <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
+                        </form>
                     </td>
                     <td>
-                        <a href="/batch_history?batch_id=4" class = "btn-sm">
+                        <a href="/batch_history?batch_id=4" class="btn-sm">
                             <i th:replace="template_batch_table_fragment :: batchTableFragmentStats"></i></a>
                     </td>
                 </tr>
@@ -96,14 +102,15 @@
                 <tr>
                     <td>5</td>
                     <td>MAHB - Update Vendor Invoices Group 2</td>
-                    <td><form class="submitBatchForm" action="/loadvendorinvoicesgroup2"
+                    <td>
+                        <form class="submitBatchForm" action="/loadvendorinvoicesgroup2"
                               method="POST" data-parsley-validate>
-                        <input type=number required name=batch_id value=5 hidden>
-                        <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
-                    </form>
+                            <input type=number required name=batch_id value=5 hidden>
+                            <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
+                        </form>
                     </td>
                     <td>
-                        <a href="/batch_history?batch_id=5" class = "btn-sm">
+                        <a href="/batch_history?batch_id=5" class="btn-sm">
                             <i th:replace="template_batch_table_fragment :: batchTableFragmentStats"></i></a>
                     </td>
                 </tr>
@@ -111,14 +118,15 @@
                 <tr>
                     <td>6</td>
                     <td>MAHB - Update Vendor Invoices Group 3</td>
-                    <td><form class="submitBatchForm" action="/loadvendorinvoicesgroup3"
+                    <td>
+                        <form class="submitBatchForm" action="/loadvendorinvoicesgroup3"
                               method="POST" data-parsley-validate>
-                        <input type=number required name=batch_id value=6 hidden>
-                        <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
-                    </form>
+                            <input type=number required name=batch_id value=6 hidden>
+                            <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
+                        </form>
                     </td>
                     <td>
-                        <a href="/batch_history?batch_id=6" class = "btn-sm">
+                        <a href="/batch_history?batch_id=6" class="btn-sm">
                             <i th:replace="template_batch_table_fragment :: batchTableFragmentStats"></i></a>
                     </td>
                 </tr>
@@ -126,14 +134,15 @@
                 <tr>
                     <td>7</td>
                     <td>MAHB - Update Vendor Invoices Group 4</td>
-                    <td><form class="submitBatchForm" action="/loadvendorinvoicesgroup4"
+                    <td>
+                        <form class="submitBatchForm" action="/loadvendorinvoicesgroup4"
                               method="POST" data-parsley-validate>
-                        <input type=number required name=batch_id value=7 hidden>
-                        <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
-                    </form>
+                            <input type=number required name=batch_id value=7 hidden>
+                            <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
+                        </form>
                     </td>
                     <td>
-                        <a href="/batch_history?batch_id=7" class = "btn-sm">
+                        <a href="/batch_history?batch_id=7" class="btn-sm">
                             <i th:replace="template_batch_table_fragment :: batchTableFragmentStats"></i></a>
                     </td>
                 </tr>
@@ -141,14 +150,15 @@
                 <tr>
                     <td>8</td>
                     <td>MAHB - Update Vendor Invoices Group 5</td>
-                    <td><form class="submitBatchForm" action="/loadvendorinvoicesgroup5"
+                    <td>
+                        <form class="submitBatchForm" action="/loadvendorinvoicesgroup5"
                               method="POST" data-parsley-validate>
-                        <input type=number required name=batch_id value=8 hidden>
-                        <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
-                    </form>
+                            <input type=number required name=batch_id value=8 hidden>
+                            <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
+                        </form>
                     </td>
                     <td>
-                        <a href="/batch_history?batch_id=8" class = "btn-sm">
+                        <a href="/batch_history?batch_id=8" class="btn-sm">
                             <i th:replace="template_batch_table_fragment :: batchTableFragmentStats"></i></a>
                     </td>
                 </tr>
@@ -156,14 +166,15 @@
                 <tr>
                     <td>9</td>
                     <td>MAHB - Update Vendor Invoices Group 6</td>
-                    <td><form class="submitBatchForm" action="/loadvendorinvoicesgroup6"
+                    <td>
+                        <form class="submitBatchForm" action="/loadvendorinvoicesgroup6"
                               method="POST" data-parsley-validate>
-                        <input type=number required name=batch_id value=9 hidden>
-                        <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
-                    </form>
+                            <input type=number required name=batch_id value=9 hidden>
+                            <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
+                        </form>
                     </td>
                     <td>
-                        <a href="/batch_history?batch_id=9" class = "btn-sm">
+                        <a href="/batch_history?batch_id=9" class="btn-sm">
                             <i th:replace="template_batch_table_fragment :: batchTableFragmentStats"></i></a>
                     </td>
                 </tr>
@@ -171,14 +182,15 @@
                 <tr>
                     <td>10</td>
                     <td>MAHB - Update Vendor Invoices Group 7</td>
-                    <td><form class="submitBatchForm" action="/loadvendorinvoicesgroup7"
+                    <td>
+                        <form class="submitBatchForm" action="/loadvendorinvoicesgroup7"
                               method="POST" data-parsley-validate>
-                        <input type=number required name=batch_id value=10 hidden>
-                        <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
-                    </form>
+                            <input type=number required name=batch_id value=10 hidden>
+                            <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
+                        </form>
                     </td>
                     <td>
-                        <a href="/batch_history?batch_id=10" class = "btn-sm">
+                        <a href="/batch_history?batch_id=10" class="btn-sm">
                             <i th:replace="template_batch_table_fragment :: batchTableFragmentStats"></i></a>
                     </td>
                 </tr>
@@ -186,14 +198,15 @@
                 <tr>
                     <td>11</td>
                     <td>MAHB - Update Vendor Invoices Group 8</td>
-                    <td><form class="submitBatchForm" action="/loadvendorinvoicesgroup8"
+                    <td>
+                        <form class="submitBatchForm" action="/loadvendorinvoicesgroup8"
                               method="POST" data-parsley-validate>
-                        <input type=number required name=batch_id value=11 hidden>
-                        <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
-                    </form>
+                            <input type=number required name=batch_id value=11 hidden>
+                            <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
+                        </form>
                     </td>
                     <td>
-                        <a href="/batch_history?batch_id=11" class = "btn-sm">
+                        <a href="/batch_history?batch_id=11" class="btn-sm">
                             <i th:replace="template_batch_table_fragment :: batchTableFragmentStats"></i></a>
                     </td>
                 </tr>
@@ -201,14 +214,15 @@
                 <tr>
                     <td>12</td>
                     <td>MAHB - Update Vendor Invoices Group 9</td>
-                    <td><form class="submitBatchForm" action="/loadvendorinvoicesgroup9"
+                    <td>
+                        <form class="submitBatchForm" action="/loadvendorinvoicesgroup9"
                               method="POST" data-parsley-validate>
-                        <input type=number required name=batch_id value=12 hidden>
-                        <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
-                    </form>
+                            <input type=number required name=batch_id value=12 hidden>
+                            <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
+                        </form>
                     </td>
                     <td>
-                        <a href="/batch_history?batch_id=12" class = "btn-sm">
+                        <a href="/batch_history?batch_id=12" class="btn-sm">
                             <i th:replace="template_batch_table_fragment :: batchTableFragmentStats"></i></a>
                     </td>
                 </tr>
@@ -216,14 +230,15 @@
                 <tr>
                     <td>13</td>
                     <td>MAHB - Update Vendor Invoices Group 10</td>
-                    <td><form class="submitBatchForm" action="/loadvendorinvoicesgroup10"
+                    <td>
+                        <form class="submitBatchForm" action="/loadvendorinvoicesgroup10"
                               method="POST" data-parsley-validate>
-                        <input type=number required name=batch_id value=13 hidden>
-                        <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
-                    </form>
+                            <input type=number required name=batch_id value=13 hidden>
+                            <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
+                        </form>
                     </td>
                     <td>
-                        <a href="/batch_history?batch_id=13" class = "btn-sm">
+                        <a href="/batch_history?batch_id=13" class="btn-sm">
                             <i th:replace="template_batch_table_fragment :: batchTableFragmentStats"></i></a>
                     </td>
                 </tr>
@@ -231,14 +246,15 @@
                 <tr>
                     <td>14</td>
                     <td>MAHB - Update Vendor Invoices Group 11</td>
-                    <td><form class="submitBatchForm" action="/loadvendorinvoicesgroup11"
+                    <td>
+                        <form class="submitBatchForm" action="/loadvendorinvoicesgroup11"
                               method="POST" data-parsley-validate>
-                        <input type=number required name=batch_id value=14 hidden>
-                        <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
-                    </form>
+                            <input type=number required name=batch_id value=14 hidden>
+                            <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
+                        </form>
                     </td>
                     <td>
-                        <a href="/batch_history?batch_id=14" class = "btn-sm">
+                        <a href="/batch_history?batch_id=14" class="btn-sm">
                             <i th:replace="template_batch_table_fragment :: batchTableFragmentStats"></i></a>
                     </td>
                 </tr>
@@ -246,14 +262,15 @@
                 <tr>
                     <td>15</td>
                     <td>MAHB - Update Vendor Invoices Group 12</td>
-                    <td><form class="submitBatchForm" action="/loadvendorinvoicesgroup12"
+                    <td>
+                        <form class="submitBatchForm" action="/loadvendorinvoicesgroup12"
                               method="POST" data-parsley-validate>
-                        <input type=number required name=batch_id value=15 hidden>
-                        <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
-                    </form>
+                            <input type=number required name=batch_id value=15 hidden>
+                            <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
+                        </form>
                     </td>
                     <td>
-                        <a href="/batch_history?batch_id=15" class = "btn-sm">
+                        <a href="/batch_history?batch_id=15" class="btn-sm">
                             <i th:replace="template_batch_table_fragment :: batchTableFragmentStats"></i></a>
                     </td>
                 </tr>
@@ -261,14 +278,15 @@
                 <tr>
                     <td>16</td>
                     <td>MAHB - Update Trx Load Invoices By DocType</td>
-                    <td><form class="submitBatchForm" action="/updateTrxLoadInvoicesByDocType"
+                    <td>
+                        <form class="submitBatchForm" action="/updateTrxLoadInvoicesByDocType"
                               method="POST" data-parsley-validate>
-                        <input type=number required name=batch_id value=55 hidden>
-                        <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
-                    </form>
+                            <input type=number required name=batch_id value=55 hidden>
+                            <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
+                        </form>
                     </td>
                     <td>
-                        <a href="/batch_history?batch_id=55" class = "btn-sm">
+                        <a href="/batch_history?batch_id=55" class="btn-sm">
                             <i th:replace="template_batch_table_fragment :: batchTableFragmentStats"></i></a>
                     </td>
                 </tr>
@@ -276,14 +294,15 @@
                 <tr>
                     <td>17</td>
                     <td>MAHB - Update Post Transaction</td>
-                    <td><form class="submitBatchForm" action="/updatePostTrx"
+                    <td>
+                        <form class="submitBatchForm" action="/updatePostTrx"
                               method="POST" data-parsley-validate>
-                        <input type=number required name=batch_id value=48 hidden>
-                        <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
-                    </form>
+                            <input type=number required name=batch_id value=48 hidden>
+                            <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
+                        </form>
                     </td>
                     <td>
-                        <a href="/batch_history?batch_id=48" class = "btn-sm">
+                        <a href="/batch_history?batch_id=48" class="btn-sm">
                             <i th:replace="template_batch_table_fragment :: batchTableFragmentStats"></i></a>
                     </td>
                 </tr>
@@ -291,14 +310,15 @@
                 <tr>
                     <td>18</td>
                     <td>MAHB - Is Commercial</td>
-                    <td><form class="submitBatchForm" action="/isCommercial"
+                    <td>
+                        <form class="submitBatchForm" action="/isCommercial"
                               method="POST" data-parsley-validate>
-                        <input type=number required name=batch_id value=49 hidden>
-                        <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
-                    </form>
+                            <input type=number required name=batch_id value=49 hidden>
+                            <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
+                        </form>
                     </td>
                     <td>
-                        <a href="/batch_history?batch_id=49" class = "btn-sm">
+                        <a href="/batch_history?batch_id=49" class="btn-sm">
                             <i th:replace="template_batch_table_fragment :: batchTableFragmentStats"></i></a>
                     </td>
                 </tr>
@@ -306,14 +326,15 @@
                 <tr>
                     <td>19</td>
                     <td>MAHB - Update Parent Invoice No.</td>
-                    <td><form class="submitBatchForm" action="/updateParentInvoiceNo"
+                    <td>
+                        <form class="submitBatchForm" action="/updateParentInvoiceNo"
                               method="POST" data-parsley-validate>
-                        <input type=number required name=batch_id value=50 hidden>
-                        <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
-                    </form>
+                            <input type=number required name=batch_id value=50 hidden>
+                            <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
+                        </form>
                     </td>
                     <td>
-                        <a href="/batch_history?batch_id=50" class = "btn-sm">
+                        <a href="/batch_history?batch_id=50" class="btn-sm">
                             <i th:replace="template_batch_table_fragment :: batchTableFragmentStats"></i></a>
                     </td>
                 </tr>
@@ -321,109 +342,131 @@
                 <tr>
                     <td>20</td>
                     <td>MAHB - Update Is Invoice & Is Credit</td>
-                    <td><form class="submitBatchForm" action="/updateIsInvoiceAndIsCredit"
+                    <td>
+                        <form class="submitBatchForm" action="/updateIsInvoiceAndIsCredit"
                               method="POST" data-parsley-validate>
-                        <input type=number required name=batch_id value=51 hidden>
-                        <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
-                    </form>
+                            <input type=number required name=batch_id value=51 hidden>
+                            <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
+                        </form>
                     </td>
                     <td>
-                        <a href="/batch_history?batch_id=51" class = "btn-sm">
+                        <a href="/batch_history?batch_id=51" class="btn-sm">
                             <i th:replace="template_batch_table_fragment :: batchTableFragmentStats"></i></a>
                     </td>
                 </tr>
 
                 <tr>
                     <td>21</td>
-                    <td>PBK - Update Data Date </td>
-                    <td><form class="submitBatchForm" action="/updatedatadate"
+                    <td>PBK - Update Data Date</td>
+                    <td>
+                        <form class="submitBatchForm" action="/updatedatadate"
                               method="POST" data-parsley-validate>
-                        <input type=number required name=batch_id value=53 hidden>
-                        <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
-                    </form>
+                            <input type=number required name=batch_id value=53 hidden>
+                            <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
+                        </form>
                     </td>
                     <td>
-                        <a href="/batch_history?batch_id=53" class = "btn-sm">
+                        <a href="/batch_history?batch_id=53" class="btn-sm">
                             <i th:replace="template_batch_table_fragment :: batchTableFragmentStats"></i></a>
                     </td>
                 </tr>
 
                 <tr>
                     <td>22</td>
-                    <td>MAHB - Update Invoice Transcation </td>
-                    <td><form class="submitBatchForm" action="/updateInvoiceTransaction"
+                    <td>MAHB - Update Invoice Transcation</td>
+                    <td>
+                        <form class="submitBatchForm" action="/updateInvoiceTransaction"
                               method="POST" data-parsley-validate>
-                        <input type=number required name=batch_id value=54 hidden>
-                        <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
-                    </form>
+                            <input type=number required name=batch_id value=54 hidden>
+                            <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
+                        </form>
                     </td>
                     <td>
-                        <a href="/batch_history?batch_id=54" class = "btn-sm">
+                        <a href="/batch_history?batch_id=54" class="btn-sm">
                             <i th:replace="template_batch_table_fragment :: batchTableFragmentStats"></i></a>
                     </td>
                 </tr>
 
                 <tr>
                     <td>22</td>
-                    <td>Pelita - In Aging Invoice </td>
-                    <td><form class="submitBatchForm" action="/pelitainaging"
+                    <td>Pelita - In Aging Invoice</td>
+                    <td>
+                        <form class="submitBatchForm" action="/pelitainaging"
                               method="POST" data-parsley-validate>
-                        <input type=number required name=tenant_id value=59 hidden>
-                        <input type=number required name=batch_id value=56 hidden>
-                        <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
-                    </form>
+                            <input type=number required name=tenant_id value=59 hidden>
+                            <input type=number required name=batch_id value=56 hidden>
+                            <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
+                        </form>
                     </td>
                     <td>
-                        <a href="/batch_history?batch_id=56" class = "btn-sm">
+                        <a href="/batch_history?batch_id=56" class="btn-sm">
                             <i th:replace="template_batch_table_fragment :: batchTableFragmentStats"></i></a>
                     </td>
                 </tr>
-
 
 
                 <tr>
                     <td>23</td>
-                    <td>Pelita - Compute Invoice Amount After Tax </td>
-                    <td><form class="submitBatchForm" action="/pelitacomputeinvoiceamountaftertax"
+                    <td>Pelita - Compute Invoice Amount After Tax</td>
+                    <td>
+                        <form class="submitBatchForm" action="/pelitacomputeinvoiceamountaftertax"
                               method="POST" data-parsley-validate>
-                        <input type=number required name=tenant_id value=59 hidden>
-                        <input type=number required name=batch_id value=57 hidden>
-                        <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
-                    </form>
+                            <input type=number required name=tenant_id value=59 hidden>
+                            <input type=number required name=batch_id value=57 hidden>
+                            <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
+                        </form>
                     </td>
                     <td>
-                        <a href="/batch_history?batch_id=57" class = "btn-sm">
+                        <a href="/batch_history?batch_id=57" class="btn-sm">
                             <i th:replace="template_batch_table_fragment :: batchTableFragmentStats"></i></a>
                     </td>
                 </tr>
 
                 <tr>
                     <td>24</td>
-                    <td>Pelita - Invoice Status Evaluation </td>
-                    <td><form class="submitBatchForm" action="/pelitainvoicestatusevaluation"
+                    <td>Pelita - Invoice Status Evaluation</td>
+                    <td>
+                        <form class="submitBatchForm" action="/pelitainvoicestatusevaluation"
                               method="POST" data-parsley-validate>
-                        <input type=number required name=batch_id value=58 hidden>
-                        <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
-                    </form>
+                            <input type=number required name=batch_id value=58 hidden>
+                            <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
+                        </form>
                     </td>
                     <td>
-                        <a href="/batch_history?batch_id=58" class = "btn-sm">
+                        <a href="/batch_history?batch_id=58" class="btn-sm">
                             <i th:replace="template_batch_table_fragment :: batchTableFragmentStats"></i></a>
                     </td>
                 </tr>
 
                 <tr>
                     <td>25</td>
-                    <td>Pelita - Age Invoice </td>
-                    <td><form class="submitBatchForm" action="/pelitageinvoice"
+                    <td>Pelita - Age Invoice</td>
+                    <td>
+                        <form class="submitBatchForm" action="/pelitageinvoice"
                               method="POST" data-parsley-validate>
-                        <input type=number required name=tenant_id value=59 hidden>
-                        <input type=number required name=batch_id value=59 hidden>
-                        <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
-                    </form>
+                            <input type=number required name=tenant_id value=59 hidden>
+                            <input type=number required name=batch_id value=59 hidden>
+                            <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
+                        </form>
                     </td>
                     <td>
-                        <a href="/batch_history?batch_id=59" class = "btn-sm">
+                        <a href="/batch_history?batch_id=59" class="btn-sm">
+                            <i th:replace="template_batch_table_fragment :: batchTableFragmentStats"></i></a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>25</td>
+                    <td>Pelita - Update Data Date</td>
+                    <td>
+                        <form class="submitBatchForm" action="/pelitaupdatedatadate"
+                              method="POST" data-parsley-validate>
+                            <input type=number required name=batch_id value=60 hidden>
+                            <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
+                        </form>
+                    </td>
+                    <td>
+                        <a href="/batch_history?batch_id=60" class="btn-sm">
                             <i th:replace="template_batch_table_fragment :: batchTableFragmentStats"></i></a>
                     </td>
                 </tr>
