@@ -26,7 +26,7 @@
     <select id = "viewBatch" resultMap = "viewBatch-map">
         select
         id, code, name, description, disable
-        from kvbatch
+        from kvbatch ORDER BY id asc
     </select>
 
     <select id="getBatchById" resultMap="viewBatch-map">
