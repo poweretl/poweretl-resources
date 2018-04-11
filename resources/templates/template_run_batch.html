@@ -365,7 +365,7 @@
 
                 <tr>
                     <td>22</td>
-                    <td>Pelita - Age Invoice </td>
+                    <td>Pelita - In Aging Invoice </td>
                     <td><form class="submitBatchForm" action="/pelitaageinvoice"
                               method="POST" data-parsley-validate>
                         <input type=number required name=tenant_id value=59 hidden>
@@ -379,24 +379,10 @@
                     </td>
                 </tr>
 
-                <tr>
-                    <td>23</td>
-                    <td>Pelita - Calculate Outstanding </td>
-                    <td><form class="submitBatchForm" action="/pelitacalcoutstanding"
-                              method="POST" data-parsley-validate>
-                        <input type=number required name=tenant_id value=59 hidden>
-                        <input type=number required name=batch_id value=56 hidden>
-                        <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
-                    </form>
-                    </td>
-                    <td>
-                        <a href="/batch_history?batch_id=56" class = "btn-sm">
-                            <i th:replace="template_batch_table_fragment :: batchTableFragmentStats"></i></a>
-                    </td>
-                </tr>
+
 
                 <tr>
-                    <td>24</td>
+                    <td>23</td>
                     <td>Pelita - Compute Invoice Amount After Tax </td>
                     <td><form class="submitBatchForm" action="/pelitacomputeinvoiceamountaftertax"
                               method="POST" data-parsley-validate>
@@ -412,17 +398,17 @@
                 </tr>
 
                 <tr>
-                    <td>25</td>
+                    <td>24</td>
                     <td>Pelita - Invoice Status Evaluation </td>
                     <td><form class="submitBatchForm" action="/pelitainvoicestatusevaluation"
                               method="POST" data-parsley-validate>
                         <input type=number required name=tenant_id value=59 hidden>
-                        <input type=number required name=batch_id value=56 hidden>
+                        <input type=number required name=batch_id value=57 hidden>
                         <i th:replace="template_batch_table_fragment :: batchTableFragmentSubmitBtn"></i>
                     </form>
                     </td>
                     <td>
-                        <a href="/batch_history?batch_id=56" class = "btn-sm">
+                        <a href="/batch_history?batch_id=57" class = "btn-sm">
                             <i th:replace="template_batch_table_fragment :: batchTableFragmentStats"></i></a>
                     </td>
                 </tr>
