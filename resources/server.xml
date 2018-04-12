@@ -105,18 +105,18 @@
 	</environments>
 
 	<mappers>
-        <mapper resource="sqlIncludes.xml" />
-		<mapper resource="AdhocQueryService.xml" />
-		<mapper resource="dcSettingService.xml" />
-		<mapper resource="emailSettingService.xml" />
-		<mapper resource="sftpSettingService.xml" />
-		<mapper resource="databaseSettingService.xml" />
-		<mapper resource="hostService.xml" />
-		<mapper resource="userManagementService.xml" />
+        <mapper resource="app/sqlIncludes.xml" />
+		<mapper resource="app/AdhocQueryService.xml" />
+		<mapper resource="app/dcSettingService.xml" />
+		<mapper resource="app/emailSettingService.xml" />
+		<mapper resource="app/sftpSettingService.xml" />
+		<mapper resource="app/databaseSettingService.xml" />
+		<mapper resource="app/hostService.xml" />
+		<mapper resource="app/userManagementService.xml" />
 		<mapper resource="pbk/calcOutstandingService.xml" />
 		<mapper resource="pbk/lumpSumPaymentService.xml" />
 		<mapper resource="pbk/ageInvoiceService.xml" />
-		<mapper resource="batchService.xml" />
+		<mapper resource="app/batchService.xml" />
 		<mapper resource="updateVendorInvoicesGroup1.xml"/>
         <mapper resource="updateVendorInvoicesGroup2.xml"/>
         <mapper resource="updateVendorInvoicesGroup3.xml"/>
@@ -132,10 +132,10 @@
 		<mapper resource="transactionUpdateService.xml"/>
         <mapper resource="postTransactionLoadService.xml"/>
         <mapper resource="invoiceTransactionService.xml"/>
-        <mapper resource="batchHistoryService.xml"/>
+        <mapper resource="app/batchHistoryService.xml"/>
 		<mapper resource="pbk/updateDataDateService.xml" />
 		<mapper resource="invoiceVendorTransaction.xml" />
-		<mapper resource="dataProfilerService.xml" />
+		<mapper resource="app/dataProfilerService.xml" />
 		<mapper resource="pelita/inAgingService.xml" />
 		<mapper resource="pelita/computeInvoiceAmountAfterTaxService.xml" />
 		<mapper resource="pelita/invoiceStatusEvaluation.xml" />
