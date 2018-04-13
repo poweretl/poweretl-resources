@@ -6,12 +6,19 @@
 <mapper namespace="computeInvoiceAmountAfterTaxService">
 
     <select id="getInvoiceAmountAfterTaxById" resultType="hmap">
-        select id, invoice_amount, gst as tax from invoices where tenant_id = 59
+        SELECT
+            id,
+            coalesce(invoice_amount, 0.0) - coalesce(gst, 0.0) AS invoice_amount
+        FROM invoices
+        WHERE tenant_id = 59 AND invoice_no = '4356'
     </select>
 
 
-    <update id = "updateInvoiceAmountAfterTax">
-        update invoices set invoice_amount = coalesce((#{invoice_amount} - #{tax}),0.0),
-        invoice_outstanding = coalesce((#{invoice_amount} - #{tax}),0.0) where id = #{id}
+    <update id="updateInvoiceAmountAfterTax">
+        UPDATE invoices
+        SET
+            invoice_amount      = #{invoice_amount},
+            invoice_outstanding = 0
+        WHERE id = #{id}
     </update>
 </mapper>
