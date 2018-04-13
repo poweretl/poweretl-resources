@@ -10,7 +10,7 @@
             id,
             coalesce(invoice_amount, 0.0) - coalesce(gst, 0.0) AS invoice_amount
         FROM invoices
-        WHERE tenant_id = 59 AND invoice_no = '4356'
+        WHERE tenant_id = 59
     </select>
 
 
@@ -18,7 +18,7 @@
         UPDATE invoices
         SET
             invoice_amount      = #{invoice_amount},
-            invoice_outstanding = 0
+            invoice_outstanding = #{invoice_amount}
         WHERE id = #{id}
     </update>
 </mapper>
