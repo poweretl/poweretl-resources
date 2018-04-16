@@ -9,9 +9,9 @@
             select nextval('kvbatch_history_id')
         </selectKey>
         insert into kvbatch_history
-        (id, batch_id, number_of_records_updated, updated_date, time_taken)
+        (id, batch_id, number_of_records_updated, updated_date, time_taken, data_source)
         values
-        (#{id}, #{batch_id}, #{number_of_records_updated}, DATE_TRUNC('second', NOW()), #{time_taken})
+        (#{id}, #{batch_id}, #{number_of_records_updated}, DATE_TRUNC('second', NOW()), #{time_taken}, #{data_source})
     </insert>
 
     <resultMap type="java.util.HashMap" id="viewBatchHistory-map" >
@@ -20,15 +20,16 @@
         <result property="number_of_records_updated" column="number_of_records_updated" javaType="java.lang.Long" />
         <result property="updated_date" column="updated_date" javaType="java.sql.Timestamp" />
         <result property="time_taken" column="time_taken" javaType="java.lang.Long" />
+        <result property="data_source" column="data_source" javaType="java.lang.String" />
     </resultMap>
 
     <select id = "viewLatestBatchHistory" resultMap = "viewBatchHistory-map">
-        select id, batch_id, number_of_records_updated, updated_date, time_taken
+        select id, batch_id, number_of_records_updated, updated_date, time_taken , data_source
         from kvbatch_history where batch_id = #{batch_id} order by id desc limit 1
     </select>
 
     <select id = "viewBatchHistory" resultMap = "viewBatchHistory-map">
-        select id, batch_id, number_of_records_updated, updated_date, time_taken
+        select id, batch_id, number_of_records_updated, updated_date, time_taken, data_source
         from kvbatch_history where batch_id = #{batch_id} order by id desc
     </select>
 
@@ -37,9 +38,10 @@
             kvbatch.id,
             kvbatch.name,
             kvbatch.description,
+            kvbatch_history.number_of_records_updated,
             kvbatch_history.updated_date,
             kvbatch_history.time_taken,
-            kvbatch_history.number_of_records_updated
+            kvbatch_history.data_source
         FROM kvbatch
             INNER JOIN kvbatch_history ON kvbatch.id = kvbatch_history.batch_id
         ORDER BY kvbatch_history.updated_date desc;

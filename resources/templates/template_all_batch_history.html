@@ -28,8 +28,10 @@
                     <th>Name</th>
                     <th>Description</th>
                     <th>Updated Date</th>
-                    <th>Time Taken (ms)</th>
                     <th>Number of Records Updated</th>
+                    <th>Time Taken (ms)</th>
+                    <th>Data Source</th>
+
                 </tr>
                 </thead>
                 <tbody>
@@ -38,8 +40,9 @@
                     <td th:text="${history.name}"></td>
                     <td th:text="${history.description}"></td>
                     <td th:text="${history.updated_date}"></td>
-                    <td th:text="${history.time_taken}"></td>
                     <td th:text="${history.number_of_records_updated}"></td>
+                    <td th:text="${history.time_taken}"></td>
+                    <td th:text="${history.data_source}"></td>
                 </tr>
                 </tbody>
             </table>
