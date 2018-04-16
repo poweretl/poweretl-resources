@@ -34,9 +34,9 @@
   <body class="nav-md  footer_fixed">
     <div class="container body">
       <div class="main_container">
-   <div th:replace="template_menu :: menu"></div>
+   <div th:replace="fragments/template_menu :: menu"></div>
    <!-- top navigation -->
-   <div th:replace="template_topnav :: topnav"></div>
+   <div th:replace="fragments/template_topnav :: topnav"></div>
    <!-- /top navigation -->
 
         <!-- page content -->
@@ -734,7 +734,7 @@
         <!-- /page content -->
 
         <!-- footer content -->
-<footer th:replace="template_footer :: footer"> </footer>
+<footer th:replace="fragments/template_footer :: footer"> </footer>
         <!-- /footer content -->
       </div>
     </div>
