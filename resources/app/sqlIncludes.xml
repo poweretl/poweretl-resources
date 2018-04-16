@@ -199,12 +199,13 @@
 
     <sql id="ageInvoiceSelectFragment">
         SELECT
-            invoice_due_date,
-            (DATE_PART('year', current_date :: DATE) - DATE_PART('year', invoice_due_date :: DATE)) * 12 +
-            (DATE_PART('month', current_date :: DATE) - DATE_PART('month', invoice_due_date :: DATE)) AS mpd,
-            tenant_id,
-            id
-        FROM invoices
+            inv.invoice_due_date,
+            (DATE_PART('year', current_date :: DATE) - DATE_PART('year', inv.invoice_due_date :: DATE)) * 12 +
+            (DATE_PART('month', current_date :: DATE) - DATE_PART('month', inv.invoice_due_date :: DATE)) AS mpd,
+            inv.tenant_id,
+            inv.id
+        FROM invoices inv 
+        inner join invoice_status statusref on inv.invoice_status_id = statusref.id
     </sql>
     <sql id="ageInvoiceUpdateFragment">
         UPDATE invoices
