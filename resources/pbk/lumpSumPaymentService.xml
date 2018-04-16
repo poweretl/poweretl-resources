@@ -21,7 +21,7 @@ UPDATE kv_net_lump_sum_payment SET net_lump_sum_amount = #{net_lump_sum_amount} 
 
 <insert id="insertGetSumAmount">
 <selectKey keyProperty="id" resultType="int" order="BEFORE" >
-SELECT nextval('seq')
+SELECT nextval('kv_net_lump_sum_payment_id')
 </selectKey>
 INSERT INTO kv_net_lump_sum_payment (id, account_id, net_lump_sum_amount ) VALUES (#{id} , #{account_id} , #{net_lump_sum_amount});
 </insert>
