@@ -5,9 +5,6 @@
 
 <mapper namespace="yycQueryService.xml">
 
-
-
-
   <resultMap type="java.util.HashMap" id="getUpdateSequence">
     <result property="id" column="id" javaType="java.lang.Long" />
   </resultMap>
@@ -56,6 +53,5 @@
     setval('customers_emails_id', (select max(id) from
     customers_emails));
   </select>
-  
-  
+
 </mapper>
