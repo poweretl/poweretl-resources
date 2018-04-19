@@ -35,9 +35,10 @@
 
     <sql id="selectInclude">
         SELECT
+            row_number() over(order by kvbatch_history.updated_date desc) as rowNumber,
             kvbatch.name,
             kvbatch.description,
-            TO_CHAR(kvbatch_history.updated_date, 'DD month YYYY "@" HH:MI:SS'),
+            TO_CHAR(kvbatch_history.updated_date, 'DD Month YYYY "@" HH:MI:SS'),
             kvbatch_history.number_of_records_updated,
             kvbatch_history.time_taken
         FROM kvbatch
