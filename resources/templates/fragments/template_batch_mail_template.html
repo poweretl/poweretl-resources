@@ -4,7 +4,6 @@
     <style>
         body {
             font-family: 'Roboto', sans-serif;
-            font-size: 48px;
             width: 100%;
         }
         table{
@@ -26,7 +25,7 @@
             color: white;
         }
         img{
-            height: 60px;
+            height: 50px;
         }
     </style>
 </head>
@@ -55,8 +54,8 @@
     </tbody>
 </table>
 </div>
-<div th:text="${salutation}"></div>
-<div th:text="${signOff}"></div>
+<p th:text="${salutation}"></p>
+<p th:text="${signOff}"></p>
 <img th:text="${footer}" src="https://i.imgur.com/iNmFoHH.png">
 </body>
 </html>

@@ -37,8 +37,8 @@
         SELECT
             kvbatch.name,
             kvbatch.description,
-            kvbatch_history.number_of_records_updated,
             TO_CHAR(kvbatch_history.updated_date, 'DD month YYYY "@" HH:MI:SS'),
+            kvbatch_history.number_of_records_updated,
             kvbatch_history.time_taken,
             kvbatch_history.data_source
         FROM kvbatch
