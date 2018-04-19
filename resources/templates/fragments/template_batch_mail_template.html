@@ -6,54 +6,88 @@
             font-family: 'Roboto', sans-serif;
             width: 100%;
         }
-        table{
+
+        table {
             border-collapse: collapse;
-            max-width: 1200px;
+            max-width: 1000px;
         }
-        td,th{
-            border:1px solid #333;
+
+        td, th {
+            border: 1px solid #333;
             text-align: left;
             padding: 5px;
         }
-        tr:nth-child(even) {background-color: #f2f2f2;}
-        tr:hover {background-color: #ddd;}
-        th{
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        th {
             padding-top: 12px;
             padding-bottom: 12px;
             text-align: left;
             background-color: #5A738E;
             color: white;
         }
-        img{
+
+        img {
             height: 50px;
+        }
+        .center{
+            text-align: center;
         }
     </style>
 </head>
 <body>
-<div>
 <span th:text="${title}"></span>
 <p th:text="${intro}"></p>
 <p th:text="${message}"></p>
 <table>
     <thead>
     <tr>
+        <th colspan="5" class="center">UAT</th></tr>
+    <tr>
         <th>Name</th>
         <th>Description</th>
         <th>Updated Time</th>
         <th># of Records Updated</th>
         <th>Running Time (ms)</th>
-        <th>Database</th>
     </tr>
     </thead>
-    <tbody th:each= "msg, status : ${messageContent}">
+    <tbody th:each="uat : ${uatStats}">
     <tr>
-    <td th:each= "msg, status : ${msg.values()}">
-        <span th:text="${msg}"></span>
-    </td>
+        <td th:each="uat : ${uat.values()}">
+            <span th:text="${uat}"></span>
+        </td>
     </tr>
     </tbody>
 </table>
-</div>
+<br>
+<table>
+    <thead>
+    <tr>
+        <th colspan="5" class="center">Production</th>
+    </tr>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Updated Time</th>
+        <th># of Records Updated</th>
+        <th>Running Time (ms)</th>
+    </tr>
+    </thead>
+    <tbody th:each="prod : ${prodStats}">
+    <tr>
+        <td th:each="prod : ${prod.values()}">
+            <span th:text="${prod}"></span>
+        </td>
+    </tr>
+    </tbody>
+</table>
 <p th:text="${salutation}"></p>
 <p th:text="${signOff}"></p>
 <img th:text="${footer}" src="https://i.imgur.com/iNmFoHH.png">
