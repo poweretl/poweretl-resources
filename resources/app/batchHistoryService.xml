@@ -33,6 +33,17 @@
         from kvbatch_history where batch_id = #{batch_id} order by id desc
     </select>
 
+    <sql id="selectInclude">
+        SELECT
+            kvbatch.name,
+            kvbatch.description,
+            kvbatch_history.number_of_records_updated,
+            kvbatch_history.updated_date,
+            kvbatch_history.time_taken,
+            kvbatch_history.data_source
+        INNER JOIN kvbatch_history ON kvbatch.id = kvbatch_history.batch_id
+        FROM kvbatch
+    </sql>
     <select id="viewAllBatchHistory" resultMap = "viewBatchHistory-map">
         SELECT
             kvbatch.id,
@@ -47,4 +58,19 @@
         ORDER BY kvbatch_history.updated_date desc;
     </select>
 
+    <select id="viewPbkAfterScheduler" resultMap = "viewBatchHistory-map">
+        <include refid="selectInclude"/>
+        WHERE batch_id in (2,3,53)
+        ORDER BY kvbatch_history.updated_date desc limit 6;
+    </select>
+    <select id="viewPelitaAfterScheduler" resultMap = "viewBatchHistory-map">
+        <include refid="selectInclude"/>
+        WHERE batch_id in (58,57,56, 59, 60, 61)
+        ORDER BY kvbatch_history.updated_date desc limit 6;
+    </select>
+    <select id="viewYycAfterScheduler" resultMap = "viewBatchHistory-map">
+        <include refid="selectInclude"/>
+        WHERE batch_id in (62)
+        ORDER BY kvbatch_history.updated_date desc limit 2;
+    </select>
 </mapper>

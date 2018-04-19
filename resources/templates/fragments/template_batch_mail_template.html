@@ -1,11 +1,63 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head></head>
+<head>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size: 48px;
+            width: 100%;
+        }
+        table{
+            border-collapse: collapse;
+            max-width: 1200px;
+        }
+        td,th{
+            border:1px solid #333;
+            text-align: left;
+            padding: 5px;
+        }
+        tr:nth-child(even) {background-color: #f2f2f2;}
+        tr:hover {background-color: #ddd;}
+        th{
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #5A738E;
+            color: white;
+        }
+        img{
+            height: 60px;
+        }
+    </style>
+</head>
 <body>
-<span th:text="${title}"></span><br>
+<div>
+<span th:text="${title}"></span>
 <p th:text="${intro}"></p>
-<span th:text="${message}" style="background-color: #a6e1ec"></span><br>
+<span th:text="${message}"></span>
+<div style="padding-left: 3%;">
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Updated Date & Time</th>
+        <th>Number of Rows Updated</th>
+        <th>Time Taken (ms)</th>
+        <th>Data Source</th>
+    </tr>
+    </thead>
+    <tbody th:each= "msg, status : ${messageContent}">
+    <tr>
+    <td th:each= "msg, status : ${msg.values()}">
+        <span th:text="${msg}"></span>
+    </td>
+    </tr>
+    </tbody>
+</table>
+</div>
 <p th:text="${salutation}"></p>
-<img th:text="${footer}" src="https://i.imgur.com/iNmFoHH.png" style="height: 60px;">
+<img th:text="${footer}" src="https://i.imgur.com/iNmFoHH.png">
+</div>
 </body>
 </html>
