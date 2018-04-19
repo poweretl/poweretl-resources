@@ -58,41 +58,41 @@
         ORDER BY kvbatch_history.updated_date desc;
     </select>
 
-    <select id="getDailyPbkHistoryUat" resultMap = "viewBatchHistory-map">
+    <select id="getDailyPbkHistoryUat" resultType="hmap">
         <include refid="selectInclude"/>
         WHERE batch_id in (2,3,53) and kvbatch_history.updated_date >= now()::date + interval '1h' and kvbatch_history.data_source = 'PBK_1'
         ORDER BY kvbatch_history.updated_date desc;
     </select>
 
-    <select id="getDailyPbkHistoryProd" resultMap = "viewBatchHistory-map">
+    <select id="getDailyPbkHistoryProd" resultType="hmap">
         <include refid="selectInclude"/>
         WHERE batch_id in (2,3,53) and kvbatch_history.updated_date >= now()::date + interval '1h'
         and kvbatch_history.data_source = 'KV_Production'
         ORDER BY kvbatch_history.updated_date desc;
     </select>
 
-    <select id="getDailyPelitaHistoryUat" resultMap = "viewBatchHistory-map">
+    <select id="getDailyPelitaHistoryUat" resultType="hmap">
         <include refid="selectInclude"/>
         WHERE batch_id in (58,57,56, 59, 60, 61) and kvbatch_history.updated_date >= now()::date + interval '1h'
         and kvbatch_history.data_source = 'Pelita_Test'
         ORDER BY kvbatch_history.updated_date desc;
     </select>
 
-    <select id="getDailyPelitaHistoryProd" resultMap = "viewBatchHistory-map">
+    <select id="getDailyPelitaHistoryProd" resultType="hmap">
         <include refid="selectInclude"/>
         WHERE batch_id in (58,57,56, 59, 60, 61) and kvbatch_history.updated_date >= now()::date + interval '1h'
         and kvbatch_history.data_source = 'KV_Production'
         ORDER BY kvbatch_history.updated_date desc;
     </select>
 
-    <select id="getDailyYycHistoryUat" resultMap = "viewBatchHistory-map">
+    <select id="getDailyYycHistoryUat" resultType="hmap">
         <include refid="selectInclude"/>
         WHERE batch_id in (62) and kvbatch_history.updated_date >= now()::date + interval '1h'
         and kvbatch_history.data_source = 'Pelita_Test'
         ORDER BY kvbatch_history.updated_date desc;
     </select>
 
-    <select id="getDailyYycHistoryProd" resultMap = "viewBatchHistory-map">
+    <select id="getDailyYycHistoryProd" resultType="hmap">
         <include refid="selectInclude"/>
         WHERE batch_id in (62) and kvbatch_history.updated_date >= now()::date + interval '1h'
         and kvbatch_history.data_source = 'KV_Production'
