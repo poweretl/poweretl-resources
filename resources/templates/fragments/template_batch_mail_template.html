@@ -34,17 +34,16 @@
 <div>
 <span th:text="${title}"></span>
 <p th:text="${intro}"></p>
-<span th:text="${message}"></span>
-<div style="padding-left: 3%;">
+<p th:text="${message}"></p>
 <table>
     <thead>
     <tr>
         <th>Name</th>
         <th>Description</th>
-        <th>Updated Date & Time</th>
-        <th>Number of Rows Updated</th>
-        <th>Time Taken (ms)</th>
-        <th>Data Source</th>
+        <th>Updated Time</th>
+        <th># of Records Updated</th>
+        <th>Running Time (ms)</th>
+        <th>Database</th>
     </tr>
     </thead>
     <tbody th:each= "msg, status : ${messageContent}">
@@ -56,8 +55,8 @@
     </tbody>
 </table>
 </div>
-<p th:text="${salutation}"></p>
+<div th:text="${salutation}"></div>
+<div th:text="${signOff}"></div>
 <img th:text="${footer}" src="https://i.imgur.com/iNmFoHH.png">
-</div>
 </body>
 </html>

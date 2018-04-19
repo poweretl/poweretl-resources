@@ -23,12 +23,12 @@
         <result property="data_source" column="data_source" javaType="java.lang.String" />
     </resultMap>
 
-    <select id = "viewLatestBatchHistory" resultMap = "viewBatchHistory-map">
+    <select id = "getLatestBatchHistory" resultMap = "viewBatchHistory-map">
         select id, batch_id, number_of_records_updated, updated_date, time_taken , data_source
         from kvbatch_history where batch_id = #{batch_id} order by id desc limit 1
     </select>
 
-    <select id = "viewBatchHistory" resultMap = "viewBatchHistory-map">
+    <select id = "getBatchHistory" resultMap = "viewBatchHistory-map">
         select id, batch_id, number_of_records_updated, updated_date, time_taken, data_source
         from kvbatch_history where batch_id = #{batch_id} order by id desc
     </select>
@@ -38,13 +38,13 @@
             kvbatch.name,
             kvbatch.description,
             kvbatch_history.number_of_records_updated,
-            kvbatch_history.updated_date,
+            TO_CHAR(kvbatch_history.updated_date, 'DD month YYYY "@" HH:MI:SS'),
             kvbatch_history.time_taken,
             kvbatch_history.data_source
-        INNER JOIN kvbatch_history ON kvbatch.id = kvbatch_history.batch_id
         FROM kvbatch
+        INNER JOIN kvbatch_history ON kvbatch.id = kvbatch_history.batch_id
     </sql>
-    <select id="viewAllBatchHistory" resultMap = "viewBatchHistory-map">
+    <select id="getAllBatchHistory" resultMap = "viewBatchHistory-map">
         SELECT
             kvbatch.id,
             kvbatch.name,
@@ -58,19 +58,19 @@
         ORDER BY kvbatch_history.updated_date desc;
     </select>
 
-    <select id="viewPbkAfterScheduler" resultMap = "viewBatchHistory-map">
+    <select id="getDailyPbkHistory" resultMap = "viewBatchHistory-map">
         <include refid="selectInclude"/>
-        WHERE batch_id in (2,3,53)
-        ORDER BY kvbatch_history.updated_date desc limit 6;
+        WHERE batch_id in (2,3,53) and kvbatch_history.updated_date >= now()::date + interval '1h'
+        ORDER BY kvbatch_history.updated_date desc;
     </select>
-    <select id="viewPelitaAfterScheduler" resultMap = "viewBatchHistory-map">
+    <select id="getDailyPelitaHistory" resultMap = "viewBatchHistory-map">
         <include refid="selectInclude"/>
-        WHERE batch_id in (58,57,56, 59, 60, 61)
-        ORDER BY kvbatch_history.updated_date desc limit 6;
+        WHERE batch_id in (58,57,56, 59, 60, 61) and kvbatch_history.updated_date >= now()::date + interval '1h'
+        ORDER BY kvbatch_history.updated_date desc;
     </select>
-    <select id="viewYycAfterScheduler" resultMap = "viewBatchHistory-map">
+    <select id="getDailyYycHistory" resultMap = "viewBatchHistory-map">
         <include refid="selectInclude"/>
-        WHERE batch_id in (62)
-        ORDER BY kvbatch_history.updated_date desc limit 2;
+        WHERE batch_id in (62) and kvbatch_history.updated_date >= now()::date + interval '1h'
+        ORDER BY kvbatch_history.updated_date desc;
     </select>
 </mapper>
