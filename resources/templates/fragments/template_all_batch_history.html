@@ -37,12 +37,12 @@
                 <tbody>
                 <tr th:each= "history, status : ${allBatchHistoryList}">
                     <td th:text="${status.index + 1}"></td>
-                    <td th:text="${history.name}"></td>
-                    <td th:text="${history.description}"></td>
-                    <td th:text="${history.updated_date}"></td>
-                    <td th:text="${history.number_of_records_updated}"></td>
-                    <td th:text="${history.time_taken}"></td>
-                    <td th:text="${history.data_source}"></td>
+                    <td th:text="${history.batchname}"></td>
+                    <td th:text="${history.batchdesc}"></td>
+                    <td th:text="${history.updateddate}"></td>
+                    <td th:text="${history.records}"></td>
+                    <td th:text="${history.timetaken}"></td>
+                    <td th:text="${history.datasource}"></td>
                 </tr>
                 </tbody>
             </table>

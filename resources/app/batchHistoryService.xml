@@ -24,38 +24,50 @@
     </resultMap>
 
     <select id = "getLatestBatchHistory" resultMap = "viewBatchHistory-map">
-        select id, batch_id, number_of_records_updated, updated_date, time_taken , data_source
+        select
+            id,
+            batch_id,
+            TO_CHAR(number_of_records_updated, '999,999') as records,
+            TO_CHAR(updated_date, 'DD Month YYYY "@" HH:MI:SS') as updatedDate,
+            TO_CHAR(time_taken, '999,999') as timeTaken,
+            data_source
         from kvbatch_history where batch_id = #{batch_id} order by id desc limit 1
     </select>
 
     <select id = "getBatchHistory" resultMap = "viewBatchHistory-map">
-        select id, batch_id, number_of_records_updated, updated_date, time_taken, data_source
+        select
+            id,
+            batch_id,
+            TO_CHAR(number_of_records_updated, '999,999') as records,
+            TO_CHAR(updated_date, 'DD Month YYYY "@" HH:MI:SS') as updatedDate,
+            TO_CHAR(time_taken, '999,999') as timeTaken,
+            data_source
         from kvbatch_history where batch_id = #{batch_id} order by id desc
     </select>
 
     <sql id="selectInclude">
         SELECT
             row_number() over(order by hist.updated_date desc) as rowNum,
-            batch.name,
-            batch.description,
-            TO_CHAR(hist.updated_date, 'DD Month YYYY "@" HH:MI:SS'),
-            hist.number_of_records_updated,
-            hist.time_taken
+            batch.name as batchName,
+            batch.description as batchDesc,
+            TO_CHAR(hist.number_of_records_updated, '999,999') as records,
+            TO_CHAR(hist.time_taken,'999,999') as timeTaken,
+            TO_CHAR(hist.updated_date, 'DD Month YYYY "@" HH:MI:SS') as updatedDate
         FROM kvbatch as batch
         INNER JOIN kvbatch_history hist ON batch.id = hist.batch_id
     </sql>
     <select id="getAllBatchHistory" resultMap = "viewBatchHistory-map">
         SELECT
-            kvbatch.id,
-            kvbatch.name,
-            kvbatch.description,
-            kvbatch_history.number_of_records_updated,
-            kvbatch_history.updated_date,
-            kvbatch_history.time_taken,
-            kvbatch_history.data_source
-        FROM kvbatch
-            INNER JOIN kvbatch_history ON kvbatch.id = kvbatch_history.batch_id
-        ORDER BY kvbatch_history.updated_date desc;
+            batch.id as batchId,
+            batch.name as batchName,
+            batch.description as batchDesc,
+            TO_CHAR(hist.number_of_records_updated, '999,999') as records,
+            TO_CHAR(hist.updated_date, 'DD Month YYYY "@" HH:MI:SS') as updatedDate,
+            TO_CHAR(hist.time_taken,'999,999') as timeTaken,
+            hist.data_source as dataSource
+        FROM kvbatch batch
+            INNER JOIN kvbatch_history hist ON batch.id = hist.batch_id
+        ORDER BY hist.updated_date desc;
     </select>
 
     <select id="getDailyPbkHistoryUat" resultType="hmap">

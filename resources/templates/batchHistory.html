@@ -22,11 +22,11 @@
                     </thead>
                     <tbody>
                     <tr th:each="batch, status : ${latestBatchHistoryList}">
-                        <td th:text="${batch?.updated_date}">
+                        <td th:text="${batch?.updateddate}">
                         </td>
-                        <td th:text="${batch?.number_of_records_updated}">
+                        <td th:text="${batch?.records}">
                         </td>
-                        <td th:text="${batch?.time_taken}">
+                        <td th:text="${batch?.timetaken}">
                         </td>
                         <td th:text="${batch?.data_source}">
                         </td>
@@ -53,11 +53,11 @@
                     <tbody>
                     <tr th:each="batch, status : ${batchHistoryList}">
                         <td th:text="${status.index + 1}"></td>
-                        <td th:text="${batch?.updated_date}">
+                        <td th:text="${batch?.updateddate}">
                         </td>
-                        <td th:text="${batch?.number_of_records_updated}">
+                        <td th:text="${batch?.records}">
                         </td>
-                        <td th:text="${batch?.time_taken}">
+                        <td th:text="${batch?.timetaken}">
                         </td>
                         <td th:text="${batch?.data_source}">
                         </td>
