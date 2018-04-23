@@ -34,7 +34,7 @@
         from kvbatch_history where batch_id = #{batch_id} order by id desc limit 1
     </select>
 
-    <select id = "getBatchHistory" resultMap = "viewBatchHistory-map">
+    <select id = "getLastTenBatchHistory" resultMap = "viewBatchHistory-map">
         select
             id,
             batch_id,
@@ -42,7 +42,7 @@
             TO_CHAR(updated_date, 'DD Month YYYY "@" HH:MI:SS') as updatedDate,
             TO_CHAR(time_taken, '999,999') as timeTaken,
             data_source
-        from kvbatch_history where batch_id = #{batch_id} order by id desc
+        from kvbatch_history where batch_id = #{batch_id} order by id desc limit 10
     </select>
 
     <sql id="selectInclude">
