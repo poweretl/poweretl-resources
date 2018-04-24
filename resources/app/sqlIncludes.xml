@@ -220,6 +220,6 @@
     </sql>
     <sql id="updateDataDateFragment">
         UPDATE kv_data_date
-        SET data_date = (current_date - 1)
+        SET data_date = current_date
     </sql>
 </mapper>
