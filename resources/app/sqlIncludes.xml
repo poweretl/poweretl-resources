@@ -220,6 +220,9 @@
     </sql>
     <sql id="updateDataDateFragment">
         UPDATE kv_data_date
-        SET data_date = current_date
+        SET data_date = current_date - 1
     </sql>
+    <select id = "getUpdateDataDateToKeepConnectionOpen" resultType="hmap">
+        SELECT * from kv_data_date
+    </select>
 </mapper>
