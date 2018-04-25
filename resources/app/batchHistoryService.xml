@@ -28,7 +28,7 @@
             id,
             batch_id,
             TO_CHAR(number_of_records_updated, '999,999') as records,
-            TO_CHAR(updated_date, 'DD Month YYYY "@" HH:MI:SS') as updatedDate,
+            TO_CHAR(updated_date, 'DD Month YYYY "@" HH24:MI:SS') as updatedDate,
             TO_CHAR(time_taken, '999,999') as timeTaken,
             data_source
         from kvbatch_history where batch_id = #{batch_id} order by id desc limit 1
@@ -39,7 +39,7 @@
             id,
             batch_id,
             TO_CHAR(number_of_records_updated, '999,999') as records,
-            TO_CHAR(updated_date, 'DD Month YYYY "@" HH:MI:SS') as updatedDate,
+            TO_CHAR(updated_date, 'DD Month YYYY "@" HH24:MI:SS') as updatedDate,
             TO_CHAR(time_taken, '999,999') as timeTaken,
             data_source
         from kvbatch_history where batch_id = #{batch_id} order by id desc limit 10
@@ -52,7 +52,7 @@
             batch.description as batchDesc,
             TO_CHAR(hist.number_of_records_updated, '999,999') as records,
             TO_CHAR(hist.time_taken,'999,999') as timeTaken,
-            TO_CHAR(hist.updated_date, 'DD Month YYYY "@" HH:MI:SS') as updatedDate
+            TO_CHAR(hist.updated_date, 'DD Month YYYY "@" HH24:MI:SS') as updatedDate
         FROM kvbatch as batch
         INNER JOIN kvbatch_history hist ON batch.id = hist.batch_id
     </sql>
@@ -62,7 +62,7 @@
             batch.name as batchName,
             batch.description as batchDesc,
             TO_CHAR(hist.number_of_records_updated, '999,999') as records,
-            TO_CHAR(hist.updated_date, 'DD Month YYYY "@" HH:MI:SS') as updatedDate,
+            TO_CHAR(hist.updated_date, 'DD Month YYYY "@" HH24:MI:SS') as updatedDate,
             TO_CHAR(hist.time_taken,'999,999') as timeTaken,
             hist.data_source as dataSource
         FROM kvbatch batch
