@@ -51,7 +51,7 @@
     <span th:text="${title}"></span>
     <p th:text="${intro}"></p>
     <p th:text="${message}"></p>
-    <div th:if="${uatStats != null || uatStats.size() != 0}">
+    <div th:if="${uatStats.size() != 0}">
     <table>
         <thead>
         <tr>
@@ -75,11 +75,11 @@
         </tbody>
     </table>
     </div>
-    <div th:unless="${uatStats != null || uatStats.size() != 0}">
+    <div th:unless="${uatStats.size() != 0}">
         <p>No batches were executed on UAT.</p>
     </div>
     <br>
-    <div th:if="${prodStats != null || prodStats.size() != 0}">
+    <div th:if="${prodStats.size() != 0}">
     <table>
         <thead>
         <tr>
@@ -103,7 +103,7 @@
         </tbody>
     </table>
     </div>
-    <div th:unless="${prodStats != null || prodStats.size() != 0}">
+    <div th:unless="${prodStats.size() != 0}">
         <p>No batches were executed on Production.</p>
     </div>
     <p th:text="${salutation}"></p>
