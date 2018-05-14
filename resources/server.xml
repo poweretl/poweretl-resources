@@ -149,10 +149,14 @@
 		<mapper resource="pelita/inAgingService.xml" />
 		<mapper resource="pelita/computeInvoiceAmountAfterTaxService.xml" />
 		<mapper resource="pelita/invoiceStatusEvaluation.xml" />
-		<mapper resource="pelita/pelitaAgeInvoiceService.xml" />
+		<mapper resource="pelita/ageInvoiceService.xml" />
         <mapper resource="pelita/updateDataDateService.xml" />
 		<mapper resource="pelita/computeDebitAmountAfterTaxService.xml" />
-        <mapper resource="yyc/yycQueryService.xml" />
+        <mapper resource="yyc/updateSequenceService.xml" />
+		<mapper resource="yyc/invoiceStatusEvaluation.xml" />
+		<mapper resource="yyc/ageInvoiceService.xml" />
+		<mapper resource="yyc/updateDataDateService.xml" />
+		<mapper resource="yyc/inAgingService.xml" />
 	</mappers>
 
 </configuration>

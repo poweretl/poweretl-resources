@@ -5,12 +5,12 @@
 
 <mapper namespace="invoiceStatusEvaluation">
 
-    <select id="getPelitaInvoiceStatusById" resultType="hmap">
+    <select id="getYycInvoiceStatusById" resultType="hmap">
         <include refid="sqlIncludes.getInvoiceStatusEvalFragment" />
-         where tenant_id = 59
+        where tenant_id = 65
     </select>
 
-    <update id = "updateInvoiceStatusEvaluation">
+    <update id = "updateYycInvoiceStatusEvaluation">
         <include refid="sqlIncludes.updateInvoiceStatusEvalFragment" />
     </update>
 </mapper>

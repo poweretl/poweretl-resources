@@ -222,7 +222,23 @@
         UPDATE kv_data_date
         SET data_date = current_date - 1
     </sql>
-    <select id = "getUpdateDataDateToKeepConnectionOpen" resultType="hmap">
+    <sql id="getInvoiceStatusEvalFragment">
+        select id,tenant_id, case when invoice_outstanding &lt;= 0 then 12 else 6 end as invoice_status_id
+        from invoices
+    </sql>
+    <sql id="updateInvoiceStatusEvalFragment">
+        update invoices set invoice_status_id = #{invoice_status_id}
+        where id = #{id} and tenant_id = #{tenant_id}
+    </sql>
+    <sql id="getInAging">
+      select case when invoice_outstanding > 0 then true
+        else false end as in_aging, id
+      from invoices
+    </sql>
+    <sql id="updateInAging">
+        update invoices set in_aging = #{in_aging} where id = #{id}
+    </sql>
+    <select id="getUpdateDataDateToKeepConnectionOpen" resultType="hmap">
         SELECT * from kv_data_date
     </select>
 </mapper>
