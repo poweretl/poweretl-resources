@@ -157,6 +157,7 @@
 		<mapper resource="yyc/ageInvoiceService.xml" />
 		<mapper resource="yyc/updateDataDateService.xml" />
 		<mapper resource="yyc/inAgingService.xml" />
+		<mapper resource="app/emailUpdateService.xml" />
 	</mappers>
 
 </configuration>

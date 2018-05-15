@@ -168,4 +168,30 @@
         );
 
     </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#emailBatchForm, #emailTestForm').submit(function (e) {
+                var currentForm = this;
+                e.preventDefault();
+                $(currentForm).hide();
+                $('<div id = "status"><span class="red glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Email sending in progress...</div>').insertAfter($(currentForm));
+                $.ajax({
+                    url: $(currentForm).attr('action'),
+                    data: $(currentForm).serialize(),
+                    type: 'POST',
+                    success: function (data) {
+                        console.log(data);
+                        $('#status').remove();
+                        if (data < 86400000) {
+                            $('<div class = "red"> Email has already been sent today...</div>').insertAfter($(currentForm));
+                        }
+                        else
+                            $('<div class = "green"></div>').html(" Email has been sent successfully. ").insertAfter($(currentForm));
+                    }
+                });
+            });
+        });
+
+    </script>
 </div>
