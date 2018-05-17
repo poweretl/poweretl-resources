@@ -1,4 +1,3 @@
-
 <div th:fragment="emailUpdatesFragment" class="col-md-12 col-xs-12">
     <div class="x_panel">
         <div class="x_title">
@@ -13,33 +12,64 @@
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#">Settings 1</a></li>
                         <li><a href="#">Settings 2</a></li>
-                    </ul></li>
+                    </ul>
+                </li>
                 <li><a class="close-link"><i class="fa fa-close"></i></a></li>
             </ul>
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
             <div class="col-md-6">
-            <form action="/resendemailupdate" method="post"
-                  id="emailBatchForm" data-parsley-validate
-                  class="form-horizontal form-label-left">
-                <div class="form-group">
-                    <div class="col-md-8 col-sm-8 col-xs-12 col-md-offset-4">
-                        <button type="submit" class="btn btn-success ">Resend Email Updates</button>
+                <h4><b>Send Batch Updates</b></h4>
+                <p>If daily automated update fails, use the form below to send batch updates for today.</p>
+                <form action="/resendemailupdate" method="post"
+                      id="emailBatchForm" data-parsley-validate
+                      class="form-horizontal form-label-left">
+                    <div class="form-group">
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            <label class="col-md-4" for="recipient">Recipient(s) <span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-8">
+                            <textarea name="recipient"
+                                      required="required"
+                                      placeholder="Separate by commas(,)"
+                                      class="form-control col-md-7 col-xs-12 hasclear" id = "emailArea"></textarea>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </form>
+                    <div class="form-group">
+                        <div class="col-md-8 col-sm-8 col-xs-12 col-md-offset-4">
+                            <button type="submit" class="btn btn-success btn-sm">Send</button>
+                        </div>
+                    </div>
+                </form>
             </div>
             <div class="col-md-6">
-            <form action="/sendtestemail" method="post"
-                  id="emailTestForm" data-parsley-validate
-                  class="form-horizontal form-label-left">
-                <div class="form-group">
-                    <div class="col-md-8 col-sm-8 col-xs-12 col-md-offset-4">
-                        <button type="submit" class="btn btn-success ">Send Test Email</button>
+                <h4><b>Test Email Templates</b></h4>
+                <p>Use the form below to test different templates for batch updates.</p>
+                <form action="/sendtestemail" method="post"
+                      id="emailTestForm" data-parsley-validate
+                      class="form-horizontal form-label-left">
+                    <div class="form-group">
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            <label class="col-md-4" for="recipient">Recipient(s) <span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-8">
+                            <textarea name="recipient"
+                                      required="required"
+                                      placeholder="Separate by commas(,)"
+                                      class="form-control col-md-7 col-xs-12 hasclear"></textarea>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </form>
+                    <div class="form-group">
+                        <div class="col-md-8 col-sm-8 col-xs-12 col-md-offset-4">
+                            <button type="submit" class="btn btn-success btn-sm">Send</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
