@@ -184,10 +184,10 @@
                         console.log(data);
                         $('#status').remove();
                         if (data < 86400000) {
-                            $('<div class = "red"> Email has already been sent today...</div>').insertAfter($(currentForm));
+                            $('<div class = "red"> Email already sent. Please wait 24 hours...</div>').insertAfter($(currentForm));
                         }
                         else
-                            $('<div class = "green"></div>').html(" Email has been sent successfully. ").insertAfter($(currentForm));
+                            $('<div class = "green"></div>').html("Email has been sent successfully. ").insertAfter($(currentForm));
                     }
                 });
             });
