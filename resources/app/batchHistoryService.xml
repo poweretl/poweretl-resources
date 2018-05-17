@@ -110,11 +110,18 @@
         and hist.data_source = 'KV_Production'
         ORDER BY hist.updated_date desc;
     </select>
-
+    
     <select id="getDailyYycHistoryUat" resultType="hmap">
         <include refid="selectInclude"/>
         WHERE hist.batch_id in (63,64,65,66) and hist.updated_date >= now()::date + interval '1h'
         and hist.data_source = 'Pelita_Test'
+        ORDER BY hist.updated_date desc;
+    </select>
+
+    <select id="getDailyYycHistoryProd" resultType="hmap">
+        <include refid="selectInclude"/>
+        WHERE hist.batch_id in (63,64,65,66) and hist.updated_date >= now()::date + interval '1h'
+        and hist.data_source = 'KV_Production'
         ORDER BY hist.updated_date desc;
     </select>
 
