@@ -30,10 +30,10 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each= "part2, status : ${part2}">
+                <tr th:each= "part1, status : ${part1}">
                     <td th:text="${status.index + 1}"></td>
-                    <td th:text="${part2}"></td>
-                    <td th:text="${part3}"></td>
+                    <td th:text="${part1}"></td>
+                    <td th:text="${part2.get(status.index)}"></td>
                 </tr>
                 </tbody>
             </table>
