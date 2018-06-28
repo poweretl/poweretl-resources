@@ -68,5 +68,31 @@
                 </form>
             </div>
         </div>
+        <div class="x_content">
+            <div class ="col-md-12">
+            <h4><b>Email Log</b></h4>
+            <table id="datatable-buttons"
+                   class="table table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Subject</th>
+                    <th>Recipient</th>
+                    <th>Time Sent</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each= "logList, status : ${logList}">
+                    <td th:text="${status.index + 1}"></td>
+                    <td th:text="${logList.subject}"></td>
+                    <td th:text="${logList.recipient}"></td>
+                    <td th:text="${logList.time_sent}"></td>
+                    <td th:text="${logList.status}"></td>
+                </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
     </div>
 </div>
