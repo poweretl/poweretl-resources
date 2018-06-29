@@ -19,7 +19,7 @@
             recipient,
             TO_CHAR(time_sent, 'DD Month YYYY "@" HH24:MI:SS') as time_sent,
             status
-        from kvemail_log
+        from kvemail_log ORDER BY id DESC
     </select>
 
     <insert id="insertEmailLog">
