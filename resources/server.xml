@@ -159,6 +159,12 @@
 		<mapper resource="yyc/inAgingService.xml" />
 		<mapper resource="app/emailUpdateService.xml" />
 		<mapper resource="app/emailLogService.xml" />
+		<mapper resource="ictzone/inAgingService.xml" />
+		<mapper resource="ictzone/computeInvoiceAmountAfterTaxService.xml" />
+		<mapper resource="ictzone/invoiceStatusEvaluation.xml" />
+		<mapper resource="ictzone/ageInvoiceService.xml" />
+		<mapper resource="ictzone/updateDataDateService.xml" />
+		<mapper resource="ictzone/computeDebitAmountAfterTaxService.xml" />
 	</mappers>
 
 </configuration>

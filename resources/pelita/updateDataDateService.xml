@@ -6,7 +6,7 @@
 <mapper namespace="updateDataDateService">
     <update id="pelitaUpdateDataDate">
         <include refid="sqlIncludes.updateDataDateFragment" />
-        where tenant_id = 59;
+        where tenant_id = 59
     </update>
 
 </mapper>

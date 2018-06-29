@@ -5,15 +5,15 @@
 
 <mapper namespace="ageInvoiceService">
 
-    <select id="getPelitaAgeInvoices" resultType="hmap">
+    <select id="getIctZoneAgeInvoices" resultType="hmap">
         <!-- open = 6, paid = 12 -->
         <include refid="sqlIncludes.ageInvoiceSelectFragment"/>
         where invoice_status_id = 6
-        and tenant_id = 59
+        and tenant_id = 102
     </select>
 
-    <update id = "updatePelitaAgeInvoices">
+    <update id = "updateIctZoneAgeInvoices">
         <include refid="sqlIncludes.ageInvoiceUpdateFragment"/>
-        and tenant_id = 59
+        and tenant_id = 102
     </update>
 </mapper>

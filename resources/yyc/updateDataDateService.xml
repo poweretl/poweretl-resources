@@ -6,7 +6,7 @@
 <mapper namespace="updateDataDateService">
     <update id="yycUpdateDataDate">
         <include refid="sqlIncludes.updateDataDateFragment" />
-        where tenant_id = 65;
+        where tenant_id = 65
     </update>
 
 </mapper>

@@ -5,13 +5,13 @@
 
 <mapper namespace="computeInvoiceAmountAfterTaxService">
 
-    <select id="getPelitaInvoiceAmountAfterTax" resultType="hmap">
+    <select id="getIctZoneInvoiceAmountAfterTax" resultType="hmap">
         <include refid="sqlIncludes.getInvoiceAmountAfterTaxFrag"/>
-        and tenant_id = 59
+        and tenant_id = 102
     </select>
 
 
-    <update id="updatePelitaInvoiceAmountAfterTax">
+    <update id="updateIctZoneInvoiceAmountAfterTax">
         <include refid="sqlIncludes.updateInvoiceAmountAfterTaxFrag"/>
     </update>
 </mapper>
