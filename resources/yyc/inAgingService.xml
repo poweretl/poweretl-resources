@@ -5,12 +5,12 @@
 
 <mapper namespace="inAgingService">
 
-    <select id="getYycInAgingById" resultType="hmap">
+    <select id="getYycInAging" resultType="hmap">
         <include refid="sqlIncludes.getInAging"/>
         where tenant_id = 65
     </select>
 
-    <update id="yycUpdateInAging">
+    <update id="updateYycInAging">
         <include refid="sqlIncludes.updateInAging"/>
     </update>
 </mapper>
