@@ -48,9 +48,13 @@
 </head>
 <body>
 <div class="content">
-    <span th:text="${title}"></span>
-    <p th:text="${intro}"></p>
-    <p th:text="${message}"></p>
+    <p>
+        Hi there,<br><br>
+        This is an automated notification for KollectValley batch statistics for
+        <span th:text="${#dates.format(#dates.createNow(), 'dd MMMM yyyy.')}"></span>
+        <br><br>
+        Batch summary & statistics:
+    </p>
     <div th:if="${uatStats.size() != 0}">
     <table>
         <thead>
@@ -108,9 +112,11 @@
     <div th:unless="${prodStats.size() != 0}">
         <p>No batches were executed on Production.</p>
     </div>
-    <p th:text="${salutation}"></p>
-    <p th:text="${signOff}"></p>
-    <img th:text="${footer}" src="https://i.imgur.com/ymdgJJj.png">
+    <p>
+        Regards,<br>
+        PowerETL Auto Update<br>
+        <img src="https://i.imgur.com/ymdgJJj.png">
+    </p>
 </div>
 </body>
 </html>
